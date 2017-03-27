@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
   
 	<groupId>sul</groupId>
-	<artifactId>sul</artifactId>
+	<artifactId>sel-utils</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
   
