@@ -24,7 +24,7 @@ public class Uncompressed extends Packet {
 		return ID;
 	}
 
-	public byte[][] packets = new byte[0];
+	public byte[][] packets = new byte[0][0];
 
 	public Uncompressed() {}
 
@@ -49,7 +49,7 @@ public class Uncompressed extends Packet {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		readBigEndianByte();
-		int bbytdm=this.readVaruint(); packets=new byte[][bbytdm]; for(int cfavc=0;cfavc<packets.length;cfavc++){ int bbytdnyz=this.readVaruint(); packets[cfavc]=this.readBytes(bbytdnyz); }
+		int bbytdm=this.readVaruint(); packets=new byte[bbytdm][]; for(int cfavc=0;cfavc<packets.length;cfavc++){ int bbytdnyz=this.readVaruint(); packets[cfavc]=this.readBytes(bbytdnyz); }
 	}
 
 	public static Uncompressed fromBuffer(byte[] buffer) {
