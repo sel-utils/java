@@ -680,7 +680,7 @@ public final class Items {
 		add(new Items("diamond horse armor", new ItemData(419, 0), new ItemData(419, 0), (byte)1));
 		add(new Items("lead", new ItemData(420, 0), new ItemData(420, 0), (byte)64));
 		add(new Items("name tag", new ItemData(421, 0), new ItemData(421, 0), (byte)64));
-		add(new Items("minecart with command block", new ItemData(422, 0), null, (byte)1));
+		add(new Items("minecart with command block", new ItemData(422, 0), new ItemData(443, 0), (byte)1));
 		add(new Items("raw mutton", new ItemData(423, 0), new ItemData(423, 0), (byte)64));
 		add(new Items("cooked mutton", new ItemData(424, 0), new ItemData(424, 0), (byte)64));
 		add(new Items("banner", new ItemData(425, 0), null, (byte)64));

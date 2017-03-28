@@ -33,6 +33,7 @@ public final class Entities {
 	public static final Entities MINECART_WITH_HOPPER = new Entities("minecart with hopper", true, -1, 96, 0.98, 0.7);
 	public static final Entities MINECART_WITH_TNT = new Entities("minecart with tnt", true, -1, 97, 0.98, 0.7);
 	public static final Entities MINECART_WITH_CHEST = new Entities("minecart with chest", true, -1, 98, 0.98, 0.7);
+	public static final Entities MINECART_WITH_COMMAND_BLOCK = new Entities("minecart with command block", true, -1, 100, 0.98, 0.7);
 	public static final Entities ACTIVATED_TNT = new Entities("activated tnt", true, 50, 65, 0.98, 0.98);
 	public static final Entities ENDER_CRYSTAL = new Entities("ender crystal", true, 51, 71, 2, 2);
 	public static final Entities ARROW = new Entities("arrow", true, 60, 80, 0.5, 0.5);
@@ -121,6 +122,7 @@ public final class Entities {
 		add(MINECART_WITH_HOPPER);
 		add(MINECART_WITH_TNT);
 		add(MINECART_WITH_CHEST);
+		add(MINECART_WITH_COMMAND_BLOCK);
 		add(ACTIVATED_TNT);
 		add(ENDER_CRYSTAL);
 		add(ARROW);

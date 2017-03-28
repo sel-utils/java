@@ -18,15 +18,15 @@ import sul.utils.*;
 public class Rule extends Stream {
 
 	// name
+	public static final String COMMAND_BLOCK_OUTPUT = "commandblockoutput";
 	public static final String DROWNING_DAMAGE = "drowningdamage";
 	public static final String FALL_DAMAGE = "falldamage";
 	public static final String FIRE_DAMAGE = "firedamage";
-	public static final String IMMUTABLE_WORLD = "immutableworld";
 	public static final String PVP = "pvp";
+	public static final String SEND_COMMAND_FEEDBACK = "sendcommandfeedback";
 
 	/**
-	 * Name of the rule. Same of the `gamerule` command's field in Minecraft: Education
-	 * Edition.
+	 * Name of the rule. Same of the `gamerule` command's field in the game.
 	 * The behaviours indicated in the following constants' descriptions is enabled or
 	 * disabled.
 	 */
