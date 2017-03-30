@@ -10,21 +10,21 @@ package sul.attributes;
 
 public enum Pocket100 {
 
-	HEALTH("minecraft:health", 0f, 20f, 20f),
+	MINECRAFT:HEALTH("health", 0f, 20f, 20f),
 
-	ABSORPTION("minecraft:generic.absorption", 0f, 4f, 0f),
+	MINECRAFT:GENERIC.ABSORPTION("absorption", 0f, 4f, 0f),
 
-	HUNGER("minecraft:player.hunger", 0f, 20f, 20f),
+	MINECRAFT:PLAYER.HUNGER("hunger", 0f, 20f, 20f),
 
-	SATURATION("minecraft:player.saturation", 0f, 20f, 5f),
+	MINECRAFT:PLAYER.SATURATION("saturation", 0f, 20f, 5f),
 
-	EXPERIENCE("minecraft:player.experience", 0f, 1f, 0f),
+	MINECRAFT:PLAYER.EXPERIENCE("experience", 0f, 1f, 0f),
 
-	LEVEL("minecraft:player.level", 0f, 24791f, 0f),
+	MINECRAFT:PLAYER.LEVEL("level", 0f, 24791f, 0f),
 
-	SPEED("minecraft:movement", 0f, 24791f, 0.1f),
+	MINECRAFT:MOVEMENT("speed", 0f, 24791f, 0.1f),
 
-	KNOCKBACK_RESISTANCE("minecraft:generic.knockback_resistance", 0f, 1f, 0f);
+	MINECRAFT:GENERIC.KNOCKBACK_RESISTANCE("knockback_resistance", 0f, 1f, 0f);
 
 	public final String name;
 	public final float min, max, def;

@@ -10,17 +10,17 @@ package sul.attributes;
 
 public enum Minecraft315 {
 
-	MAX_HEALTH("generic.maxHealth", 0f, 1024f, 20f),
+	GENERIC.MAXHEALTH("max_health", 0f, 1024f, 20f),
 
-	ABSORPTION("generic.absorption", 0f, 4f, 0f),
+	GENERIC.ABSORPTION("absorption", 0f, 4f, 0f),
 
-	MOVEMENT_SPEED("generic.movementSpeed", 0f, 24791f, 0.1f),
+	GENERIC.MOVEMENTSPEED("movement_speed", 0f, 24791f, 0.1f),
 
-	KNOCKBACK_RESISTANCE("generic.knockbackResistance", 0f, 1f, 0f),
+	GENERIC.KNOCKBACKRESISTANCE("knockback_resistance", 0f, 1f, 0f),
 
-	ATTACK_DAMAGE("generic.attackDamage", 0f, 2048f, 2f),
+	GENERIC.ATTACKDAMAGE("attack_damage", 0f, 2048f, 2f),
 
-	ATTACK_SPEED("generic.attackSpeed", 0f, 1024f, 4f);
+	GENERIC.ATTACKSPEED("attack_speed", 0f, 1024f, 4f);
 
 	public final String name;
 	public final float min, max, def;
