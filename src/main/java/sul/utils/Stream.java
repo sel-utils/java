@@ -5,6 +5,7 @@
  * License: https://github.com/sel-project/sel-utils/blob/master/LICENSE
  * Repository: https://github.com/sel-project/sel-utils
  */
+
 package sul.utils;
 
 public abstract class Stream extends Buffer {
@@ -21,3 +22,4 @@ public abstract class Stream extends Buffer {
 	public abstract void decode(byte[] buffer);
 
 }
+	
