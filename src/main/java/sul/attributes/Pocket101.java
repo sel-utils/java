@@ -8,32 +8,34 @@
  */
 package sul.attributes;
 
-public enum Pocket101 {
+public enum Pocket101
+{
 
-	MINECRAFT:HEALTH("health", 0f, 20f, 20f),
+    HEALTH("minecraft:health", 0f, 20f, 20f),
 
-	MINECRAFT:GENERIC.ABSORPTION("absorption", 0f, 4f, 0f),
+    ABSORPTION("minecraft:generic.absorption", 0f, 4f, 0f),
 
-	MINECRAFT:PLAYER.HUNGER("hunger", 0f, 20f, 20f),
+    HUNGER("minecraft:player.hunger", 0f, 20f, 20f),
 
-	MINECRAFT:PLAYER.SATURATION("saturation", 0f, 20f, 5f),
+    SATURATION("minecraft:player.saturation", 0f, 20f, 5f),
 
-	MINECRAFT:PLAYER.EXPERIENCE("experience", 0f, 1f, 0f),
+    EXPERIENCE("minecraft:player.experience", 0f, 1f, 0f),
 
-	MINECRAFT:PLAYER.LEVEL("level", 0f, 24791f, 0f),
+    LEVEL("minecraft:player.level", 0f, 24791f, 0f),
 
-	MINECRAFT:MOVEMENT("speed", 0f, 24791f, 0.1f),
+    SPEED("minecraft:movement", 0f, 24791f, 0.1f),
 
-	MINECRAFT:GENERIC.KNOCKBACK_RESISTANCE("knockback_resistance", 0f, 1f, 0f);
+    KNOCKBACK_RESISTANCE("minecraft:generic.knockback_resistance", 0f, 1f, 0f);
 
-	public final String name;
-	public final float min, max, def;
+    public final String id;
+    public final float min, max, def;
 
-	Pocket101(String name, float min, float max, float def) {
-		this.name = name;
-		this.min = min;
-		this.max = max;
-		this.def = def;
-	}
+    Pocket101(String id, float min, float max, float def)
+    {
+        this.id = id;
+        this.min = min;
+        this.max = max;
+        this.def = def;
+    }
 
 }

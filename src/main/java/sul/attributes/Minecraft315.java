@@ -8,28 +8,30 @@
  */
 package sul.attributes;
 
-public enum Minecraft315 {
+public enum Minecraft315
+{
 
-	GENERIC.MAXHEALTH("max_health", 0f, 1024f, 20f),
+    MAX_HEALTH("generic.maxHealth", 0f, 1024f, 20f),
 
-	GENERIC.ABSORPTION("absorption", 0f, 4f, 0f),
+    ABSORPTION("generic.absorption", 0f, 4f, 0f),
 
-	GENERIC.MOVEMENTSPEED("movement_speed", 0f, 24791f, 0.1f),
+    MOVEMENT_SPEED("generic.movementSpeed", 0f, 24791f, 0.1f),
 
-	GENERIC.KNOCKBACKRESISTANCE("knockback_resistance", 0f, 1f, 0f),
+    KNOCKBACK_RESISTANCE("generic.knockbackResistance", 0f, 1f, 0f),
 
-	GENERIC.ATTACKDAMAGE("attack_damage", 0f, 2048f, 2f),
+    ATTACK_DAMAGE("generic.attackDamage", 0f, 2048f, 2f),
 
-	GENERIC.ATTACKSPEED("attack_speed", 0f, 1024f, 4f);
+    ATTACK_SPEED("generic.attackSpeed", 0f, 1024f, 4f);
 
-	public final String name;
-	public final float min, max, def;
+    public final String id;
+    public final float min, max, def;
 
-	Minecraft315(String name, float min, float max, float def) {
-		this.name = name;
-		this.min = min;
-		this.max = max;
-		this.def = def;
-	}
+    Minecraft315(String id, float min, float max, float def)
+    {
+        this.id = id;
+        this.min = min;
+        this.max = max;
+        this.def = def;
+    }
 
 }
