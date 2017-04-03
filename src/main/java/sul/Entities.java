@@ -32,7 +32,7 @@ public enum Entities
     ENDERPEARL("enderpearl", true, 65, 87, 0.25, 0.25),
     WITHER_SKULL("wither skull", true, 66, 89, 0.3125, 0.3125),
     SHULKER_BULLET("shulker bullet", true, 67, 76, 0.3125, 0.3125),
-    LLAMA_SPIT("llama spit", true, 68, 0, 0.25, 0.25),
+    LLAMA_SPIT("llama spit", true, 68, 102, 0.25, 0.25),
     FALLING_BLOCK("falling block", true, 70, 66, 0.98, 0.98),
     ITEM_FRAME("item frame", true, 71, 0),
     EYE_OF_ENDER("eye of ender", true, 72, 70, 0.25, 0.25),
@@ -41,7 +41,7 @@ public enum Entities
     FIREWORK_ROCKET("firework rocket", true, 76, 0, 0.25, 0.25),
     LEASH_KNOT("leash knot", true, 77, 88, 0.375, 0.25),
     ARMOR_STAND("armor stand", true, 78, 0, 0.5, 1.975),
-    EVOCATION_FANGS("evocation fangs", true, 79, 0, 0.5, 0.8),
+    EVOCATION_FANGS("evocation fangs", true, 79, 103, 0.5, 0.8),
     FISHING_HOOK("fishing hook", true, 0, 77, 0.25, 0.25),
     SPECTRAL_ARROW("spectral arrow", true, 91, 0, 0.5, 0.5),
     DRAGON_FIREBALL("dragon fireball", true, 93, 79, 1, 1),
@@ -55,9 +55,9 @@ public enum Entities
     ZOMBIE_HORSE("zombie horse", false, 29, 27, 1.39648, 1.6),
     DONKEY("donkey", false, 31, 24, 1.39648, 1.6),
     MULE("mule", false, 32, 25, 1.39648, 1.6),
-    EVOCATION_ILLAGER("evocation illager", false, 34, 0, 0.6, 1.95),
-    VEX("vex", false, 35, 0, 0.4, 0.8),
-    VINDICATION_ILLAGER("vindication illager", false, 36, 0, 0.6, 1.95),
+    EVOKER("evoker", false, 34, 104, 0.6, 1.95),
+    VEX("vex", false, 35, 105, 0.4, 0.8),
+    VINDICATOR("vindicator", false, 36, 56, 0.6, 1.95),
     CREEPER("creeper", false, 50, 33, 0.6, 1.7),
     SKELETON("skeleton", false, 0, 34, 0.6, 1.99),
     SPIDER("spider", false, 52, 35, 1.4, 0.9),
@@ -90,7 +90,7 @@ public enum Entities
     HORSE("horse", false, 100, 23, 1.39648, 1.6),
     RABBIT("rabbit", false, 101, 18, 0.4, 0.5),
     POLAR_BEAR("polar bear", false, 102, 28, 1.3, 1.4),
-    LLAMA("llama", false, 103, 0, 0.9, 1.87),
+    LLAMA("llama", false, 103, 29, 0.9, 1.87),
     VILLAGER("villager", false, 120, 15, 0.6, 1.95),
     NPC("npc", false, 0, 51, 0.6, 1.95);
 
@@ -165,9 +165,9 @@ public enum Entities
         add(ZOMBIE_HORSE);
         add(DONKEY);
         add(MULE);
-        add(EVOCATION_ILLAGER);
+        add(EVOKER);
         add(VEX);
-        add(VINDICATION_ILLAGER);
+        add(VINDICATOR);
         add(CREEPER);
         add(SKELETON);
         add(SPIDER);
