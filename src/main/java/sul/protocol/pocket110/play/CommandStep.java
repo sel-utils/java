@@ -4,9 +4,9 @@
  * 
  * License: https://github.com/sel-project/sel-utils/blob/master/LICENSE
  * Repository: https://github.com/sel-project/sel-utils
- * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/pocket105.xml
+ * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/pocket110.xml
  */
-package sul.protocol.pocket105.play;
+package sul.protocol.pocket110.play;
 
 import java.nio.charset.StandardCharsets;
 
