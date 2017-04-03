@@ -9,6 +9,7 @@
 package sul.protocol.pocket110.play;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 import sul.utils.*;
 
@@ -122,6 +123,7 @@ public class StartGame extends Packet {
 	 */
 	public boolean commandsEnabled;
 	public boolean textureRequired;
+	public sul.protocol.pocket110.types.Rule[] gameRules = new sul.protocol.pocket110.types.Rule[0];
 	public String levelId;
 
 	/**
@@ -132,7 +134,7 @@ public class StartGame extends Packet {
 
 	public StartGame() {}
 
-	public StartGame(long entityId, long runtimeId, Tuples.FloatXYZ position, float yaw, float pitch, int seed, int dimension, int generator, int worldGamemode, int difficulty, Tuples.IntXYZ spawnPosition, boolean loadedInCreative, int time, byte edition, float rainLevel, float lightingLevel, boolean commandsEnabled, boolean textureRequired, String levelId, String worldName) {
+	public StartGame(long entityId, long runtimeId, Tuples.FloatXYZ position, float yaw, float pitch, int seed, int dimension, int generator, int worldGamemode, int difficulty, Tuples.IntXYZ spawnPosition, boolean loadedInCreative, int time, byte edition, float rainLevel, float lightingLevel, boolean commandsEnabled, boolean textureRequired, sul.protocol.pocket110.types.Rule[] gameRules, String levelId, String worldName) {
 		this.entityId = entityId;
 		this.runtimeId = runtimeId;
 		this.position = position;
@@ -151,13 +153,14 @@ public class StartGame extends Packet {
 		this.lightingLevel = lightingLevel;
 		this.commandsEnabled = commandsEnabled;
 		this.textureRequired = textureRequired;
+		this.gameRules = gameRules;
 		this.levelId = levelId;
 		this.worldName = worldName;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varlongLength(entityId) + Buffer.varlongLength(runtimeId) + Buffer.varintLength(seed) + Buffer.varintLength(dimension) + Buffer.varintLength(generator) + Buffer.varintLength(worldGamemode) + Buffer.varintLength(difficulty) + Buffer.varintLength(spawnPosition.x) + Buffer.varintLength(spawnPosition.y) + Buffer.varintLength(spawnPosition.z) + Buffer.varintLength(time) + Buffer.varuintLength(levelId.getBytes(StandardCharsets.UTF_8).length) + levelId.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(worldName.getBytes(StandardCharsets.UTF_8).length) + worldName.getBytes(StandardCharsets.UTF_8).length + 33;
+		int length=Buffer.varlongLength(entityId) + Buffer.varlongLength(runtimeId) + Buffer.varintLength(seed) + Buffer.varintLength(dimension) + Buffer.varintLength(generator) + Buffer.varintLength(worldGamemode) + Buffer.varintLength(difficulty) + Buffer.varintLength(spawnPosition.x) + Buffer.varintLength(spawnPosition.y) + Buffer.varintLength(spawnPosition.z) + Buffer.varintLength(time) + Buffer.varuintLength(gameRules.length) + Buffer.varuintLength(levelId.getBytes(StandardCharsets.UTF_8).length) + levelId.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(worldName.getBytes(StandardCharsets.UTF_8).length) + worldName.getBytes(StandardCharsets.UTF_8).length + 33; for(sul.protocol.pocket110.types.Rule zfzjbv:gameRules){ length+=zfzjbv.length(); } return length;
 	}
 
 	@Override
@@ -182,6 +185,7 @@ public class StartGame extends Packet {
 		this.writeLittleEndianFloat(lightingLevel);
 		this.writeBool(commandsEnabled);
 		this.writeBool(textureRequired);
+		this.writeVaruint((int)gameRules.length); for(sul.protocol.pocket110.types.Rule zfzjbv:gameRules){ this.writeBytes(zfzjbv.encode()); }
 		byte[] bvzxz=levelId.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)bvzxz.length); this.writeBytes(bvzxz);
 		byte[] d9bry1=worldName.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)d9bry1.length); this.writeBytes(d9bry1);
 		return this.getBuffer();
@@ -209,6 +213,7 @@ public class StartGame extends Packet {
 		lightingLevel=readLittleEndianFloat();
 		commandsEnabled=this.readBool();
 		textureRequired=this.readBool();
+		int bdbvdxc=this.readVaruint(); gameRules=new sul.protocol.pocket110.types.Rule[bdbvdxc]; for(int zfzjbv=0;zfzjbv<gameRules.length;zfzjbv++){ gameRules[zfzjbv]=new sul.protocol.pocket110.types.Rule(); gameRules[zfzjbv]._index=this._index; gameRules[zfzjbv].decode(this._buffer); this._index=gameRules[zfzjbv]._index; }
 		int bvbvzxz=this.readVaruint(); levelId=new String(this.readBytes(bvbvzxz), StandardCharsets.UTF_8);
 		int bvd9bry1=this.readVaruint(); worldName=new String(this.readBytes(bvd9bry1), StandardCharsets.UTF_8);
 	}
@@ -221,7 +226,7 @@ public class StartGame extends Packet {
 
 	@Override
 	public String toString() {
-		return "StartGame(entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", position: " + this.position.toString() + ", yaw: " + this.yaw + ", pitch: " + this.pitch + ", seed: " + this.seed + ", dimension: " + this.dimension + ", generator: " + this.generator + ", worldGamemode: " + this.worldGamemode + ", difficulty: " + this.difficulty + ", spawnPosition: " + this.spawnPosition.toString() + ", loadedInCreative: " + this.loadedInCreative + ", time: " + this.time + ", edition: " + this.edition + ", rainLevel: " + this.rainLevel + ", lightingLevel: " + this.lightingLevel + ", commandsEnabled: " + this.commandsEnabled + ", textureRequired: " + this.textureRequired + ", levelId: " + this.levelId + ", worldName: " + this.worldName + ")";
+		return "StartGame(entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", position: " + this.position.toString() + ", yaw: " + this.yaw + ", pitch: " + this.pitch + ", seed: " + this.seed + ", dimension: " + this.dimension + ", generator: " + this.generator + ", worldGamemode: " + this.worldGamemode + ", difficulty: " + this.difficulty + ", spawnPosition: " + this.spawnPosition.toString() + ", loadedInCreative: " + this.loadedInCreative + ", time: " + this.time + ", edition: " + this.edition + ", rainLevel: " + this.rainLevel + ", lightingLevel: " + this.lightingLevel + ", commandsEnabled: " + this.commandsEnabled + ", textureRequired: " + this.textureRequired + ", gameRules: " + Arrays.deepToString(this.gameRules) + ", levelId: " + this.levelId + ", worldName: " + this.worldName + ")";
 	}
 
 }
