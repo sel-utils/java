@@ -32,8 +32,8 @@ public class PlayStatus extends Packet {
 	public static final int OUTDATED_SERVER = 2;
 	public static final int SPAWNED = 3;
 	public static final int INVALID_TENANT = 4;
-	public static final int EDU_REQUIRED = 5;
-	public static final int VANILLA_REQUIRED = 6;
+	public static final int EDITION_MISMATCH_EDU_TO_VANILLA = 5;
+	public static final int EDITION_MISMATCH_VANILLA_TO_EDU = 6;
 
 	public int status;
 
