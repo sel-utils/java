@@ -248,11 +248,13 @@ public class Add extends Packet {
 		public static final byte UNKNOWN = 0;
 		public static final byte ANDROID = 1;
 		public static final byte IOS = 2;
-		public static final byte FIRE_OS = 3;
-		public static final byte GEAR_VR = 4;
-		public static final byte APPLE_TV = 5;
-		public static final byte FIRE_TV = 6;
+		public static final byte OSX = 3;
+		public static final byte FIRE_OS = 4;
+		public static final byte GEAR_VR = 5;
+		public static final byte HOLOLENS = 6;
 		public static final byte WINDOWS10 = 7;
+		public static final byte WINDOWS32 = 8;
+		public static final byte DEDICATED = 9;
 
 		/**
 		 * XBOX Live id, which is a unique identifier for authenticated players or 0 if the
