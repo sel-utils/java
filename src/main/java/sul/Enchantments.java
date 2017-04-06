@@ -32,7 +32,7 @@ public final class Enchantments {
 	public static final Enchantments AQUA_AFFINITY = new Enchantments("aqua affinity", (byte)6, (byte)8, (byte)1);
 	public static final Enchantments THORNS = new Enchantments("thorns", (byte)7, (byte)5, (byte)3);
 	public static final Enchantments DEPTH_STRIDER = new Enchantments("depth strider", (byte)8, (byte)7, (byte)3);
-	public static final Enchantments FROST_WALKER = new Enchantments("frost walker", (byte)9, (byte)-1, (byte)2);
+	public static final Enchantments FROST_WALKER = new Enchantments("frost walker", (byte)9, (byte)25, (byte)2);
 	public static final Enchantments CURSE_OF_BINDING = new Enchantments("curse of binding", (byte)10, (byte)-1, (byte)1);
 	public static final Enchantments SHARPNESS = new Enchantments("sharpness", (byte)16, (byte)9, (byte)5);
 	public static final Enchantments SMITE = new Enchantments("smite", (byte)17, (byte)10, (byte)5);
@@ -51,7 +51,7 @@ public final class Enchantments {
 	public static final Enchantments INFINITY = new Enchantments("infinity", (byte)51, (byte)22, (byte)1);
 	public static final Enchantments LUCK_OF_THE_SEA = new Enchantments("luck of the sea", (byte)61, (byte)23, (byte)3);
 	public static final Enchantments LURE = new Enchantments("lure", (byte)62, (byte)24, (byte)3);
-	public static final Enchantments MENDING = new Enchantments("mending", (byte)70, (byte)-1, (byte)1);
+	public static final Enchantments MENDING = new Enchantments("mending", (byte)70, (byte)26, (byte)1);
 	public static final Enchantments CURSE_OF_VANISHING = new Enchantments("curse of vanishing", (byte)71, (byte)-1, (byte)1);
 
 	private static Map<Integer, Enchantments> minecraftEnchantments, pocketEnchantments;

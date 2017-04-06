@@ -50,7 +50,7 @@ public class ContainerSetContent extends Packet {
 		this.writeVaruint(window);
 		this.writeVarlong(entityId);
 		this.writeVaruint((int)slots.length); for(sul.protocol.pocket110.types.Slot cxdm:slots){ this.writeBytes(cxdm.encode()); }
-		if(window==0){ this.writeVaruint((int)hotbar.length); for(int a9yf:hotbar){ this.writeVarint(a9yf); } }
+		this.writeVaruint((int)hotbar.length); for(int a9yf:hotbar){ this.writeVarint(a9yf); }
 		return this.getBuffer();
 	}
 
@@ -61,7 +61,7 @@ public class ContainerSetContent extends Packet {
 		window=this.readVaruint();
 		entityId=this.readVarlong();
 		int bnbr=this.readVaruint(); slots=new sul.protocol.pocket110.types.Slot[bnbr]; for(int cxdm=0;cxdm<slots.length;cxdm++){ slots[cxdm]=new sul.protocol.pocket110.types.Slot(); slots[cxdm]._index=this._index; slots[cxdm].decode(this._buffer); this._index=slots[cxdm]._index; }
-		if(window==0){ int bhdjc=this.readVaruint(); hotbar=new int[bhdjc]; for(int a9yf=0;a9yf<hotbar.length;a9yf++){ hotbar[a9yf]=this.readVarint(); } }
+		int bhdjc=this.readVaruint(); hotbar=new int[bhdjc]; for(int a9yf=0;a9yf<hotbar.length;a9yf++){ hotbar[a9yf]=this.readVarint(); }
 	}
 
 	public static ContainerSetContent fromBuffer(byte[] buffer) {
