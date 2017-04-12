@@ -16,6 +16,7 @@ public enum Entities
 
     BOAT("boat", true, 1, 90, 1.5, 0.6),
     DROPPED_ITEM("dropped item", true, 2, 64, 0.25, 0.25),
+    EXPERIENCE_ORB("experience orb", true, 2, 69, 0.25, 0.25),
     AREA_EFFECT_CLOUD("area effect cloud", true, 3, 95, 2, 0.5),
     MINECART("minecart", true, 10, 84, 0.98, 0.7),
     MINECART_WITH_HOPPER("minecart with hopper", true, 0, 96, 0.98, 0.7),
@@ -46,6 +47,8 @@ public enum Entities
     SPECTRAL_ARROW("spectral arrow", true, 91, 0, 0.5, 0.5),
     DRAGON_FIREBALL("dragon fireball", true, 93, 79, 1, 1),
     CAMERA("camera", true, 0, 62),
+    PAINTING("painting", true, 0, 83),
+    LIGHTNING("lightning", true, 0, 93),
     ELDER_GUARDIAN("elder guardian", false, 4, 50, 1.9975, 1.9975),
     WITHER_SKELETON("wither skeleton", false, 5, 48, 0.7, 2.4),
     STRAY("stray", false, 6, 46, 0.6, 1.99),
@@ -126,6 +129,7 @@ public enum Entities
 
         add(BOAT);
         add(DROPPED_ITEM);
+        add(EXPERIENCE_ORB);
         add(AREA_EFFECT_CLOUD);
         add(MINECART);
         add(MINECART_WITH_HOPPER);
@@ -156,6 +160,8 @@ public enum Entities
         add(SPECTRAL_ARROW);
         add(DRAGON_FIREBALL);
         add(CAMERA);
+        add(PAINTING);
+        add(LIGHTNING);
         add(ELDER_GUARDIAN);
         add(WITHER_SKELETON);
         add(STRAY);
