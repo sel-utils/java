@@ -28,21 +28,21 @@ public class Login extends Packet {
 		return ID;
 	}
 
-	// edition
-	public static final byte CLASSIC = 0;
+	// version
+	public static final byte VANILLA = 0;
 	public static final byte EDUCATION = 1;
 
 	/**
 	 * Version of the protocol used by the player.
 	 */
-	public int protocol;
+	public int protocol = 110;
 
 	/**
 	 * Edition that the player is using to join the server. The different editions may
 	 * have different features and servers may block the access from unaccepted editions
 	 * of the game.
 	 */
-	public byte edition;
+	public byte version;
 
 	/**
 	 * Zlib-compressed bytes that contains 2 JWTs with more informations about the player
@@ -53,9 +53,9 @@ public class Login extends Packet {
 
 	public Login() {}
 
-	public Login(int protocol, byte edition, byte[] body) {
+	public Login(int protocol, byte version, byte[] body) {
 		this.protocol = protocol;
-		this.edition = edition;
+		this.version = version;
 		this.body = body;
 	}
 
@@ -69,7 +69,7 @@ public class Login extends Packet {
 		this._buffer = new byte[this.length()];
 		this.writeBigEndianByte(ID);
 		this.writeBigEndianInt(protocol);
-		this.writeBigEndianByte(edition);
+		this.writeBigEndianByte(version);
 		this.writeVaruint((int)body.length); this.writeBytes(body);
 		return this.getBuffer();
 	}
@@ -79,7 +79,7 @@ public class Login extends Packet {
 		this._buffer = buffer;
 		readBigEndianByte();
 		protocol=readBigEndianInt();
-		edition=readBigEndianByte();
+		version=readBigEndianByte();
 		int bjzk=this.readVaruint(); body=this.readBytes(bjzk);
 	}
 
@@ -91,7 +91,7 @@ public class Login extends Packet {
 
 	@Override
 	public String toString() {
-		return "Login(protocol: " + this.protocol + ", edition: " + this.edition + ", body: " + Arrays.toString(this.body) + ")";
+		return "Login(protocol: " + this.protocol + ", version: " + this.version + ", body: " + Arrays.toString(this.body) + ")";
 	}
 
 }

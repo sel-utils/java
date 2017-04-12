@@ -43,7 +43,7 @@ public class ResourcePackClientResponse extends Packet {
 
 	@Override
 	public int length() {
-		int length=4; for(String cfalc:packIds){ length+=Buffer.varuintLength(cfalc.getBytes(StandardCharsets.UTF_8).length)+cfalc.getBytes(StandardCharsets.UTF_8).length; } return length;
+		int length=Buffer.varuintLength(packIds.length) + 2; for(String cfalc:packIds){ length+=Buffer.varuintLength(cfalc.getBytes(StandardCharsets.UTF_8).length)+cfalc.getBytes(StandardCharsets.UTF_8).length; } return length;
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class ResourcePackClientResponse extends Packet {
 		this._buffer = new byte[this.length()];
 		this.writeBigEndianByte(ID);
 		this.writeBigEndianByte(status);
-		this.writeLittleEndianShort((short)packIds.length); for(String cfalc:packIds){ byte[] yzbm=cfalc.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)yzbm.length); this.writeBytes(yzbm); }
+		this.writeVaruint((int)packIds.length); for(String cfalc:packIds){ byte[] yzbm=cfalc.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)yzbm.length); this.writeBytes(yzbm); }
 		return this.getBuffer();
 	}
 
@@ -60,7 +60,7 @@ public class ResourcePackClientResponse extends Packet {
 		this._buffer = buffer;
 		readBigEndianByte();
 		status=readBigEndianByte();
-		int bbytzm=readLittleEndianShort(); packIds=new String[bbytzm]; for(int cfalc=0;cfalc<packIds.length;cfalc++){ int bvcfalct=this.readVaruint(); packIds[cfalc]=new String(this.readBytes(bvcfalct), StandardCharsets.UTF_8); }
+		int bbytzm=this.readVaruint(); packIds=new String[bbytzm]; for(int cfalc=0;cfalc<packIds.length;cfalc++){ int bvcfalct=this.readVaruint(); packIds[cfalc]=new String(this.readBytes(bvcfalct), StandardCharsets.UTF_8); }
 	}
 
 	public static ResourcePackClientResponse fromBuffer(byte[] buffer) {

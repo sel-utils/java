@@ -36,7 +36,7 @@ public class ResourcePackChunkRequest extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + 5;
+		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(chunkIndex) + 1;
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class ResourcePackChunkRequest extends Packet {
 		this._buffer = new byte[this.length()];
 		this.writeBigEndianByte(ID);
 		byte[] aq=id.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)aq.length); this.writeBytes(aq);
-		this.writeLittleEndianInt(chunkIndex);
+		this.writeVaruint(chunkIndex);
 		return this.getBuffer();
 	}
 
@@ -53,7 +53,7 @@ public class ResourcePackChunkRequest extends Packet {
 		this._buffer = buffer;
 		readBigEndianByte();
 		int bvaq=this.readVaruint(); id=new String(this.readBytes(bvaq), StandardCharsets.UTF_8);
-		chunkIndex=readLittleEndianInt();
+		chunkIndex=this.readVaruint();
 	}
 
 	public static ResourcePackChunkRequest fromBuffer(byte[] buffer) {

@@ -31,22 +31,15 @@ public class SetTime extends Packet {
 	 */
 	public int time;
 
-	/**
-	 * Indicates whether the daylight cycle is active. If not, the time will be stopped
-	 * at the value given in the previous field.
-	 */
-	public boolean daylightCycle;
-
 	public SetTime() {}
 
-	public SetTime(int time, boolean daylightCycle) {
+	public SetTime(int time) {
 		this.time = time;
-		this.daylightCycle = daylightCycle;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varintLength(time) + 2;
+		return Buffer.varintLength(time) + 1;
 	}
 
 	@Override
@@ -54,7 +47,6 @@ public class SetTime extends Packet {
 		this._buffer = new byte[this.length()];
 		this.writeBigEndianByte(ID);
 		this.writeVarint(time);
-		this.writeBool(daylightCycle);
 		return this.getBuffer();
 	}
 
@@ -63,7 +55,6 @@ public class SetTime extends Packet {
 		this._buffer = buffer;
 		readBigEndianByte();
 		time=this.readVarint();
-		daylightCycle=this.readBool();
 	}
 
 	public static SetTime fromBuffer(byte[] buffer) {
@@ -74,7 +65,7 @@ public class SetTime extends Packet {
 
 	@Override
 	public String toString() {
-		return "SetTime(time: " + this.time + ", daylightCycle: " + this.daylightCycle + ")";
+		return "SetTime(time: " + this.time + ")";
 	}
 
 }

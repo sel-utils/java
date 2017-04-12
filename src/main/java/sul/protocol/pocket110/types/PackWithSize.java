@@ -28,7 +28,7 @@ public class PackWithSize extends Stream {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(version.getBytes(StandardCharsets.UTF_8).length) + version.getBytes(StandardCharsets.UTF_8).length + 8;
+		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(version.getBytes(StandardCharsets.UTF_8).length) + version.getBytes(StandardCharsets.UTF_8).length + Buffer.varulongLength(size);
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class PackWithSize extends Stream {
 		this._buffer = new byte[this.length()];
 		byte[] aq=id.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)aq.length); this.writeBytes(aq);
 		byte[] dvclb=version.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)dvclb.length); this.writeBytes(dvclb);
-		this.writeLittleEndianLong(size);
+		this.writeVarulong(size);
 		return this.getBuffer();
 	}
 
@@ -45,7 +45,7 @@ public class PackWithSize extends Stream {
 		this._buffer = buffer;
 		int bvaq=this.readVaruint(); id=new String(this.readBytes(bvaq), StandardCharsets.UTF_8);
 		int bvdvclb=this.readVaruint(); version=new String(this.readBytes(bvdvclb), StandardCharsets.UTF_8);
-		size=readLittleEndianLong();
+		size=this.readVarulong();
 	}
 
 	@Override

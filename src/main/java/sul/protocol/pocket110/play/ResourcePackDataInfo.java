@@ -42,7 +42,7 @@ public class ResourcePackDataInfo extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(sha256.getBytes(StandardCharsets.UTF_8).length) + sha256.getBytes(StandardCharsets.UTF_8).length + 17;
+		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(maxChunkSize) + Buffer.varuintLength(chunkCount) + Buffer.varulongLength(compressedPackSize) + Buffer.varuintLength(sha256.getBytes(StandardCharsets.UTF_8).length) + sha256.getBytes(StandardCharsets.UTF_8).length + 1;
 	}
 
 	@Override
@@ -50,9 +50,9 @@ public class ResourcePackDataInfo extends Packet {
 		this._buffer = new byte[this.length()];
 		this.writeBigEndianByte(ID);
 		byte[] aq=id.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)aq.length); this.writeBytes(aq);
-		this.writeLittleEndianInt(maxChunkSize);
-		this.writeLittleEndianInt(chunkCount);
-		this.writeLittleEndianLong(compressedPackSize);
+		this.writeVaruint(maxChunkSize);
+		this.writeVaruint(chunkCount);
+		this.writeVarulong(compressedPackSize);
 		byte[] chmu=sha256.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)chmu.length); this.writeBytes(chmu);
 		return this.getBuffer();
 	}
@@ -62,9 +62,9 @@ public class ResourcePackDataInfo extends Packet {
 		this._buffer = buffer;
 		readBigEndianByte();
 		int bvaq=this.readVaruint(); id=new String(this.readBytes(bvaq), StandardCharsets.UTF_8);
-		maxChunkSize=readLittleEndianInt();
-		chunkCount=readLittleEndianInt();
-		compressedPackSize=readLittleEndianLong();
+		maxChunkSize=this.readVaruint();
+		chunkCount=this.readVaruint();
+		compressedPackSize=this.readVarulong();
 		int bvchmu=this.readVaruint(); sha256=new String(this.readBytes(bvchmu), StandardCharsets.UTF_8);
 	}
 

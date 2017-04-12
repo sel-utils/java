@@ -38,6 +38,7 @@ public class StartGame extends Packet {
 	// world gamemode
 	public static final int SURVIVAL = 0;
 	public static final int CREATIVE = 1;
+	public static final int ADVENTURE = 2;
 
 	// difficulty
 	public static final int PEACEFUL = 0;
@@ -45,8 +46,8 @@ public class StartGame extends Packet {
 	public static final int NORMAL = 2;
 	public static final int HARD = 3;
 
-	// edition
-	public static final byte CLASSIC = 0;
+	// version
+	public static final byte VANILLA = 0;
 	public static final byte EDUCATION = 1;
 
 	/**
@@ -100,7 +101,6 @@ public class StartGame extends Packet {
 	/**
 	 * Time of the day that should be in a range from 0 to 24000. If not the absolute value
 	 * is moduled per 24000.
-	 * If the world's time is stopped a SetTime packet should be sent after this.
 	 */
 	public int time;
 
@@ -108,7 +108,7 @@ public class StartGame extends Packet {
 	 * Game's edition. Some behaviours (some entities for example) may only work in a version
 	 * and not in the other.
 	 */
-	public byte edition;
+	public byte version;
 
 	/**
 	 * Intensity of the rain or the snow. Any value lower than or equals to 0 means no
@@ -134,7 +134,7 @@ public class StartGame extends Packet {
 
 	public StartGame() {}
 
-	public StartGame(long entityId, long runtimeId, Tuples.FloatXYZ position, float yaw, float pitch, int seed, int dimension, int generator, int worldGamemode, int difficulty, Tuples.IntXYZ spawnPosition, boolean loadedInCreative, int time, byte edition, float rainLevel, float lightingLevel, boolean commandsEnabled, boolean textureRequired, sul.protocol.pocket110.types.Rule[] gameRules, String levelId, String worldName) {
+	public StartGame(long entityId, long runtimeId, Tuples.FloatXYZ position, float yaw, float pitch, int seed, int dimension, int generator, int worldGamemode, int difficulty, Tuples.IntXYZ spawnPosition, boolean loadedInCreative, int time, byte version, float rainLevel, float lightingLevel, boolean commandsEnabled, boolean textureRequired, sul.protocol.pocket110.types.Rule[] gameRules, String levelId, String worldName) {
 		this.entityId = entityId;
 		this.runtimeId = runtimeId;
 		this.position = position;
@@ -148,7 +148,7 @@ public class StartGame extends Packet {
 		this.spawnPosition = spawnPosition;
 		this.loadedInCreative = loadedInCreative;
 		this.time = time;
-		this.edition = edition;
+		this.version = version;
 		this.rainLevel = rainLevel;
 		this.lightingLevel = lightingLevel;
 		this.commandsEnabled = commandsEnabled;
@@ -180,7 +180,7 @@ public class StartGame extends Packet {
 		this.writeVarint(spawnPosition.x); this.writeVarint(spawnPosition.y); this.writeVarint(spawnPosition.z);
 		this.writeBool(loadedInCreative);
 		this.writeVarint(time);
-		this.writeBigEndianByte(edition);
+		this.writeBigEndianByte(version);
 		this.writeLittleEndianFloat(rainLevel);
 		this.writeLittleEndianFloat(lightingLevel);
 		this.writeBool(commandsEnabled);
@@ -208,7 +208,7 @@ public class StartGame extends Packet {
 		spawnPosition=new Tuples.IntXYZ(); spawnPosition.x=this.readVarint(); spawnPosition.y=this.readVarint(); spawnPosition.z=this.readVarint();
 		loadedInCreative=this.readBool();
 		time=this.readVarint();
-		edition=readBigEndianByte();
+		version=readBigEndianByte();
 		rainLevel=readLittleEndianFloat();
 		lightingLevel=readLittleEndianFloat();
 		commandsEnabled=this.readBool();
@@ -226,7 +226,7 @@ public class StartGame extends Packet {
 
 	@Override
 	public String toString() {
-		return "StartGame(entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", position: " + this.position.toString() + ", yaw: " + this.yaw + ", pitch: " + this.pitch + ", seed: " + this.seed + ", dimension: " + this.dimension + ", generator: " + this.generator + ", worldGamemode: " + this.worldGamemode + ", difficulty: " + this.difficulty + ", spawnPosition: " + this.spawnPosition.toString() + ", loadedInCreative: " + this.loadedInCreative + ", time: " + this.time + ", edition: " + this.edition + ", rainLevel: " + this.rainLevel + ", lightingLevel: " + this.lightingLevel + ", commandsEnabled: " + this.commandsEnabled + ", textureRequired: " + this.textureRequired + ", gameRules: " + Arrays.deepToString(this.gameRules) + ", levelId: " + this.levelId + ", worldName: " + this.worldName + ")";
+		return "StartGame(entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", position: " + this.position.toString() + ", yaw: " + this.yaw + ", pitch: " + this.pitch + ", seed: " + this.seed + ", dimension: " + this.dimension + ", generator: " + this.generator + ", worldGamemode: " + this.worldGamemode + ", difficulty: " + this.difficulty + ", spawnPosition: " + this.spawnPosition.toString() + ", loadedInCreative: " + this.loadedInCreative + ", time: " + this.time + ", version: " + this.version + ", rainLevel: " + this.rainLevel + ", lightingLevel: " + this.lightingLevel + ", commandsEnabled: " + this.commandsEnabled + ", textureRequired: " + this.textureRequired + ", gameRules: " + Arrays.deepToString(this.gameRules) + ", levelId: " + this.levelId + ", worldName: " + this.worldName + ")";
 	}
 
 }
