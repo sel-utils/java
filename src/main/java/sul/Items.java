@@ -711,6 +711,7 @@ public final class Items {
 		add(new Items("baked potato", new ItemData(393, 0), new ItemData(393, 0), (byte)64));
 		add(new Items("poisonous potato", new ItemData(394, 0), new ItemData(394, 0), (byte)64));
 		add(new Items("empty map", new ItemData(395, 0), new ItemData(395, 0), (byte)64));
+		add(new Items("empty locator map", null, new ItemData(395, 2), (byte)64));
 		add(new Items("golden carrot", new ItemData(396, 0), new ItemData(396, 0), (byte)64));
 		add(new Items("skeleton skull", new ItemData(397, 0), new ItemData(397, 0), (byte)64));
 		add(new Items("wither skeleton skull", new ItemData(397, 1), new ItemData(397, 1), (byte)64));
