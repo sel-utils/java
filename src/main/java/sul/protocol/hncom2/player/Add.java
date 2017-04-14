@@ -9,6 +9,7 @@
 package sul.protocol.hncom2.player;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.UUID;
 
 import sul.utils.*;
@@ -336,7 +337,7 @@ public class Add extends Packet {
 	}
 
 	/**
-	 * A Minecraft client. Currently there are no additional fields.
+	 * A Minecraft client.
 	 */
 	public class Minecraft extends Packet {
 
@@ -347,9 +348,20 @@ public class Add extends Packet {
 			return ID;
 		}
 
+		/**
+		 * Additional properties like textures when the server is on online mode.
+		 */
+		public sul.protocol.hncom2.types.Property[] properties = new sul.protocol.hncom2.types.Property[0];
+
+		public Minecraft() {}
+
+		public Minecraft(sul.protocol.hncom2.types.Property[] properties) {
+			this.properties = properties;
+		}
+
 		@Override
 		public int length() {
-			return 0;
+			int length=Buffer.varuintLength(properties.length); for(sul.protocol.hncom2.types.Property cjcvdlc:properties){ length+=cjcvdlc.length(); } return length;
 		}
 
 		@Override
@@ -357,12 +369,14 @@ public class Add extends Packet {
 			byte[] _encode = encodeImpl();
 			this._buffer = new byte[_encode.length + this.length()];
 			this.writeBytes(_encode);
+			this.writeVaruint((int)properties.length); for(sul.protocol.hncom2.types.Property cjcvdlc:properties){ this.writeBytes(cjcvdlc.encode()); }
 			return this.getBuffer();
 		}
 
 		@Override
 		public void decode(byte[] buffer) {
 			this._buffer = buffer;
+			int bbbbcrzm=this.readVaruint(); properties=new sul.protocol.hncom2.types.Property[bbbbcrzm]; for(int cjcvdlc=0;cjcvdlc<properties.length;cjcvdlc++){ properties[cjcvdlc]=new sul.protocol.hncom2.types.Property(); properties[cjcvdlc]._index=this._index; properties[cjcvdlc].decode(this._buffer); this._index=properties[cjcvdlc]._index; }
 		}
 
 		public void decode() {
@@ -371,7 +385,7 @@ public class Add extends Packet {
 
 		@Override
 		public String toString() {
-			return "Add.Minecraft()";
+			return "Add.Minecraft(properties: " + Arrays.deepToString(this.properties) + ")";
 		}
 
 	}

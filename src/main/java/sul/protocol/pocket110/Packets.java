@@ -127,6 +127,8 @@ public final class Packets {
 		play.put(89, sul.protocol.pocket110.play.SetTitle.class);
 		play.put(90, sul.protocol.pocket110.play.AddBehaviorTree.class);
 		play.put(91, sul.protocol.pocket110.play.StructureBlockUpdate.class);
+		play.put(92, sul.protocol.pocket110.play.ShowStoreOffer.class);
+		play.put(93, sul.protocol.pocket110.play.PurchaseReceipt.class);
 		PLAY = Collections.unmodifiableMap(play);
 
 	}
