@@ -34,10 +34,11 @@ public class MovePlayer extends Packet {
 	public float yaw;
 	public byte animation;
 	public boolean onGround;
+	public long unknown7;
 
 	public MovePlayer() {}
 
-	public MovePlayer(long entityId, Tuples.FloatXYZ position, float pitch, float headYaw, float yaw, byte animation, boolean onGround) {
+	public MovePlayer(long entityId, Tuples.FloatXYZ position, float pitch, float headYaw, float yaw, byte animation, boolean onGround, long unknown7) {
 		this.entityId = entityId;
 		this.position = position;
 		this.pitch = pitch;
@@ -45,11 +46,12 @@ public class MovePlayer extends Packet {
 		this.yaw = yaw;
 		this.animation = animation;
 		this.onGround = onGround;
+		this.unknown7 = unknown7;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varlongLength(entityId) + 27;
+		return Buffer.varlongLength(entityId) + Buffer.varlongLength(unknown7) + 27;
 	}
 
 	@Override
@@ -63,6 +65,7 @@ public class MovePlayer extends Packet {
 		this.writeLittleEndianFloat(yaw);
 		this.writeBigEndianByte(animation);
 		this.writeBool(onGround);
+		this.writeVarlong(unknown7);
 		return this.getBuffer();
 	}
 
@@ -77,6 +80,7 @@ public class MovePlayer extends Packet {
 		yaw=readLittleEndianFloat();
 		animation=readBigEndianByte();
 		onGround=this.readBool();
+		unknown7=this.readVarlong();
 	}
 
 	public static MovePlayer fromBuffer(byte[] buffer) {
@@ -87,7 +91,7 @@ public class MovePlayer extends Packet {
 
 	@Override
 	public String toString() {
-		return "MovePlayer(entityId: " + this.entityId + ", position: " + this.position.toString() + ", pitch: " + this.pitch + ", headYaw: " + this.headYaw + ", yaw: " + this.yaw + ", animation: " + this.animation + ", onGround: " + this.onGround + ")";
+		return "MovePlayer(entityId: " + this.entityId + ", position: " + this.position.toString() + ", pitch: " + this.pitch + ", headYaw: " + this.headYaw + ", yaw: " + this.yaw + ", animation: " + this.animation + ", onGround: " + this.onGround + ", unknown7: " + this.unknown7 + ")";
 	}
 
 }
