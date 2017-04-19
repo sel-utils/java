@@ -29,6 +29,12 @@ public class GameInfo extends Stream {
 	public String motd;
 
 	/**
+	 * Indicates whether the players are authenticated using the games' official authentication
+	 * services and their identity should be trusted.
+	 */
+	public boolean onlineMode;
+
+	/**
 	 * Port, or main port if the server allows the connection from multiple ports, where
 	 * the socket is listening for connections.
 	 */
@@ -36,15 +42,16 @@ public class GameInfo extends Stream {
 
 	public GameInfo() {}
 
-	public GameInfo(sul.protocol.hncom2.types.Game game, String motd, short port) {
+	public GameInfo(sul.protocol.hncom2.types.Game game, String motd, boolean onlineMode, short port) {
 		this.game = game;
 		this.motd = motd;
+		this.onlineMode = onlineMode;
 		this.port = port;
 	}
 
 	@Override
 	public int length() {
-		return game.length() + Buffer.varuintLength(motd.getBytes(StandardCharsets.UTF_8).length) + motd.getBytes(StandardCharsets.UTF_8).length + 2;
+		return game.length() + Buffer.varuintLength(motd.getBytes(StandardCharsets.UTF_8).length) + motd.getBytes(StandardCharsets.UTF_8).length + 3;
 	}
 
 	@Override
@@ -52,6 +59,7 @@ public class GameInfo extends Stream {
 		this._buffer = new byte[this.length()];
 		this.writeBytes(game.encode());
 		byte[] b9z=motd.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)b9z.length); this.writeBytes(b9z);
+		this.writeBool(onlineMode);
 		this.writeBigEndianShort(port);
 		return this.getBuffer();
 	}
@@ -61,12 +69,13 @@ public class GameInfo extends Stream {
 		this._buffer = buffer;
 		game=new sul.protocol.hncom2.types.Game(); game._index=this._index; game.decode(this._buffer); this._index=game._index;
 		int bvb9z=this.readVaruint(); motd=new String(this.readBytes(bvb9z), StandardCharsets.UTF_8);
+		onlineMode=this.readBool();
 		port=readBigEndianShort();
 	}
 
 	@Override
 	public String toString() {
-		return "GameInfo(game: " + this.game.toString() + ", motd: " + this.motd + ", port: " + this.port + ")";
+		return "GameInfo(game: " + this.game.toString() + ", motd: " + this.motd + ", onlineMode: " + this.onlineMode + ", port: " + this.port + ")";
 	}
 
 

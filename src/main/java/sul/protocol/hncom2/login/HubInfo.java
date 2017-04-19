@@ -56,12 +56,6 @@ public class HubInfo extends Packet {
 	public String displayName;
 
 	/**
-	 * Indicates whether the player are authenticated using the games' official authentication
-	 * services and their identity should be trusted.
-	 */
-	public boolean onlineMode;
-
-	/**
 	 * Informations about the games supported by the hub.
 	 */
 	public sul.protocol.hncom2.types.GameInfo[] gamesInfo = new sul.protocol.hncom2.types.GameInfo[0];
@@ -111,7 +105,7 @@ public class HubInfo extends Packet {
 	 *       "twitter": "example_tweets",
 	 *       "youtube": "examplechannel",
 	 *       "instagram": "example",
-	 *       "google_plus": "example-plus"
+	 *       "google-plus": "example-plus"
 	 *    },
 	 *    "system": {
 	 *       "os": "Ubuntu 16.04",
@@ -126,12 +120,11 @@ public class HubInfo extends Packet {
 
 	public HubInfo() {}
 
-	public HubInfo(long time, long serverId, long reservedUuids, String displayName, boolean onlineMode, sul.protocol.hncom2.types.GameInfo[] gamesInfo, int online, int max, String language, String[] acceptedLanguages, String additionalJson) {
+	public HubInfo(long time, long serverId, long reservedUuids, String displayName, sul.protocol.hncom2.types.GameInfo[] gamesInfo, int online, int max, String language, String[] acceptedLanguages, String additionalJson) {
 		this.time = time;
 		this.serverId = serverId;
 		this.reservedUuids = reservedUuids;
 		this.displayName = displayName;
-		this.onlineMode = onlineMode;
 		this.gamesInfo = gamesInfo;
 		this.online = online;
 		this.max = max;
@@ -142,7 +135,7 @@ public class HubInfo extends Packet {
 
 	@Override
 	public int length() {
-		int length=Buffer.varulongLength(time) + Buffer.varulongLength(serverId) + Buffer.varulongLength(reservedUuids) + Buffer.varuintLength(displayName.getBytes(StandardCharsets.UTF_8).length) + displayName.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(gamesInfo.length) + Buffer.varuintLength(online) + Buffer.varintLength(max) + Buffer.varuintLength(language.getBytes(StandardCharsets.UTF_8).length) + language.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(acceptedLanguages.length) + Buffer.varuintLength(additionalJson.getBytes(StandardCharsets.UTF_8).length) + additionalJson.getBytes(StandardCharsets.UTF_8).length + 2; for(sul.protocol.hncom2.types.GameInfo zfznbz:gamesInfo){ length+=zfznbz.length(); };for(String ynzbzry5:acceptedLanguages){ length+=Buffer.varuintLength(ynzbzry5.getBytes(StandardCharsets.UTF_8).length)+ynzbzry5.getBytes(StandardCharsets.UTF_8).length; } return length;
+		int length=Buffer.varulongLength(time) + Buffer.varulongLength(serverId) + Buffer.varulongLength(reservedUuids) + Buffer.varuintLength(displayName.getBytes(StandardCharsets.UTF_8).length) + displayName.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(gamesInfo.length) + Buffer.varuintLength(online) + Buffer.varintLength(max) + Buffer.varuintLength(language.getBytes(StandardCharsets.UTF_8).length) + language.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(acceptedLanguages.length) + Buffer.varuintLength(additionalJson.getBytes(StandardCharsets.UTF_8).length) + additionalJson.getBytes(StandardCharsets.UTF_8).length + 1; for(sul.protocol.hncom2.types.GameInfo zfznbz:gamesInfo){ length+=zfznbz.length(); };for(String ynzbzry5:acceptedLanguages){ length+=Buffer.varuintLength(ynzbzry5.getBytes(StandardCharsets.UTF_8).length)+ynzbzry5.getBytes(StandardCharsets.UTF_8).length; } return length;
 	}
 
 	@Override
@@ -153,7 +146,6 @@ public class HubInfo extends Packet {
 		this.writeVarulong(serverId);
 		this.writeVarulong(reservedUuids);
 		byte[] zlcxe5bu=displayName.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)zlcxe5bu.length); this.writeBytes(zlcxe5bu);
-		this.writeBool(onlineMode);
 		this.writeVaruint((int)gamesInfo.length); for(sul.protocol.hncom2.types.GameInfo zfznbz:gamesInfo){ this.writeBytes(zfznbz.encode()); }
 		this.writeVaruint(online);
 		this.writeVarint(max);
@@ -171,7 +163,6 @@ public class HubInfo extends Packet {
 		serverId=this.readVarulong();
 		reservedUuids=this.readVarulong();
 		int bvzlcxe5=this.readVaruint(); displayName=new String(this.readBytes(bvzlcxe5), StandardCharsets.UTF_8);
-		onlineMode=this.readBool();
 		int bdbvs5b=this.readVaruint(); gamesInfo=new sul.protocol.hncom2.types.GameInfo[bdbvs5b]; for(int zfznbz=0;zfznbz<gamesInfo.length;zfznbz++){ gamesInfo[zfznbz]=new sul.protocol.hncom2.types.GameInfo(); gamesInfo[zfznbz]._index=this._index; gamesInfo[zfznbz].decode(this._buffer); this._index=gamesInfo[zfznbz]._index; }
 		online=this.readVaruint();
 		max=this.readVarint();
@@ -188,7 +179,7 @@ public class HubInfo extends Packet {
 
 	@Override
 	public String toString() {
-		return "HubInfo(time: " + this.time + ", serverId: " + this.serverId + ", reservedUuids: " + this.reservedUuids + ", displayName: " + this.displayName + ", onlineMode: " + this.onlineMode + ", gamesInfo: " + Arrays.deepToString(this.gamesInfo) + ", online: " + this.online + ", max: " + this.max + ", language: " + this.language + ", acceptedLanguages: " + Arrays.deepToString(this.acceptedLanguages) + ", additionalJson: " + this.additionalJson + ")";
+		return "HubInfo(time: " + this.time + ", serverId: " + this.serverId + ", reservedUuids: " + this.reservedUuids + ", displayName: " + this.displayName + ", gamesInfo: " + Arrays.deepToString(this.gamesInfo) + ", online: " + this.online + ", max: " + this.max + ", language: " + this.language + ", acceptedLanguages: " + Arrays.deepToString(this.acceptedLanguages) + ", additionalJson: " + this.additionalJson + ")";
 	}
 
 }
