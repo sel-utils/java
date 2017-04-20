@@ -8,8 +8,6 @@
  */
 package sul.protocol.pocket110.play;
 
-import java.util.Arrays;
-
 import sul.utils.*;
 
 /**
@@ -45,23 +43,29 @@ public class Login extends Packet {
 	public byte version;
 
 	/**
-	 * Zlib-compressed bytes that contains 2 JWTs with more informations about the player
-	 * and its account. Once uncompressed the resulting payload will contain 2 JWTs which
-	 * length is indicated by a little-endian unsigned integer each.
+	 * Length, in bytes, of the following field. This field was used when the body was
+	 * compressed.
 	 */
-	public byte[] body = new byte[0];
+	public int bodyLength;
+
+	/**
+	 * Payload that contains 2 JWTs (with each length indicated by an unsigned little-endian
+	 * 32-bits integer) with more informations about the player and its account.
+	 */
+	public sul.protocol.pocket110.types.LoginBody body;
 
 	public Login() {}
 
-	public Login(int protocol, byte version, byte[] body) {
+	public Login(int protocol, byte version, int bodyLength, sul.protocol.pocket110.types.LoginBody body) {
 		this.protocol = protocol;
 		this.version = version;
+		this.bodyLength = bodyLength;
 		this.body = body;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(body.length) + body.length + 6;
+		return Buffer.varuintLength(bodyLength) + body.length() + 6;
 	}
 
 	@Override
@@ -70,7 +74,8 @@ public class Login extends Packet {
 		this.writeBigEndianByte(ID);
 		this.writeBigEndianInt(protocol);
 		this.writeBigEndianByte(version);
-		this.writeVaruint((int)body.length); this.writeBytes(body);
+		this.writeVaruint(bodyLength);
+		this.writeBytes(body.encode());
 		return this.getBuffer();
 	}
 
@@ -80,7 +85,8 @@ public class Login extends Packet {
 		readBigEndianByte();
 		protocol=readBigEndianInt();
 		version=readBigEndianByte();
-		int bjzk=this.readVaruint(); body=this.readBytes(bjzk);
+		bodyLength=this.readVaruint();
+		body=new sul.protocol.pocket110.types.LoginBody(); body._index=this._index; body.decode(this._buffer); this._index=body._index;
 	}
 
 	public static Login fromBuffer(byte[] buffer) {
@@ -91,7 +97,7 @@ public class Login extends Packet {
 
 	@Override
 	public String toString() {
-		return "Login(protocol: " + this.protocol + ", version: " + this.version + ", body: " + Arrays.toString(this.body) + ")";
+		return "Login(protocol: " + this.protocol + ", version: " + this.version + ", bodyLength: " + this.bodyLength + ", body: " + this.body.toString() + ")";
 	}
 
 }
