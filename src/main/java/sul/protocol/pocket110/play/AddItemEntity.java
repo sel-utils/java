@@ -30,20 +30,22 @@ public class AddItemEntity extends Packet {
 	public sul.protocol.pocket110.types.Slot item;
 	public Tuples.FloatXYZ position = new Tuples.FloatXYZ();
 	public Tuples.FloatXYZ motion = new Tuples.FloatXYZ();
+	public sul.metadata.Pocket110 metadata;
 
 	public AddItemEntity() {}
 
-	public AddItemEntity(long entityId, long runtimeId, sul.protocol.pocket110.types.Slot item, Tuples.FloatXYZ position, Tuples.FloatXYZ motion) {
+	public AddItemEntity(long entityId, long runtimeId, sul.protocol.pocket110.types.Slot item, Tuples.FloatXYZ position, Tuples.FloatXYZ motion, sul.metadata.Pocket110 metadata) {
 		this.entityId = entityId;
 		this.runtimeId = runtimeId;
 		this.item = item;
 		this.position = position;
 		this.motion = motion;
+		this.metadata = metadata;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varlongLength(entityId) + Buffer.varlongLength(runtimeId) + item.length() + 25;
+		return Buffer.varlongLength(entityId) + Buffer.varlongLength(runtimeId) + item.length() + metadata.length() + 25;
 	}
 
 	@Override
@@ -55,6 +57,7 @@ public class AddItemEntity extends Packet {
 		this.writeBytes(item.encode());
 		this.writeLittleEndianFloat(position.x); this.writeLittleEndianFloat(position.y); this.writeLittleEndianFloat(position.z);
 		this.writeLittleEndianFloat(motion.x); this.writeLittleEndianFloat(motion.y); this.writeLittleEndianFloat(motion.z);
+		this.writeBytes(metadata.encode());
 		return this.getBuffer();
 	}
 
@@ -67,6 +70,7 @@ public class AddItemEntity extends Packet {
 		item=new sul.protocol.pocket110.types.Slot(); item._index=this._index; item.decode(this._buffer); this._index=item._index;
 		position=new Tuples.FloatXYZ(); position.x=readLittleEndianFloat(); position.y=readLittleEndianFloat(); position.z=readLittleEndianFloat();
 		motion=new Tuples.FloatXYZ(); motion.x=readLittleEndianFloat(); motion.y=readLittleEndianFloat(); motion.z=readLittleEndianFloat();
+		metadata=new sul.metadata.Pocket110(); metadata._index=this._index; metadata.decode(this._buffer); this._index=metadata._index;
 	}
 
 	public static AddItemEntity fromBuffer(byte[] buffer) {
@@ -77,7 +81,7 @@ public class AddItemEntity extends Packet {
 
 	@Override
 	public String toString() {
-		return "AddItemEntity(entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", item: " + this.item.toString() + ", position: " + this.position.toString() + ", motion: " + this.motion.toString() + ")";
+		return "AddItemEntity(entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", item: " + this.item.toString() + ", position: " + this.position.toString() + ", motion: " + this.motion.toString() + ", metadata: " + this.metadata.toString() + ")";
 	}
 
 }
