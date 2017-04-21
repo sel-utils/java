@@ -28,17 +28,19 @@ public class Animate extends Packet {
 
 	public int action;
 	public long entityId;
+	public float unknown2;
 
 	public Animate() {}
 
-	public Animate(int action, long entityId) {
+	public Animate(int action, long entityId, float unknown2) {
 		this.action = action;
 		this.entityId = entityId;
+		this.unknown2 = unknown2;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varintLength(action) + Buffer.varlongLength(entityId) + 1;
+		return Buffer.varintLength(action) + Buffer.varlongLength(entityId) + 5;
 	}
 
 	@Override
@@ -47,6 +49,7 @@ public class Animate extends Packet {
 		this.writeBigEndianByte(ID);
 		this.writeVarint(action);
 		this.writeVarlong(entityId);
+		if(action>128){ this.writeLittleEndianFloat(unknown2); }
 		return this.getBuffer();
 	}
 
@@ -56,6 +59,7 @@ public class Animate extends Packet {
 		readBigEndianByte();
 		action=this.readVarint();
 		entityId=this.readVarlong();
+		if(action>128){ unknown2=readLittleEndianFloat(); }
 	}
 
 	public static Animate fromBuffer(byte[] buffer) {
@@ -66,7 +70,7 @@ public class Animate extends Packet {
 
 	@Override
 	public String toString() {
-		return "Animate(action: " + this.action + ", entityId: " + this.entityId + ")";
+		return "Animate(action: " + this.action + ", entityId: " + this.entityId + ", unknown2: " + this.unknown2 + ")";
 	}
 
 }
