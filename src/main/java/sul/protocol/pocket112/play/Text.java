@@ -465,4 +465,56 @@ public class Text extends Packet {
 
 	}
 
+	public class Announcement extends Packet {
+
+		public static final byte TYPE = (byte)7;
+
+		@Override
+		public int getId() {
+			return ID;
+		}
+
+		public String announcer;
+		public String message;
+
+		public Announcement() {}
+
+		public Announcement(String announcer, String message) {
+			this.announcer = announcer;
+			this.message = message;
+		}
+
+		@Override
+		public int length() {
+			return Buffer.varuintLength(announcer.getBytes(StandardCharsets.UTF_8).length) + announcer.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(message.getBytes(StandardCharsets.UTF_8).length) + message.getBytes(StandardCharsets.UTF_8).length;
+		}
+
+		@Override
+		public byte[] encode() {
+			byte[] _encode = encodeImpl();
+			this._buffer = new byte[_encode.length + this.length()];
+			this.writeBytes(_encode);
+			byte[] y5bvyv=announcer.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)y5bvyv.length); this.writeBytes(y5bvyv);
+			byte[] bvcfz=message.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)bvcfz.length); this.writeBytes(bvcfz);
+			return this.getBuffer();
+		}
+
+		@Override
+		public void decode(byte[] buffer) {
+			this._buffer = buffer;
+			int bvy5bvyv=this.readVaruint(); announcer=new String(this.readBytes(bvy5bvyv), StandardCharsets.UTF_8);
+			int bvbvcfz=this.readVaruint(); message=new String(this.readBytes(bvbvcfz), StandardCharsets.UTF_8);
+		}
+
+		public void decode() {
+			this.decode(remainingBuffer());
+		}
+
+		@Override
+		public String toString() {
+			return "Text.Announcement(announcer: " + this.announcer + ", message: " + this.message + ")";
+		}
+
+	}
+
 }

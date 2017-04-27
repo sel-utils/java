@@ -25,7 +25,8 @@ public class MovePlayer extends Packet {
 	// animation
 	public static final byte FULL = 0;
 	public static final byte NONE = 1;
-	public static final byte ROTATION = 2;
+	public static final byte TELEPORT = 2;
+	public static final byte PITCH = 3;
 
 	public long entityId;
 	public Tuples.FloatXYZ position = new Tuples.FloatXYZ();
@@ -35,10 +36,12 @@ public class MovePlayer extends Packet {
 	public byte animation;
 	public boolean onGround;
 	public long unknown7;
+	public int unknown8;
+	public int unknown9;
 
 	public MovePlayer() {}
 
-	public MovePlayer(long entityId, Tuples.FloatXYZ position, float pitch, float headYaw, float yaw, byte animation, boolean onGround, long unknown7) {
+	public MovePlayer(long entityId, Tuples.FloatXYZ position, float pitch, float headYaw, float yaw, byte animation, boolean onGround, long unknown7, int unknown8, int unknown9) {
 		this.entityId = entityId;
 		this.position = position;
 		this.pitch = pitch;
@@ -47,11 +50,13 @@ public class MovePlayer extends Packet {
 		this.animation = animation;
 		this.onGround = onGround;
 		this.unknown7 = unknown7;
+		this.unknown8 = unknown8;
+		this.unknown9 = unknown9;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varlongLength(entityId) + Buffer.varlongLength(unknown7) + 27;
+		return Buffer.varlongLength(entityId) + Buffer.varlongLength(unknown7) + 35;
 	}
 
 	@Override
@@ -66,6 +71,8 @@ public class MovePlayer extends Packet {
 		this.writeBigEndianByte(animation);
 		this.writeBool(onGround);
 		this.writeVarlong(unknown7);
+		if(animation==3){ this.writeLittleEndianInt(unknown8); }
+		if(animation==3){ this.writeLittleEndianInt(unknown9); }
 		return this.getBuffer();
 	}
 
@@ -81,6 +88,8 @@ public class MovePlayer extends Packet {
 		animation=readBigEndianByte();
 		onGround=this.readBool();
 		unknown7=this.readVarlong();
+		if(animation==3){ unknown8=readLittleEndianInt(); }
+		if(animation==3){ unknown9=readLittleEndianInt(); }
 	}
 
 	public static MovePlayer fromBuffer(byte[] buffer) {
@@ -91,7 +100,7 @@ public class MovePlayer extends Packet {
 
 	@Override
 	public String toString() {
-		return "MovePlayer(entityId: " + this.entityId + ", position: " + this.position.toString() + ", pitch: " + this.pitch + ", headYaw: " + this.headYaw + ", yaw: " + this.yaw + ", animation: " + this.animation + ", onGround: " + this.onGround + ", unknown7: " + this.unknown7 + ")";
+		return "MovePlayer(entityId: " + this.entityId + ", position: " + this.position.toString() + ", pitch: " + this.pitch + ", headYaw: " + this.headYaw + ", yaw: " + this.yaw + ", animation: " + this.animation + ", onGround: " + this.onGround + ", unknown7: " + this.unknown7 + ", unknown8: " + this.unknown8 + ", unknown9: " + this.unknown9 + ")";
 	}
 
 }
