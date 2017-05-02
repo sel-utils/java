@@ -9,7 +9,6 @@
 package sul.protocol.pocket112.play;
 
 import java.util.Arrays;
-import java.util.UUID;
 
 import sul.utils.*;
 
@@ -134,17 +133,17 @@ public class PlayerList extends Packet {
 			return ID;
 		}
 
-		public UUID[] players = new UUID[0];
+		public sul.protocol.pocket112.types.McpeUuid[] players = new sul.protocol.pocket112.types.McpeUuid[0];
 
 		public Remove() {}
 
-		public Remove(UUID[] players) {
+		public Remove(sul.protocol.pocket112.types.McpeUuid[] players) {
 			this.players = players;
 		}
 
 		@Override
 		public int length() {
-			return Buffer.varuintLength(players.length) + players.length*16;
+			int length=Buffer.varuintLength(players.length); for(sul.protocol.pocket112.types.McpeUuid cxevc:players){ length+=cxevc.length(); } return length;
 		}
 
 		@Override
@@ -152,14 +151,14 @@ public class PlayerList extends Packet {
 			byte[] _encode = encodeImpl();
 			this._buffer = new byte[_encode.length + this.length()];
 			this.writeBytes(_encode);
-			this.writeVaruint((int)players.length); for(UUID cxevc:players){ this.writeBigEndianLong(cxevc.getLeastSignificantBits()); this.writeBigEndianLong(cxevc.getMostSignificantBits()); }
+			this.writeVaruint((int)players.length); for(sul.protocol.pocket112.types.McpeUuid cxevc:players){ this.writeBytes(cxevc.encode()); }
 			return this.getBuffer();
 		}
 
 		@Override
 		public void decode(byte[] buffer) {
 			this._buffer = buffer;
-			int bbylcm=this.readVaruint(); players=new UUID[bbylcm]; for(int cxevc=0;cxevc<players.length;cxevc++){ long abylcnyh=readBigEndianLong(); long bylcnyhd=readBigEndianLong(); players[cxevc]=new UUID(abylcnyh,bylcnyhd); }
+			int bbylcm=this.readVaruint(); players=new sul.protocol.pocket112.types.McpeUuid[bbylcm]; for(int cxevc=0;cxevc<players.length;cxevc++){ players[cxevc]=new sul.protocol.pocket112.types.McpeUuid(); players[cxevc]._index=this._index; players[cxevc].decode(this._buffer); this._index=players[cxevc]._index; }
 		}
 
 		public void decode() {

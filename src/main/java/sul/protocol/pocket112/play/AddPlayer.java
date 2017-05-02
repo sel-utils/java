@@ -9,7 +9,6 @@
 package sul.protocol.pocket112.play;
 
 import java.nio.charset.StandardCharsets;
-import java.util.UUID;
 
 import sul.utils.*;
 
@@ -35,7 +34,7 @@ public class AddPlayer extends Packet {
 	/**
 	 * Player's UUID, should match an UUID of a player in the list added through PlayerList.
 	 */
-	public UUID uuid;
+	public sul.protocol.pocket112.types.McpeUuid uuid;
 
 	/**
 	 * Player's username and text displayed on the nametag if something else is not specified
@@ -54,7 +53,7 @@ public class AddPlayer extends Packet {
 
 	public AddPlayer() {}
 
-	public AddPlayer(UUID uuid, String username, long entityId, long runtimeId, Tuples.FloatXYZ position, Tuples.FloatXYZ motion, float pitch, float headYaw, float yaw, sul.protocol.pocket112.types.Slot heldItem, sul.metadata.Pocket112 metadata) {
+	public AddPlayer(sul.protocol.pocket112.types.McpeUuid uuid, String username, long entityId, long runtimeId, Tuples.FloatXYZ position, Tuples.FloatXYZ motion, float pitch, float headYaw, float yaw, sul.protocol.pocket112.types.Slot heldItem, sul.metadata.Pocket112 metadata) {
 		this.uuid = uuid;
 		this.username = username;
 		this.entityId = entityId;
@@ -70,14 +69,14 @@ public class AddPlayer extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(username.getBytes(StandardCharsets.UTF_8).length) + username.getBytes(StandardCharsets.UTF_8).length + Buffer.varlongLength(entityId) + Buffer.varlongLength(runtimeId) + heldItem.length() + metadata.length() + 53;
+		return uuid.length() + Buffer.varuintLength(username.getBytes(StandardCharsets.UTF_8).length) + username.getBytes(StandardCharsets.UTF_8).length + Buffer.varlongLength(entityId) + Buffer.varlongLength(runtimeId) + heldItem.length() + metadata.length() + 37;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		this.writeBigEndianByte(ID);
-		this.writeBigEndianLong(uuid.getLeastSignificantBits()); this.writeBigEndianLong(uuid.getMostSignificantBits());
+		this.writeBytes(uuid.encode());
 		byte[] dnc5bu=username.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)dnc5bu.length); this.writeBytes(dnc5bu);
 		this.writeVarlong(entityId);
 		this.writeVarlong(runtimeId);
@@ -95,7 +94,7 @@ public class AddPlayer extends Packet {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		readBigEndianByte();
-		long avaq=readBigEndianLong(); long vaq=readBigEndianLong(); uuid=new UUID(avaq,vaq);
+		uuid=new sul.protocol.pocket112.types.McpeUuid(); uuid._index=this._index; uuid.decode(this._buffer); this._index=uuid._index;
 		int bvdnc5bu=this.readVaruint(); username=new String(this.readBytes(bvdnc5bu), StandardCharsets.UTF_8);
 		entityId=this.readVarlong();
 		runtimeId=this.readVarlong();

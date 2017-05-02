@@ -9,7 +9,6 @@
 package sul.protocol.pocket112.types;
 
 import java.nio.charset.StandardCharsets;
-import java.util.UUID;
 
 import sul.utils.*;
 
@@ -23,7 +22,7 @@ public class PlayerList extends Stream {
 	 * UUID of the player. If it's associated with an XBOX Live account the player's profile
 	 * will also be available in pause menu.
 	 */
-	public UUID uuid;
+	public sul.protocol.pocket112.types.McpeUuid uuid;
 
 	/**
 	 * Player's id, used to associate the skin with the game's entity spawned with AddPlayer.
@@ -43,7 +42,7 @@ public class PlayerList extends Stream {
 
 	public PlayerList() {}
 
-	public PlayerList(UUID uuid, long entityId, String displayName, sul.protocol.pocket112.types.Skin skin) {
+	public PlayerList(sul.protocol.pocket112.types.McpeUuid uuid, long entityId, String displayName, sul.protocol.pocket112.types.Skin skin) {
 		this.uuid = uuid;
 		this.entityId = entityId;
 		this.displayName = displayName;
@@ -52,13 +51,13 @@ public class PlayerList extends Stream {
 
 	@Override
 	public int length() {
-		return Buffer.varlongLength(entityId) + Buffer.varuintLength(displayName.getBytes(StandardCharsets.UTF_8).length) + displayName.getBytes(StandardCharsets.UTF_8).length + skin.length() + 16;
+		return uuid.length() + Buffer.varlongLength(entityId) + Buffer.varuintLength(displayName.getBytes(StandardCharsets.UTF_8).length) + displayName.getBytes(StandardCharsets.UTF_8).length + skin.length();
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianLong(uuid.getLeastSignificantBits()); this.writeBigEndianLong(uuid.getMostSignificantBits());
+		this.writeBytes(uuid.encode());
 		this.writeVarlong(entityId);
 		byte[] zlcxe5bu=displayName.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)zlcxe5bu.length); this.writeBytes(zlcxe5bu);
 		this.writeBytes(skin.encode());
@@ -68,7 +67,7 @@ public class PlayerList extends Stream {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		long avaq=readBigEndianLong(); long vaq=readBigEndianLong(); uuid=new UUID(avaq,vaq);
+		uuid=new sul.protocol.pocket112.types.McpeUuid(); uuid._index=this._index; uuid.decode(this._buffer); this._index=uuid._index;
 		entityId=this.readVarlong();
 		int bvzlcxe5=this.readVaruint(); displayName=new String(this.readBytes(bvzlcxe5), StandardCharsets.UTF_8);
 		skin=new sul.protocol.pocket112.types.Skin(); skin._index=this._index; skin.decode(this._buffer); this._index=skin._index;
