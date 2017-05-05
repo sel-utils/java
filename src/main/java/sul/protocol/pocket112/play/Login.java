@@ -43,12 +43,6 @@ public class Login extends Packet {
 	public byte version;
 
 	/**
-	 * Length, in bytes, of the following field. This field was used when the body was
-	 * compressed.
-	 */
-	public int bodyLength;
-
-	/**
 	 * Payload that contains 2 JWTs (with each length indicated by an unsigned little-endian
 	 * 32-bits integer) with more informations about the player and its account.
 	 */
@@ -56,16 +50,15 @@ public class Login extends Packet {
 
 	public Login() {}
 
-	public Login(int protocol, byte version, int bodyLength, sul.protocol.pocket112.types.LoginBody body) {
+	public Login(int protocol, byte version, sul.protocol.pocket112.types.LoginBody body) {
 		this.protocol = protocol;
 		this.version = version;
-		this.bodyLength = bodyLength;
 		this.body = body;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(bodyLength) + body.length() + 6;
+		return body.length() + 6;
 	}
 
 	@Override
@@ -74,7 +67,6 @@ public class Login extends Packet {
 		this.writeBigEndianByte(ID);
 		this.writeBigEndianInt(protocol);
 		this.writeBigEndianByte(version);
-		this.writeVaruint(bodyLength);
 		this.writeBytes(body.encode());
 		return this.getBuffer();
 	}
@@ -85,7 +77,6 @@ public class Login extends Packet {
 		readBigEndianByte();
 		protocol=readBigEndianInt();
 		version=readBigEndianByte();
-		bodyLength=this.readVaruint();
 		body=new sul.protocol.pocket112.types.LoginBody(); body._index=this._index; body.decode(this._buffer); this._index=body._index;
 	}
 
@@ -97,7 +88,7 @@ public class Login extends Packet {
 
 	@Override
 	public String toString() {
-		return "Login(protocol: " + this.protocol + ", version: " + this.version + ", bodyLength: " + this.bodyLength + ", body: " + this.body.toString() + ")";
+		return "Login(protocol: " + this.protocol + ", version: " + this.version + ", body: " + this.body.toString() + ")";
 	}
 
 }
