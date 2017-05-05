@@ -36,6 +36,7 @@ public class PlayerAction extends Packet {
 	public static final int STOP_SNEAK = 12;
 	public static final int START_GLIDING = 15;
 	public static final int STOP_GLIDING = 16;
+	public static final int CONTINUE_BREAK = 18;
 
 	public long entityId;
 	public int action;

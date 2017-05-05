@@ -120,8 +120,10 @@ public class LevelSoundEvent extends Packet {
 	public static final byte HAGGLE_YES = 91;
 	public static final byte HAGGLE_NO = 92;
 	public static final byte HAGGLE_IDLE = 93;
-	public static final byte DEFAULT = 94;
-	public static final byte UNDEFINED = 95;
+	public static final byte CHORUS_GROW = 94;
+	public static final byte CHORUS_DEATH = 95;
+	public static final byte DEFAULT = 96;
+	public static final byte UNDEFINED = 97;
 
 	public byte sound;
 
