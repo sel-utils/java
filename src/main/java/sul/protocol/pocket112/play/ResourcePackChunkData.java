@@ -41,7 +41,7 @@ public class ResourcePackChunkData extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(chunkIndex) + Buffer.varulongLength(progress) + Buffer.varuintLength(data.length) + data.length + 1;
+		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + data.length + 17;
 	}
 
 	@Override
@@ -49,9 +49,9 @@ public class ResourcePackChunkData extends Packet {
 		this._buffer = new byte[this.length()];
 		this.writeBigEndianByte(ID);
 		byte[] aq=id.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)aq.length); this.writeBytes(aq);
-		this.writeVaruint(chunkIndex);
-		this.writeVarulong(progress);
-		this.writeVaruint((int)data.length); this.writeBytes(data);
+		this.writeLittleEndianInt(chunkIndex);
+		this.writeLittleEndianLong(progress);
+		this.writeLittleEndianInt((int)data.length); this.writeBytes(data);
 		return this.getBuffer();
 	}
 
@@ -60,9 +60,9 @@ public class ResourcePackChunkData extends Packet {
 		this._buffer = buffer;
 		readBigEndianByte();
 		int bvaq=this.readVaruint(); id=new String(this.readBytes(bvaq), StandardCharsets.UTF_8);
-		chunkIndex=this.readVaruint();
-		progress=this.readVarulong();
-		int brde=this.readVaruint(); data=this.readBytes(brde);
+		chunkIndex=readLittleEndianInt();
+		progress=readLittleEndianLong();
+		int brde=readLittleEndianInt(); data=this.readBytes(brde);
 	}
 
 	public static ResourcePackChunkData fromBuffer(byte[] buffer) {
