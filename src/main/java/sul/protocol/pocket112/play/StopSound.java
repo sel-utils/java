@@ -24,27 +24,27 @@ public class StopSound extends Packet {
 		return ID;
 	}
 
-	public String unknown0;
-	public boolean unknown1;
+	public String name;
+	public boolean stopAll;
 
 	public StopSound() {}
 
-	public StopSound(String unknown0, boolean unknown1) {
-		this.unknown0 = unknown0;
-		this.unknown1 = unknown1;
+	public StopSound(String name, boolean stopAll) {
+		this.name = name;
+		this.stopAll = stopAll;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(unknown0.getBytes(StandardCharsets.UTF_8).length) + unknown0.getBytes(StandardCharsets.UTF_8).length + 2;
+		return Buffer.varuintLength(name.getBytes(StandardCharsets.UTF_8).length) + name.getBytes(StandardCharsets.UTF_8).length + 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		this.writeBigEndianByte(ID);
-		byte[] d5b9ba=unknown0.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)d5b9ba.length); this.writeBytes(d5b9ba);
-		this.writeBool(unknown1);
+		byte[] bfz=name.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)bfz.length); this.writeBytes(bfz);
+		this.writeBool(stopAll);
 		return this.getBuffer();
 	}
 
@@ -52,8 +52,8 @@ public class StopSound extends Packet {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		readBigEndianByte();
-		int bvd5b9ba=this.readVaruint(); unknown0=new String(this.readBytes(bvd5b9ba), StandardCharsets.UTF_8);
-		unknown1=this.readBool();
+		int bvbfz=this.readVaruint(); name=new String(this.readBytes(bvbfz), StandardCharsets.UTF_8);
+		stopAll=this.readBool();
 	}
 
 	public static StopSound fromBuffer(byte[] buffer) {
@@ -64,7 +64,7 @@ public class StopSound extends Packet {
 
 	@Override
 	public String toString() {
-		return "StopSound(unknown0: " + this.unknown0 + ", unknown1: " + this.unknown1 + ")";
+		return "StopSound(name: " + this.name + ", stopAll: " + this.stopAll + ")";
 	}
 
 }

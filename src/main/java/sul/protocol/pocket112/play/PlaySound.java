@@ -24,33 +24,33 @@ public class PlaySound extends Packet {
 		return ID;
 	}
 
-	public String unknown0;
+	public String name;
 	public sul.protocol.pocket112.types.BlockPosition position;
-	public float unknown2;
-	public float unknown3;
+	public float volume;
+	public float pitch;
 
 	public PlaySound() {}
 
-	public PlaySound(String unknown0, sul.protocol.pocket112.types.BlockPosition position, float unknown2, float unknown3) {
-		this.unknown0 = unknown0;
+	public PlaySound(String name, sul.protocol.pocket112.types.BlockPosition position, float volume, float pitch) {
+		this.name = name;
 		this.position = position;
-		this.unknown2 = unknown2;
-		this.unknown3 = unknown3;
+		this.volume = volume;
+		this.pitch = pitch;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(unknown0.getBytes(StandardCharsets.UTF_8).length) + unknown0.getBytes(StandardCharsets.UTF_8).length + position.length() + 9;
+		return Buffer.varuintLength(name.getBytes(StandardCharsets.UTF_8).length) + name.getBytes(StandardCharsets.UTF_8).length + position.length() + 9;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		this.writeBigEndianByte(ID);
-		byte[] d5b9ba=unknown0.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)d5b9ba.length); this.writeBytes(d5b9ba);
+		byte[] bfz=name.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)bfz.length); this.writeBytes(bfz);
 		this.writeBytes(position.encode());
-		this.writeLittleEndianFloat(unknown2);
-		this.writeLittleEndianFloat(unknown3);
+		this.writeLittleEndianFloat(volume);
+		this.writeLittleEndianFloat(pitch);
 		return this.getBuffer();
 	}
 
@@ -58,10 +58,10 @@ public class PlaySound extends Packet {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		readBigEndianByte();
-		int bvd5b9ba=this.readVaruint(); unknown0=new String(this.readBytes(bvd5b9ba), StandardCharsets.UTF_8);
+		int bvbfz=this.readVaruint(); name=new String(this.readBytes(bvbfz), StandardCharsets.UTF_8);
 		position=new sul.protocol.pocket112.types.BlockPosition(); position._index=this._index; position.decode(this._buffer); this._index=position._index;
-		unknown2=readLittleEndianFloat();
-		unknown3=readLittleEndianFloat();
+		volume=readLittleEndianFloat();
+		pitch=readLittleEndianFloat();
 	}
 
 	public static PlaySound fromBuffer(byte[] buffer) {
@@ -72,7 +72,7 @@ public class PlaySound extends Packet {
 
 	@Override
 	public String toString() {
-		return "PlaySound(unknown0: " + this.unknown0 + ", position: " + this.position.toString() + ", unknown2: " + this.unknown2 + ", unknown3: " + this.unknown3 + ")";
+		return "PlaySound(name: " + this.name + ", position: " + this.position.toString() + ", volume: " + this.volume + ", pitch: " + this.pitch + ")";
 	}
 
 }
