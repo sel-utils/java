@@ -22,30 +22,34 @@ public class SetSpawnPosition extends Packet {
 		return ID;
 	}
 
-	public int unknown0;
+	// type
+	public static final int PLAYER_SPAWN = 0;
+	public static final int WORLD_SPAWN = 1;
+
+	public int type;
 	public sul.protocol.pocket112.types.BlockPosition position;
-	public boolean unknown2;
+	public boolean forced;
 
 	public SetSpawnPosition() {}
 
-	public SetSpawnPosition(int unknown0, sul.protocol.pocket112.types.BlockPosition position, boolean unknown2) {
-		this.unknown0 = unknown0;
+	public SetSpawnPosition(int type, sul.protocol.pocket112.types.BlockPosition position, boolean forced) {
+		this.type = type;
 		this.position = position;
-		this.unknown2 = unknown2;
+		this.forced = forced;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varintLength(unknown0) + position.length() + 2;
+		return Buffer.varintLength(type) + position.length() + 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		this.writeBigEndianByte(ID);
-		this.writeVarint(unknown0);
+		this.writeVarint(type);
 		this.writeBytes(position.encode());
-		this.writeBool(unknown2);
+		this.writeBool(forced);
 		return this.getBuffer();
 	}
 
@@ -53,9 +57,9 @@ public class SetSpawnPosition extends Packet {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		readBigEndianByte();
-		unknown0=this.readVarint();
+		type=this.readVarint();
 		position=new sul.protocol.pocket112.types.BlockPosition(); position._index=this._index; position.decode(this._buffer); this._index=position._index;
-		unknown2=this.readBool();
+		forced=this.readBool();
 	}
 
 	public static SetSpawnPosition fromBuffer(byte[] buffer) {
@@ -66,7 +70,7 @@ public class SetSpawnPosition extends Packet {
 
 	@Override
 	public String toString() {
-		return "SetSpawnPosition(unknown0: " + this.unknown0 + ", position: " + this.position.toString() + ", unknown2: " + this.unknown2 + ")";
+		return "SetSpawnPosition(type: " + this.type + ", position: " + this.position.toString() + ", forced: " + this.forced + ")";
 	}
 
 }

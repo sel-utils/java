@@ -34,38 +34,45 @@ public class Rule extends Stream {
 	public static final String PVP = "pvp";
 	public static final String SEND_COMMAND_FEEDBACK = "sendcommandfeedback";
 
+	// type
+	public static final byte BOOLEAN = 1;
+	public static final byte INTEGER = 2;
+	public static final byte FLOATING = 3;
+
 	/**
 	 * Name of the rule. Same of the `gamerule` command's field in the game.
 	 * The behaviours indicated in the following constants' descriptions is enabled or
 	 * disabled.
 	 */
 	public String name;
-
-	/**
-	 * Indicates whether the game rule is enabled.
-	 */
-	public boolean value;
-	public boolean unknown2;
+	public byte type;
+	public boolean booleanValue;
+	public int integerValue;
+	public float floatingValue;
 
 	public Rule() {}
 
-	public Rule(String name, boolean value, boolean unknown2) {
+	public Rule(String name, byte type, boolean booleanValue, int integerValue, float floatingValue) {
 		this.name = name;
-		this.value = value;
-		this.unknown2 = unknown2;
+		this.type = type;
+		this.booleanValue = booleanValue;
+		this.integerValue = integerValue;
+		this.floatingValue = floatingValue;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(name.getBytes(StandardCharsets.UTF_8).length) + name.getBytes(StandardCharsets.UTF_8).length + 2;
+		return Buffer.varuintLength(name.getBytes(StandardCharsets.UTF_8).length) + name.getBytes(StandardCharsets.UTF_8).length + 10;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		byte[] bfz=name.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)bfz.length); this.writeBytes(bfz);
-		this.writeBool(value);
-		this.writeBool(unknown2);
+		this.writeBigEndianByte(type);
+		if(type==1){ this.writeBool(booleanValue); }
+		if(type==2){ this.writeBigEndianInt(integerValue); }
+		if(type==3){ this.writeLittleEndianFloat(floatingValue); }
 		return this.getBuffer();
 	}
 
@@ -73,13 +80,15 @@ public class Rule extends Stream {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		int bvbfz=this.readVaruint(); name=new String(this.readBytes(bvbfz), StandardCharsets.UTF_8);
-		value=this.readBool();
-		unknown2=this.readBool();
+		type=readBigEndianByte();
+		if(type==1){ booleanValue=this.readBool(); }
+		if(type==2){ integerValue=readBigEndianInt(); }
+		if(type==3){ floatingValue=readLittleEndianFloat(); }
 	}
 
 	@Override
 	public String toString() {
-		return "Rule(name: " + this.name + ", value: " + this.value + ", unknown2: " + this.unknown2 + ")";
+		return "Rule(name: " + this.name + ", type: " + this.type + ", booleanValue: " + this.booleanValue + ", integerValue: " + this.integerValue + ", floatingValue: " + this.floatingValue + ")";
 	}
 
 
