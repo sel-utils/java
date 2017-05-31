@@ -26,17 +26,19 @@ public class Ping extends Packet {
 
 	public long pingId;
 	public byte[] magic = new byte[16];
+	public long guid;
 
 	public Ping() {}
 
-	public Ping(long pingId, byte[] magic) {
+	public Ping(long pingId, byte[] magic, long guid) {
 		this.pingId = pingId;
 		this.magic = magic;
+		this.guid = guid;
 	}
 
 	@Override
 	public int length() {
-		return 25;
+		return 33;
 	}
 
 	@Override
@@ -45,6 +47,7 @@ public class Ping extends Packet {
 		this.writeBigEndianByte(ID);
 		this.writeBigEndianLong(pingId);
 		this.writeBytes(magic);
+		this.writeBigEndianLong(guid);
 		return this.getBuffer();
 	}
 
@@ -54,6 +57,7 @@ public class Ping extends Packet {
 		readBigEndianByte();
 		pingId=readBigEndianLong();
 		final int b1zl=16; magic=this.readBytes(b1zl);
+		guid=readBigEndianLong();
 	}
 
 	public static Ping fromBuffer(byte[] buffer) {
@@ -64,7 +68,7 @@ public class Ping extends Packet {
 
 	@Override
 	public String toString() {
-		return "Ping(pingId: " + this.pingId + ", magic: " + Arrays.toString(this.magic) + ")";
+		return "Ping(pingId: " + this.pingId + ", magic: " + Arrays.toString(this.magic) + ", guid: " + this.guid + ")";
 	}
 
 }
