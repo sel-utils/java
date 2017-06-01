@@ -136,10 +136,12 @@ public class StartGame extends Packet {
 	 */
 	public String worldName;
 	public String premiumWorldTemplate;
+	public boolean unknown23;
+	public long worldTicks;
 
 	public StartGame() {}
 
-	public StartGame(long entityId, long runtimeId, int gamemode, Tuples.FloatXYZ position, float yaw, float pitch, int seed, int dimension, int generator, int worldGamemode, int difficulty, Tuples.IntXYZ spawnPosition, boolean loadedInCreative, int time, byte version, float rainLevel, float lightingLevel, boolean commandsEnabled, boolean textureRequired, sul.protocol.pocket113.types.Rule[] gameRules, String levelId, String worldName, String premiumWorldTemplate) {
+	public StartGame(long entityId, long runtimeId, int gamemode, Tuples.FloatXYZ position, float yaw, float pitch, int seed, int dimension, int generator, int worldGamemode, int difficulty, Tuples.IntXYZ spawnPosition, boolean loadedInCreative, int time, byte version, float rainLevel, float lightingLevel, boolean commandsEnabled, boolean textureRequired, sul.protocol.pocket113.types.Rule[] gameRules, String levelId, String worldName, String premiumWorldTemplate, boolean unknown23, long worldTicks) {
 		this.entityId = entityId;
 		this.runtimeId = runtimeId;
 		this.gamemode = gamemode;
@@ -163,11 +165,13 @@ public class StartGame extends Packet {
 		this.levelId = levelId;
 		this.worldName = worldName;
 		this.premiumWorldTemplate = premiumWorldTemplate;
+		this.unknown23 = unknown23;
+		this.worldTicks = worldTicks;
 	}
 
 	@Override
 	public int length() {
-		int length=Buffer.varlongLength(entityId) + Buffer.varlongLength(runtimeId) + Buffer.varintLength(gamemode) + Buffer.varintLength(seed) + Buffer.varintLength(dimension) + Buffer.varintLength(generator) + Buffer.varintLength(worldGamemode) + Buffer.varintLength(difficulty) + Buffer.varintLength(spawnPosition.x) + Buffer.varintLength(spawnPosition.y) + Buffer.varintLength(spawnPosition.z) + Buffer.varintLength(time) + Buffer.varuintLength(gameRules.length) + Buffer.varuintLength(levelId.getBytes(StandardCharsets.UTF_8).length) + levelId.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(worldName.getBytes(StandardCharsets.UTF_8).length) + worldName.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(premiumWorldTemplate.getBytes(StandardCharsets.UTF_8).length) + premiumWorldTemplate.getBytes(StandardCharsets.UTF_8).length + 33; for(sul.protocol.pocket113.types.Rule zfzjbv:gameRules){ length+=zfzjbv.length(); } return length;
+		int length=Buffer.varlongLength(entityId) + Buffer.varlongLength(runtimeId) + Buffer.varintLength(gamemode) + Buffer.varintLength(seed) + Buffer.varintLength(dimension) + Buffer.varintLength(generator) + Buffer.varintLength(worldGamemode) + Buffer.varintLength(difficulty) + Buffer.varintLength(spawnPosition.x) + Buffer.varintLength(spawnPosition.y) + Buffer.varintLength(spawnPosition.z) + Buffer.varintLength(time) + Buffer.varuintLength(gameRules.length) + Buffer.varuintLength(levelId.getBytes(StandardCharsets.UTF_8).length) + levelId.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(worldName.getBytes(StandardCharsets.UTF_8).length) + worldName.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(premiumWorldTemplate.getBytes(StandardCharsets.UTF_8).length) + premiumWorldTemplate.getBytes(StandardCharsets.UTF_8).length + 42; for(sul.protocol.pocket113.types.Rule zfzjbv:gameRules){ length+=zfzjbv.length(); } return length;
 	}
 
 	@Override
@@ -197,6 +201,8 @@ public class StartGame extends Packet {
 		byte[] bvzxz=levelId.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)bvzxz.length); this.writeBytes(bvzxz);
 		byte[] d9bry1=worldName.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)d9bry1.length); this.writeBytes(d9bry1);
 		byte[] cjblbdcx=premiumWorldTemplate.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)cjblbdcx.length); this.writeBytes(cjblbdcx);
+		this.writeBool(unknown23);
+		this.writeLittleEndianLong(worldTicks);
 		return this.getBuffer();
 	}
 
@@ -227,6 +233,8 @@ public class StartGame extends Packet {
 		int bvbvzxz=this.readVaruint(); levelId=new String(this.readBytes(bvbvzxz), StandardCharsets.UTF_8);
 		int bvd9bry1=this.readVaruint(); worldName=new String(this.readBytes(bvd9bry1), StandardCharsets.UTF_8);
 		int bvcjblbd=this.readVaruint(); premiumWorldTemplate=new String(this.readBytes(bvcjblbd), StandardCharsets.UTF_8);
+		unknown23=this.readBool();
+		worldTicks=readLittleEndianLong();
 	}
 
 	public static StartGame fromBuffer(byte[] buffer) {
@@ -237,7 +245,7 @@ public class StartGame extends Packet {
 
 	@Override
 	public String toString() {
-		return "StartGame(entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", gamemode: " + this.gamemode + ", position: " + this.position.toString() + ", yaw: " + this.yaw + ", pitch: " + this.pitch + ", seed: " + this.seed + ", dimension: " + this.dimension + ", generator: " + this.generator + ", worldGamemode: " + this.worldGamemode + ", difficulty: " + this.difficulty + ", spawnPosition: " + this.spawnPosition.toString() + ", loadedInCreative: " + this.loadedInCreative + ", time: " + this.time + ", version: " + this.version + ", rainLevel: " + this.rainLevel + ", lightingLevel: " + this.lightingLevel + ", commandsEnabled: " + this.commandsEnabled + ", textureRequired: " + this.textureRequired + ", gameRules: " + Arrays.deepToString(this.gameRules) + ", levelId: " + this.levelId + ", worldName: " + this.worldName + ", premiumWorldTemplate: " + this.premiumWorldTemplate + ")";
+		return "StartGame(entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", gamemode: " + this.gamemode + ", position: " + this.position.toString() + ", yaw: " + this.yaw + ", pitch: " + this.pitch + ", seed: " + this.seed + ", dimension: " + this.dimension + ", generator: " + this.generator + ", worldGamemode: " + this.worldGamemode + ", difficulty: " + this.difficulty + ", spawnPosition: " + this.spawnPosition.toString() + ", loadedInCreative: " + this.loadedInCreative + ", time: " + this.time + ", version: " + this.version + ", rainLevel: " + this.rainLevel + ", lightingLevel: " + this.lightingLevel + ", commandsEnabled: " + this.commandsEnabled + ", textureRequired: " + this.textureRequired + ", gameRules: " + Arrays.deepToString(this.gameRules) + ", levelId: " + this.levelId + ", worldName: " + this.worldName + ", premiumWorldTemplate: " + this.premiumWorldTemplate + ", unknown23: " + this.unknown23 + ", worldTicks: " + this.worldTicks + ")";
 	}
 
 }

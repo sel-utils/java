@@ -4,11 +4,11 @@
  * 
  * License: https://github.com/sel-project/sel-utils/blob/master/LICENSE
  * Repository: https://github.com/sel-project/sel-utils
- * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/attributes/pocket112.xml
+ * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/attributes/pocket113.xml
  */
 package sul.attributes;
 
-public enum Pocket112
+public enum Pocket113
 {
 
     HEALTH("minecraft:health", 0f, 20f, 20f),
@@ -30,7 +30,7 @@ public enum Pocket112
     public final String id;
     public final float min, max, def;
 
-    Pocket112(String id, float min, float max, float def)
+    Pocket113(String id, float min, float max, float def)
     {
         this.id = id;
         this.min = min;
