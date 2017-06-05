@@ -4,7 +4,7 @@
   
 	<groupId>sul</groupId>
 	<artifactId>sel-utils</artifactId>
-	<version>1.2.44</version>
+	<version>1.2.45</version>
 	<packaging>jar</packaging>
   
 	<name>sel-utils</name>
