@@ -6,7 +6,7 @@
  * Repository: https://github.com/sel-project/sel-utils
  * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/externalconsole2.xml
  */
-package sul.protocol.externalconsole2.types;
+package sul.protocol.externalconsole.types;
 
 import java.util.Arrays;
 

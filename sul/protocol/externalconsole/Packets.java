@@ -5,7 +5,7 @@
  * License: https://github.com/sel-project/sel-utils/blob/master/LICENSE
  * Repository: https://github.com/sel-project/sel-utils
  */
-package sul.protocol.externalconsole2;
+package sul.protocol.externalconsole;
 
 import java.util.Collections;
 import java.util.Map;
@@ -99,22 +99,22 @@ public final class Packets {
 	static {
 
 		HashMap<Integer, Class<? extends Packet>> login = new HashMap<Integer, Class<? extends Packet>>();
-		login.put(0, sul.protocol.externalconsole2.login.AuthCredentials.class);
-		login.put(1, sul.protocol.externalconsole2.login.Auth.class);
-		login.put(2, sul.protocol.externalconsole2.login.Welcome.class);
+		login.put(0, sul.protocol.externalconsole.login.AuthCredentials.class);
+		login.put(1, sul.protocol.externalconsole.login.Auth.class);
+		login.put(2, sul.protocol.externalconsole.login.Welcome.class);
 		LOGIN = Collections.unmodifiableMap(login);
 
 		HashMap<Integer, Class<? extends Packet>> status = new HashMap<Integer, Class<? extends Packet>>();
-		status.put(0, sul.protocol.externalconsole2.status.KeepAlive.class);
-		status.put(1, sul.protocol.externalconsole2.status.UpdateNodes.class);
-		status.put(2, sul.protocol.externalconsole2.status.RequestStats.class);
-		status.put(3, sul.protocol.externalconsole2.status.UpdateStats.class);
+		status.put(0, sul.protocol.externalconsole.status.KeepAlive.class);
+		status.put(1, sul.protocol.externalconsole.status.UpdateNodes.class);
+		status.put(2, sul.protocol.externalconsole.status.RequestStats.class);
+		status.put(3, sul.protocol.externalconsole.status.UpdateStats.class);
 		STATUS = Collections.unmodifiableMap(status);
 
 		HashMap<Integer, Class<? extends Packet>> connected = new HashMap<Integer, Class<? extends Packet>>();
-		connected.put(4, sul.protocol.externalconsole2.connected.ConsoleMessage.class);
-		connected.put(5, sul.protocol.externalconsole2.connected.Command.class);
-		connected.put(6, sul.protocol.externalconsole2.connected.PermissionDenied.class);
+		connected.put(4, sul.protocol.externalconsole.connected.ConsoleMessage.class);
+		connected.put(5, sul.protocol.externalconsole.connected.Command.class);
+		connected.put(6, sul.protocol.externalconsole.connected.PermissionDenied.class);
 		CONNECTED = Collections.unmodifiableMap(connected);
 
 	}

@@ -6,7 +6,7 @@
  * Repository: https://github.com/sel-project/sel-utils
  * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/externalconsole2.xml
  */
-package sul.protocol.externalconsole2.login;
+package sul.protocol.externalconsole.login;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -112,7 +112,7 @@ public class Welcome extends Packet {
 		/**
 		 * Informations about the games and their protocols supported by the server.
 		 */
-		public sul.protocol.externalconsole2.types.Game[] games = new sul.protocol.externalconsole2.types.Game[0];
+		public sul.protocol.externalconsole.types.Game[] games = new sul.protocol.externalconsole.types.Game[0];
 
 		/**
 		 * List of names of the nodes connected to the server, if it uses the hub-node layout,
@@ -122,7 +122,7 @@ public class Welcome extends Packet {
 
 		public Accepted() {}
 
-		public Accepted(boolean remoteCommands, String software, byte[] versions, String displayName, sul.protocol.externalconsole2.types.Game[] games, String[] connectedNodes) {
+		public Accepted(boolean remoteCommands, String software, byte[] versions, String displayName, sul.protocol.externalconsole.types.Game[] games, String[] connectedNodes) {
 			this.remoteCommands = remoteCommands;
 			this.software = software;
 			this.versions = versions;
@@ -133,7 +133,7 @@ public class Welcome extends Packet {
 
 		@Override
 		public int length() {
-			int length=software.getBytes(StandardCharsets.UTF_8).length + displayName.getBytes(StandardCharsets.UTF_8).length + connectedNodes.length*2 + 12; for(sul.protocol.externalconsole2.types.Game zfzm:games){ length+=zfzm.length(); };for(String y9bvdvt9:connectedNodes){ length+=y9bvdvt9.getBytes(StandardCharsets.UTF_8).length; } return length;
+			int length=software.getBytes(StandardCharsets.UTF_8).length + displayName.getBytes(StandardCharsets.UTF_8).length + connectedNodes.length*2 + 12; for(sul.protocol.externalconsole.types.Game zfzm:games){ length+=zfzm.length(); };for(String y9bvdvt9:connectedNodes){ length+=y9bvdvt9.getBytes(StandardCharsets.UTF_8).length; } return length;
 		}
 
 		@Override
@@ -145,7 +145,7 @@ public class Welcome extends Packet {
 			byte[] c9ddcu=software.getBytes(StandardCharsets.UTF_8); this.writeBigEndianShort((short)c9ddcu.length); this.writeBytes(c9ddcu);
 			this.writeBytes(versions);
 			byte[] zlcxe5bu=displayName.getBytes(StandardCharsets.UTF_8); this.writeBigEndianShort((short)zlcxe5bu.length); this.writeBytes(zlcxe5bu);
-			this.writeBigEndianShort((short)games.length); for(sul.protocol.externalconsole2.types.Game zfzm:games){ this.writeBytes(zfzm.encode()); }
+			this.writeBigEndianShort((short)games.length); for(sul.protocol.externalconsole.types.Game zfzm:games){ this.writeBytes(zfzm.encode()); }
 			this.writeBigEndianShort((short)connectedNodes.length); for(String y9bvdvt9:connectedNodes){ byte[] eldrdk=y9bvdvt9.getBytes(StandardCharsets.UTF_8); this.writeBigEndianShort((short)eldrdk.length); this.writeBytes(eldrdk); }
 			return this.getBuffer();
 		}
@@ -157,7 +157,7 @@ public class Welcome extends Packet {
 			short bvc9ddcu=readBigEndianShort(); software=new String(this.readBytes(bvc9ddcu), StandardCharsets.UTF_8);
 			final int bzcnb5=3; versions=this.readBytes(bzcnb5);
 			short bvzlcxe5=readBigEndianShort(); displayName=new String(this.readBytes(bvzlcxe5), StandardCharsets.UTF_8);
-			int bdbv=readBigEndianShort(); games=new sul.protocol.externalconsole2.types.Game[bdbv]; for(int zfzm=0;zfzm<games.length;zfzm++){ games[zfzm]=new sul.protocol.externalconsole2.types.Game(); games[zfzm]._index=this._index; games[zfzm].decode(this._buffer); this._index=games[zfzm]._index; }
+			int bdbv=readBigEndianShort(); games=new sul.protocol.externalconsole.types.Game[bdbv]; for(int zfzm=0;zfzm<games.length;zfzm++){ games[zfzm]=new sul.protocol.externalconsole.types.Game(); games[zfzm]._index=this._index; games[zfzm].decode(this._buffer); this._index=games[zfzm]._index; }
 			int bnb5yrz5=readBigEndianShort(); connectedNodes=new String[bnb5yrz5]; for(int y9bvdvt9=0;y9bvdvt9<connectedNodes.length;y9bvdvt9++){ short bvy9bvdv=readBigEndianShort(); connectedNodes[y9bvdvt9]=new String(this.readBytes(bvy9bvdv), StandardCharsets.UTF_8); }
 		}
 

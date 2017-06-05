@@ -6,7 +6,7 @@
  * Repository: https://github.com/sel-project/sel-utils
  * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/externalconsole2.xml
  */
-package sul.protocol.externalconsole2.status;
+package sul.protocol.externalconsole.status;
 
 import java.util.Arrays;
 
@@ -61,11 +61,11 @@ public class UpdateStats extends Packet {
 	 * Resources usage of the connected nodes, if the server uses the hub-node layout,
 	 * or an empty list.
 	 */
-	public sul.protocol.externalconsole2.types.NodeStats[] nodes = new sul.protocol.externalconsole2.types.NodeStats[0];
+	public sul.protocol.externalconsole.types.NodeStats[] nodes = new sul.protocol.externalconsole.types.NodeStats[0];
 
 	public UpdateStats() {}
 
-	public UpdateStats(int onlinePlayers, int maxPlayers, int uptime, int upload, int download, sul.protocol.externalconsole2.types.NodeStats[] nodes) {
+	public UpdateStats(int onlinePlayers, int maxPlayers, int uptime, int upload, int download, sul.protocol.externalconsole.types.NodeStats[] nodes) {
 		this.onlinePlayers = onlinePlayers;
 		this.maxPlayers = maxPlayers;
 		this.uptime = uptime;
@@ -76,7 +76,7 @@ public class UpdateStats extends Packet {
 
 	@Override
 	public int length() {
-		int length=23; for(sul.protocol.externalconsole2.types.NodeStats b9zm:nodes){ length+=b9zm.length(); } return length;
+		int length=23; for(sul.protocol.externalconsole.types.NodeStats b9zm:nodes){ length+=b9zm.length(); } return length;
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class UpdateStats extends Packet {
 		this.writeBigEndianInt(uptime);
 		this.writeBigEndianInt(upload);
 		this.writeBigEndianInt(download);
-		this.writeBigEndianShort((short)nodes.length); for(sul.protocol.externalconsole2.types.NodeStats b9zm:nodes){ this.writeBytes(b9zm.encode()); }
+		this.writeBigEndianShort((short)nodes.length); for(sul.protocol.externalconsole.types.NodeStats b9zm:nodes){ this.writeBytes(b9zm.encode()); }
 		return this.getBuffer();
 	}
 
@@ -101,7 +101,7 @@ public class UpdateStats extends Packet {
 		uptime=readBigEndianInt();
 		upload=readBigEndianInt();
 		download=readBigEndianInt();
-		int b5zv=readBigEndianShort(); nodes=new sul.protocol.externalconsole2.types.NodeStats[b5zv]; for(int b9zm=0;b9zm<nodes.length;b9zm++){ nodes[b9zm]=new sul.protocol.externalconsole2.types.NodeStats(); nodes[b9zm]._index=this._index; nodes[b9zm].decode(this._buffer); this._index=nodes[b9zm]._index; }
+		int b5zv=readBigEndianShort(); nodes=new sul.protocol.externalconsole.types.NodeStats[b5zv]; for(int b9zm=0;b9zm<nodes.length;b9zm++){ nodes[b9zm]=new sul.protocol.externalconsole.types.NodeStats(); nodes[b9zm]._index=this._index; nodes[b9zm].decode(this._buffer); this._index=nodes[b9zm]._index; }
 	}
 
 	public static UpdateStats fromBuffer(byte[] buffer) {
