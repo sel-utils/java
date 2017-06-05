@@ -697,6 +697,7 @@ public final class Items {
 		add(new Items("spawn rabbit", new ItemData(383, 101), new ItemData(383, 18), (byte)64));
 		add(new Items("spawn polar bear", new ItemData(383, 102), new ItemData(383, 28), (byte)64));
 		add(new Items("spawn llama", new ItemData(383, 103), new ItemData(383, 29), (byte)64));
+		add(new Items("spawn parrot", new ItemData(383, 105), null, (byte)64));
 		add(new Items("spawn villager", new ItemData(383, 120), new ItemData(383, 15), (byte)64));
 		add(new Items("spawn npc", null, new ItemData(383, 51), (byte)64));
 		add(new Items("bottle o enchanting", new ItemData(384, 0), new ItemData(384, 0), (byte)64));
@@ -774,6 +775,7 @@ public final class Items {
 		add(new Items("undying totem", new ItemData(449, 0), new ItemData(450, 0), (byte)1));
 		add(new Items("shulker shell", new ItemData(450, 0), new ItemData(445, 0), (byte)64));
 		add(new Items("iron nugget", new ItemData(452, 0), new ItemData(452, 0), (byte)64));
+		add(new Items("knowledge book", new ItemData(453, 0), null, (byte)1));
 		add(new Items("disc 13", new ItemData(2256, 0), null, (byte)1));
 		add(new Items("disc cat", new ItemData(2257, 0), null, (byte)1));
 		add(new Items("disc blocks", new ItemData(2258, 0), null, (byte)1));

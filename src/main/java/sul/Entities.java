@@ -61,6 +61,7 @@ public enum Entities
     EVOKER("evoker", false, 34, 104, 0.6, 1.95),
     VEX("vex", false, 35, 105, 0.4, 0.8),
     VINDICATOR("vindicator", false, 36, 56, 0.6, 1.95),
+    ILLUSIONER("illusioner", false, 37, 0, 0.6, 1.95),
     CREEPER("creeper", false, 50, 33, 0.6, 1.7),
     SKELETON("skeleton", false, 0, 34, 0.6, 1.99),
     SPIDER("spider", false, 52, 35, 1.4, 0.9),
@@ -94,6 +95,7 @@ public enum Entities
     RABBIT("rabbit", false, 101, 18, 0.4, 0.5),
     POLAR_BEAR("polar bear", false, 102, 28, 1.3, 1.4),
     LLAMA("llama", false, 103, 29, 0.9, 1.87),
+    PARROT("parrot", false, 105, 0, 0.5, 1),
     VILLAGER("villager", false, 120, 15, 0.6, 1.95),
     NPC("npc", false, 0, 51, 0.6, 1.95);
 
@@ -174,6 +176,7 @@ public enum Entities
         add(EVOKER);
         add(VEX);
         add(VINDICATOR);
+        add(ILLUSIONER);
         add(CREEPER);
         add(SKELETON);
         add(SPIDER);
@@ -207,6 +210,7 @@ public enum Entities
         add(RABBIT);
         add(POLAR_BEAR);
         add(LLAMA);
+        add(PARROT);
         add(VILLAGER);
         add(NPC);
 
