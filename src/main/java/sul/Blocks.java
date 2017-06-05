@@ -1431,6 +1431,38 @@ public final class Blocks {
 		add(new Blocks("structure block load", (short)1374, new BlockData(255, 1), new BlockData(0, 0), true, (double)-1, (double)1.8e+07, (byte)15, (byte)0, false));
 		add(new Blocks("structure block corner", (short)1375, new BlockData(255, 2), new BlockData(0, 0), true, (double)-1, (double)1.8e+07, (byte)15, (byte)0, false));
 		add(new Blocks("structure block data", (short)1376, new BlockData(255, 3), new BlockData(0, 0), true, (double)-1, (double)1.8e+07, (byte)15, (byte)0, false));
+		add(new Blocks("white concrete", (short)1377, new BlockData(251, 0), new BlockData(236, 0), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("orange concrete", (short)1378, new BlockData(251, 1), new BlockData(236, 1), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("magenta concrete", (short)1379, new BlockData(251, 2), new BlockData(236, 2), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("light blue concrete", (short)1380, new BlockData(251, 3), new BlockData(236, 3), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("yellow concrete", (short)1381, new BlockData(251, 4), new BlockData(236, 4), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("lime concrete", (short)1382, new BlockData(251, 5), new BlockData(236, 5), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("pink concrete", (short)1383, new BlockData(251, 6), new BlockData(236, 6), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("gray concrete", (short)1384, new BlockData(251, 7), new BlockData(236, 7), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("light gray concrete", (short)1385, new BlockData(251, 8), new BlockData(236, 8), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("cyan concrete", (short)1386, new BlockData(251, 9), new BlockData(236, 9), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("purple concrete", (short)1387, new BlockData(251, 10), new BlockData(236, 10), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("blue concrete", (short)1388, new BlockData(251, 11), new BlockData(236, 11), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("brown concrete", (short)1389, new BlockData(251, 12), new BlockData(236, 12), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("green concrete", (short)1390, new BlockData(251, 13), new BlockData(236, 13), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("red concrete", (short)1391, new BlockData(251, 14), new BlockData(236, 14), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("black concrete", (short)1392, new BlockData(251, 15), new BlockData(236, 15), true, (double)1.8, (double)9, (byte)15, (byte)0, false));
+		add(new Blocks("white concrete powder", (short)1393, new BlockData(252, 0), new BlockData(237, 0), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("orange concrete powder", (short)1394, new BlockData(252, 1), new BlockData(237, 1), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("magenta concrete powder", (short)1395, new BlockData(252, 2), new BlockData(237, 2), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("light blue concrete powder", (short)1396, new BlockData(252, 3), new BlockData(237, 3), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("yellow concrete powder", (short)1397, new BlockData(252, 4), new BlockData(237, 4), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("lime concrete powder", (short)1398, new BlockData(252, 5), new BlockData(237, 5), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("pink concrete powder", (short)1399, new BlockData(252, 6), new BlockData(237, 6), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("gray concrete powder", (short)1400, new BlockData(252, 7), new BlockData(237, 7), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("light gray concrete powder", (short)1401, new BlockData(252, 8), new BlockData(237, 8), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("cyan concrete powder", (short)1402, new BlockData(252, 9), new BlockData(237, 9), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("purple concrete powder", (short)1403, new BlockData(252, 10), new BlockData(237, 10), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("blue concrete powder", (short)1404, new BlockData(252, 11), new BlockData(237, 11), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("brown concrete powder", (short)1405, new BlockData(252, 12), new BlockData(237, 12), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("green concrete powder", (short)1406, new BlockData(252, 13), new BlockData(237, 13), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("red concrete powder", (short)1407, new BlockData(252, 14), new BlockData(237, 14), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
+		add(new Blocks("black concrete powder", (short)1408, new BlockData(252, 15), new BlockData(237, 15), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
 
 	}
 
