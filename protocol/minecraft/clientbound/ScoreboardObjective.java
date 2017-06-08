@@ -4,7 +4,7 @@
  * 
  * License: https://github.com/sel-project/sel-utils/blob/master/LICENSE
  * Repository: https://github.com/sel-project/sel-utils
- * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft316.xml
+ * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft335.xml
  */
 package sul.protocol.minecraft.clientbound;
 
@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class ScoreboardObjective extends Packet {
 
-	public static final int ID = (int)63;
+	public static final int ID = (int)65;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -49,7 +49,7 @@ public class ScoreboardObjective extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(name.getBytes(StandardCharsets.UTF_8).length) + name.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(value.getBytes(StandardCharsets.UTF_8).length) + value.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(type.getBytes(StandardCharsets.UTF_8).length) + type.getBytes(StandardCharsets.UTF_8).length + 2;
+		return Buffer.varuintLength(name.getBytes(StandardCharsets.UTF_8).length) + name.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(value.getBytes(StandardCharsets.UTF_8).length) + value.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(type.getBytes(StandardCharsets.UTF_8).length) + type.getBytes(StandardCharsets.UTF_8).length + 3;
 	}
 
 	@Override

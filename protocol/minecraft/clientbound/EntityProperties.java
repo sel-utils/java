@@ -4,7 +4,7 @@
  * 
  * License: https://github.com/sel-project/sel-utils/blob/master/LICENSE
  * Repository: https://github.com/sel-project/sel-utils
- * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft316.xml
+ * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft335.xml
  */
 package sul.protocol.minecraft.clientbound;
 
@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class EntityProperties extends Packet {
 
-	public static final int ID = (int)74;
+	public static final int ID = (int)77;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;

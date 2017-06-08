@@ -4,7 +4,7 @@
  * 
  * License: https://github.com/sel-project/sel-utils/blob/master/LICENSE
  * Repository: https://github.com/sel-project/sel-utils
- * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft316.xml
+ * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft335.xml
  */
 package sul.protocol.minecraft.serverbound;
 
@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class Spectate extends Packet {
 
-	public static final int ID = (int)27;
+	public static final int ID = (int)30;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;

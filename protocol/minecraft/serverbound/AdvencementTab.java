@@ -8,11 +8,13 @@
  */
 package sul.protocol.minecraft.serverbound;
 
+import java.nio.charset.StandardCharsets;
+
 import sul.utils.*;
 
-public class ClientStatus extends Packet {
+public class AdvencementTab extends Packet {
 
-	public static final int ID = (int)4;
+	public static final int ID = (int)25;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -23,20 +25,22 @@ public class ClientStatus extends Packet {
 	}
 
 	// action
-	public static final int RESPAWN = 0;
-	public static final int REQUEST_STATS = 1;
+	public static final int OPEN_TAB = 0;
+	public static final int CLOSE_SCREEN = 1;
 
 	public int action;
+	public String tab;
 
-	public ClientStatus() {}
+	public AdvencementTab() {}
 
-	public ClientStatus(int action) {
+	public AdvencementTab(int action, String tab) {
 		this.action = action;
+		this.tab = tab;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(action) + 1;
+		return Buffer.varuintLength(action) + Buffer.varuintLength(tab.getBytes(StandardCharsets.UTF_8).length) + tab.getBytes(StandardCharsets.UTF_8).length + 1;
 	}
 
 	@Override
@@ -44,6 +48,7 @@ public class ClientStatus extends Packet {
 		this._buffer = new byte[this.length()];
 		this.writeVaruint(ID);
 		this.writeVaruint(action);
+		if(action==0){ byte[] df=tab.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)df.length); this.writeBytes(df); }
 		return this.getBuffer();
 	}
 
@@ -52,17 +57,18 @@ public class ClientStatus extends Packet {
 		this._buffer = buffer;
 		this.readVaruint();
 		action=this.readVaruint();
+		if(action==0){ int bvdf=this.readVaruint(); tab=new String(this.readBytes(bvdf), StandardCharsets.UTF_8); }
 	}
 
-	public static ClientStatus fromBuffer(byte[] buffer) {
-		ClientStatus ret = new ClientStatus();
+	public static AdvencementTab fromBuffer(byte[] buffer) {
+		AdvencementTab ret = new AdvencementTab();
 		ret.decode(buffer);
 		return ret;
 	}
 
 	@Override
 	public String toString() {
-		return "ClientStatus(action: " + this.action + ")";
+		return "AdvencementTab(action: " + this.action + ", tab: " + this.tab + ")";
 	}
 
 }

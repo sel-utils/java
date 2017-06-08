@@ -4,7 +4,7 @@
  * 
  * License: https://github.com/sel-project/sel-utils/blob/master/LICENSE
  * Repository: https://github.com/sel-project/sel-utils
- * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft316.xml
+ * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft335.xml
  */
 package sul.protocol.minecraft.status;
 
@@ -28,7 +28,7 @@ public class Handshake extends Packet {
 	public static final int STATUS = 1;
 	public static final int LOGIN = 2;
 
-	public int protocol;
+	public int protocol = 335;
 	public String serverAddress;
 	public short serverPort;
 	public int next;

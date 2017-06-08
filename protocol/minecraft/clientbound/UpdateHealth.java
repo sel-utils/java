@@ -4,7 +4,7 @@
  * 
  * License: https://github.com/sel-project/sel-utils/blob/master/LICENSE
  * Repository: https://github.com/sel-project/sel-utils
- * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft316.xml
+ * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft335.xml
  */
 package sul.protocol.minecraft.clientbound;
 
@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class UpdateHealth extends Packet {
 
-	public static final int ID = (int)62;
+	public static final int ID = (int)64;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -36,7 +36,7 @@ public class UpdateHealth extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(hunger) + 9;
+		return Buffer.varuintLength(hunger) + 10;
 	}
 
 	@Override

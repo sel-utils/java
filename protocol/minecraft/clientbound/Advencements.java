@@ -10,9 +10,9 @@ package sul.protocol.minecraft.clientbound;
 
 import sul.utils.*;
 
-public class UseBed extends Packet {
+public class Advencements extends Packet {
 
-	public static final int ID = (int)47;
+	public static final int ID = (int)76;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -22,27 +22,15 @@ public class UseBed extends Packet {
 		return ID;
 	}
 
-	public int entityId;
-	public long position;
-
-	public UseBed() {}
-
-	public UseBed(int entityId, long position) {
-		this.entityId = entityId;
-		this.position = position;
-	}
-
 	@Override
 	public int length() {
-		return Buffer.varuintLength(entityId) + 9;
+		return 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		this.writeVaruint(ID);
-		this.writeVaruint(entityId);
-		this.writeBigEndianLong(position);
 		return this.getBuffer();
 	}
 
@@ -50,19 +38,17 @@ public class UseBed extends Packet {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		this.readVaruint();
-		entityId=this.readVaruint();
-		position=readBigEndianLong();
 	}
 
-	public static UseBed fromBuffer(byte[] buffer) {
-		UseBed ret = new UseBed();
+	public static Advencements fromBuffer(byte[] buffer) {
+		Advencements ret = new Advencements();
 		ret.decode(buffer);
 		return ret;
 	}
 
 	@Override
 	public String toString() {
-		return "UseBed(entityId: " + this.entityId + ", position: " + this.position + ")";
+		return "Advencements()";
 	}
 
 }

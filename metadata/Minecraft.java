@@ -4,7 +4,7 @@
  * 
  * License: https://github.com/sel-project/sel-utils/blob/master/LICENSE
  * Repository: https://github.com/sel-project/sel-utils
- * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/metadata/minecraft316.xml
+ * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/metadata/minecraft335.xml
  */
 package sul.metadata;
 
@@ -82,6 +82,10 @@ public class Minecraft extends Stream {
 				case 12:
 					int _12;
 					_12=this.readVaruint();
+					break;
+				case 13:
+					byte[] _13;
+					_13=this.readBytes(this._buffer.length-this._index);
 					break;
 				default: break;
 			}

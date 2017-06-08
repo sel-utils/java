@@ -4,7 +4,7 @@
  * 
  * License: https://github.com/sel-project/sel-utils/blob/master/LICENSE
  * Repository: https://github.com/sel-project/sel-utils
- * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft316.xml
+ * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft335.xml
  */
 package sul.protocol.minecraft.clientbound;
 
@@ -35,6 +35,7 @@ public class UpdateBlockEntity extends Packet {
 	public static final byte END_GATEWAY_DESTINATION = 8;
 	public static final byte SIGN_TEXT = 9;
 	public static final byte SHULKER_BOX_DECLARATION = 10;
+	public static final byte BED_COLOR = 11;
 
 	public long position;
 	public byte action;
