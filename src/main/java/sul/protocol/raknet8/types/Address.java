@@ -17,20 +17,22 @@ public class Address extends Stream {
 	public byte type;
 	public int ipv4;
 	public byte[] ipv6 = new byte[16];
+	public byte[] unknown3 = new byte[10];
 	public short port;
 
 	public Address() {}
 
-	public Address(byte type, int ipv4, byte[] ipv6, short port) {
+	public Address(byte type, int ipv4, byte[] ipv6, byte[] unknown3, short port) {
 		this.type = type;
 		this.ipv4 = ipv4;
 		this.ipv6 = ipv6;
+		this.unknown3 = unknown3;
 		this.port = port;
 	}
 
 	@Override
 	public int length() {
-		return 23;
+		return 33;
 	}
 
 	@Override
@@ -39,6 +41,7 @@ public class Address extends Stream {
 		this.writeBigEndianByte(type);
 		if(type==4){ this.writeBigEndianInt(ipv4); }
 		if(type==6){ this.writeBytes(ipv6); }
+		if(type==6){ this.writeBytes(unknown3); }
 		this.writeBigEndianShort(port);
 		return this.getBuffer();
 	}
@@ -49,12 +52,13 @@ public class Address extends Stream {
 		type=readBigEndianByte();
 		if(type==4){ ipv4=readBigEndianInt(); }
 		if(type==6){ final int bldy=16; ipv6=this.readBytes(bldy); }
+		if(type==6){ final int bva5d4=10; unknown3=this.readBytes(bva5d4); }
 		port=readBigEndianShort();
 	}
 
 	@Override
 	public String toString() {
-		return "Address(type: " + this.type + ", ipv4: " + this.ipv4 + ", ipv6: " + Arrays.toString(this.ipv6) + ", port: " + this.port + ")";
+		return "Address(type: " + this.type + ", ipv4: " + this.ipv4 + ", ipv6: " + Arrays.toString(this.ipv6) + ", unknown3: " + Arrays.toString(this.unknown3) + ", port: " + this.port + ")";
 	}
 
 
