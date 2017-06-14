@@ -9,12 +9,12 @@ To contribute at the project read the [contribution guidelines](https://github.c
 
 - [ ] Protocol
 - [ ] Metadata
-- [ ] Blocks
-- [ ] Items
+- [x] Blocks
+- [x] Items
 - [x] Entities
 - [ ] Effects
-- [ ] Enchantments
-- [ ] Biomes
+- [x] Enchantments
+- [x] Biomes
 - [ ] Windows
 - [ ] Recipes
 

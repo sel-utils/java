@@ -8,8 +8,7 @@
  */
 package sul;
 
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 public enum Entities
 {
@@ -104,7 +103,7 @@ public enum Entities
     public final int minecraft, pocket;
     public final double width, height;
 
-    Entities(String name, boolean object, int minecraft, int pocket, double width, double height)
+    private Entities(String name, boolean object, int minecraft, int pocket, double width, double height)
     {
         this.name = name;
         this.object = object;
@@ -114,7 +113,7 @@ public enum Entities
         this.height = height;
     }
 
-    Entities(String name, boolean object, int minecraft, int pocket)
+    private Entities(String name, boolean object, int minecraft, int pocket)
     {
         this(name, object, minecraft, pocket, Double.NaN, Double.NaN);
     }
