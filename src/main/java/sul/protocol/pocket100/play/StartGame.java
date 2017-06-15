@@ -63,7 +63,7 @@ public class StartGame extends Packet {
 	public int time;
 	public byte edition;
 	public float rainLevel;
-	public float lightingLevel;
+	public float lightningLevel;
 	public boolean commandsEnabled;
 	public boolean textureRequired;
 	public String levelId;
@@ -71,7 +71,7 @@ public class StartGame extends Packet {
 
 	public StartGame() {}
 
-	public StartGame(long entityId, long runtimeId, Tuples.FloatXYZ position, float yaw, float pitch, int seed, int dimension, int generator, int worldGamemode, int difficulty, Tuples.IntXYZ spawnPosition, boolean loadedInCreative, int time, byte edition, float rainLevel, float lightingLevel, boolean commandsEnabled, boolean textureRequired, String levelId, String worldName) {
+	public StartGame(long entityId, long runtimeId, Tuples.FloatXYZ position, float yaw, float pitch, int seed, int dimension, int generator, int worldGamemode, int difficulty, Tuples.IntXYZ spawnPosition, boolean loadedInCreative, int time, byte edition, float rainLevel, float lightningLevel, boolean commandsEnabled, boolean textureRequired, String levelId, String worldName) {
 		this.entityId = entityId;
 		this.runtimeId = runtimeId;
 		this.position = position;
@@ -87,7 +87,7 @@ public class StartGame extends Packet {
 		this.time = time;
 		this.edition = edition;
 		this.rainLevel = rainLevel;
-		this.lightingLevel = lightingLevel;
+		this.lightningLevel = lightningLevel;
 		this.commandsEnabled = commandsEnabled;
 		this.textureRequired = textureRequired;
 		this.levelId = levelId;
@@ -118,7 +118,7 @@ public class StartGame extends Packet {
 		this.writeVarint(time);
 		this.writeBigEndianByte(edition);
 		this.writeLittleEndianFloat(rainLevel);
-		this.writeLittleEndianFloat(lightingLevel);
+		this.writeLittleEndianFloat(lightningLevel);
 		this.writeBool(commandsEnabled);
 		this.writeBool(textureRequired);
 		byte[] bvzxz=levelId.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)bvzxz.length); this.writeBytes(bvzxz);
@@ -145,7 +145,7 @@ public class StartGame extends Packet {
 		time=this.readVarint();
 		edition=readBigEndianByte();
 		rainLevel=readLittleEndianFloat();
-		lightingLevel=readLittleEndianFloat();
+		lightningLevel=readLittleEndianFloat();
 		commandsEnabled=this.readBool();
 		textureRequired=this.readBool();
 		int bvbvzxz=this.readVaruint(); levelId=new String(this.readBytes(bvbvzxz), StandardCharsets.UTF_8);
@@ -160,7 +160,7 @@ public class StartGame extends Packet {
 
 	@Override
 	public String toString() {
-		return "StartGame(entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", position: " + this.position.toString() + ", yaw: " + this.yaw + ", pitch: " + this.pitch + ", seed: " + this.seed + ", dimension: " + this.dimension + ", generator: " + this.generator + ", worldGamemode: " + this.worldGamemode + ", difficulty: " + this.difficulty + ", spawnPosition: " + this.spawnPosition.toString() + ", loadedInCreative: " + this.loadedInCreative + ", time: " + this.time + ", edition: " + this.edition + ", rainLevel: " + this.rainLevel + ", lightingLevel: " + this.lightingLevel + ", commandsEnabled: " + this.commandsEnabled + ", textureRequired: " + this.textureRequired + ", levelId: " + this.levelId + ", worldName: " + this.worldName + ")";
+		return "StartGame(entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", position: " + this.position.toString() + ", yaw: " + this.yaw + ", pitch: " + this.pitch + ", seed: " + this.seed + ", dimension: " + this.dimension + ", generator: " + this.generator + ", worldGamemode: " + this.worldGamemode + ", difficulty: " + this.difficulty + ", spawnPosition: " + this.spawnPosition.toString() + ", loadedInCreative: " + this.loadedInCreative + ", time: " + this.time + ", edition: " + this.edition + ", rainLevel: " + this.rainLevel + ", lightningLevel: " + this.lightningLevel + ", commandsEnabled: " + this.commandsEnabled + ", textureRequired: " + this.textureRequired + ", levelId: " + this.levelId + ", worldName: " + this.worldName + ")";
 	}
 
 }

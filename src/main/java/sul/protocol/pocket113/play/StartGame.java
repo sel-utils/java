@@ -119,7 +119,7 @@ public class StartGame extends Packet {
 	 * rain.
 	 */
 	public float rainLevel;
-	public float lightingLevel;
+	public float lightningLevel;
 
 	/**
 	 * Indicates whether the cheats are enabled. If the cheats are disabled the player
@@ -141,7 +141,7 @@ public class StartGame extends Packet {
 
 	public StartGame() {}
 
-	public StartGame(long entityId, long runtimeId, int gamemode, Tuples.FloatXYZ position, float yaw, float pitch, int seed, int dimension, int generator, int worldGamemode, int difficulty, Tuples.IntXYZ spawnPosition, boolean loadedInCreative, int time, byte version, float rainLevel, float lightingLevel, boolean commandsEnabled, boolean textureRequired, sul.protocol.pocket113.types.Rule[] gameRules, String levelId, String worldName, String premiumWorldTemplate, boolean unknown23, long worldTicks) {
+	public StartGame(long entityId, long runtimeId, int gamemode, Tuples.FloatXYZ position, float yaw, float pitch, int seed, int dimension, int generator, int worldGamemode, int difficulty, Tuples.IntXYZ spawnPosition, boolean loadedInCreative, int time, byte version, float rainLevel, float lightningLevel, boolean commandsEnabled, boolean textureRequired, sul.protocol.pocket113.types.Rule[] gameRules, String levelId, String worldName, String premiumWorldTemplate, boolean unknown23, long worldTicks) {
 		this.entityId = entityId;
 		this.runtimeId = runtimeId;
 		this.gamemode = gamemode;
@@ -158,7 +158,7 @@ public class StartGame extends Packet {
 		this.time = time;
 		this.version = version;
 		this.rainLevel = rainLevel;
-		this.lightingLevel = lightingLevel;
+		this.lightningLevel = lightningLevel;
 		this.commandsEnabled = commandsEnabled;
 		this.textureRequired = textureRequired;
 		this.gameRules = gameRules;
@@ -194,7 +194,7 @@ public class StartGame extends Packet {
 		this.writeVarint(time);
 		this.writeBigEndianByte(version);
 		this.writeLittleEndianFloat(rainLevel);
-		this.writeLittleEndianFloat(lightingLevel);
+		this.writeLittleEndianFloat(lightningLevel);
 		this.writeBool(commandsEnabled);
 		this.writeBool(textureRequired);
 		this.writeVaruint((int)gameRules.length); for(sul.protocol.pocket113.types.Rule zfzjbv:gameRules){ this.writeBytes(zfzjbv.encode()); }
@@ -226,7 +226,7 @@ public class StartGame extends Packet {
 		time=this.readVarint();
 		version=readBigEndianByte();
 		rainLevel=readLittleEndianFloat();
-		lightingLevel=readLittleEndianFloat();
+		lightningLevel=readLittleEndianFloat();
 		commandsEnabled=this.readBool();
 		textureRequired=this.readBool();
 		int bdbvdxc=this.readVaruint(); gameRules=new sul.protocol.pocket113.types.Rule[bdbvdxc]; for(int zfzjbv=0;zfzjbv<gameRules.length;zfzjbv++){ gameRules[zfzjbv]=new sul.protocol.pocket113.types.Rule(); gameRules[zfzjbv]._index=this._index; gameRules[zfzjbv].decode(this._buffer); this._index=gameRules[zfzjbv]._index; }
@@ -245,7 +245,7 @@ public class StartGame extends Packet {
 
 	@Override
 	public String toString() {
-		return "StartGame(entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", gamemode: " + this.gamemode + ", position: " + this.position.toString() + ", yaw: " + this.yaw + ", pitch: " + this.pitch + ", seed: " + this.seed + ", dimension: " + this.dimension + ", generator: " + this.generator + ", worldGamemode: " + this.worldGamemode + ", difficulty: " + this.difficulty + ", spawnPosition: " + this.spawnPosition.toString() + ", loadedInCreative: " + this.loadedInCreative + ", time: " + this.time + ", version: " + this.version + ", rainLevel: " + this.rainLevel + ", lightingLevel: " + this.lightingLevel + ", commandsEnabled: " + this.commandsEnabled + ", textureRequired: " + this.textureRequired + ", gameRules: " + Arrays.deepToString(this.gameRules) + ", levelId: " + this.levelId + ", worldName: " + this.worldName + ", premiumWorldTemplate: " + this.premiumWorldTemplate + ", unknown23: " + this.unknown23 + ", worldTicks: " + this.worldTicks + ")";
+		return "StartGame(entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", gamemode: " + this.gamemode + ", position: " + this.position.toString() + ", yaw: " + this.yaw + ", pitch: " + this.pitch + ", seed: " + this.seed + ", dimension: " + this.dimension + ", generator: " + this.generator + ", worldGamemode: " + this.worldGamemode + ", difficulty: " + this.difficulty + ", spawnPosition: " + this.spawnPosition.toString() + ", loadedInCreative: " + this.loadedInCreative + ", time: " + this.time + ", version: " + this.version + ", rainLevel: " + this.rainLevel + ", lightningLevel: " + this.lightningLevel + ", commandsEnabled: " + this.commandsEnabled + ", textureRequired: " + this.textureRequired + ", gameRules: " + Arrays.deepToString(this.gameRules) + ", levelId: " + this.levelId + ", worldName: " + this.worldName + ", premiumWorldTemplate: " + this.premiumWorldTemplate + ", unknown23: " + this.unknown23 + ", worldTicks: " + this.worldTicks + ")";
 	}
 
 }
