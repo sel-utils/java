@@ -62,7 +62,7 @@ public enum Entities
     VINDICATOR("vindicator", false, 36, 56, 0.6, 1.95),
     ILLUSIONER("illusioner", false, 37, 0, 0.6, 1.95),
     CREEPER("creeper", false, 50, 33, 0.6, 1.7),
-    SKELETON("skeleton", false, 0, 34, 0.6, 1.99),
+    SKELETON("skeleton", false, 51, 34, 0.6, 1.99),
     SPIDER("spider", false, 52, 35, 1.4, 0.9),
     GIANT("giant", false, 53, 0, 3.6, 10.8),
     ZOMBIE("zombie", false, 54, 32, 0.6, 1.95),
