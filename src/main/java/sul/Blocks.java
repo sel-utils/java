@@ -1437,6 +1437,7 @@ public final class Blocks
     public static Blocks FIRE_13;
     public static Blocks FIRE_14;
     public static Blocks FIRE_15;
+    public static Blocks SMOOTH_STONE_SLAB;
 
     public final String name;
     public final short id;
@@ -2918,6 +2919,7 @@ public final class Blocks
         add(FIRE_13 = new Blocks("fire 13", (short)1421, new BlockData(51, 13), new BlockData(51, 13), false, (double)-1, (double)0, (byte)0, (byte)15, false));
         add(FIRE_14 = new Blocks("fire 14", (short)1422, new BlockData(51, 14), new BlockData(51, 14), false, (double)-1, (double)0, (byte)0, (byte)15, false));
         add(FIRE_15 = new Blocks("fire 15", (short)1423, new BlockData(51, 15), new BlockData(51, 15), false, (double)-1, (double)0, (byte)0, (byte)15, false));
+        add(SMOOTH_STONE_SLAB = new Blocks("smooth stone slab", (short)1424, new BlockData(43, 8), null, true, (double)2, (double)30, (byte)15, (byte)0, false));
     }
 
     private static void add(Blocks block)

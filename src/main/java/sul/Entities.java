@@ -64,7 +64,7 @@ public enum Entities
     CREEPER("creeper", false, 50, 33, 0.6, 1.7),
     SKELETON("skeleton", false, 51, 34, 0.6, 1.99),
     SPIDER("spider", false, 52, 35, 1.4, 0.9),
-    GIANT("giant", false, 53, 0, 3.6, 10.8),
+    GIANT("giant", false, 53, 0, 3.6, 11.7),
     ZOMBIE("zombie", false, 54, 32, 0.6, 1.95),
     SLIME("slime", false, 55, 37, 0.51, 0.51),
     GHAST("ghast", false, 56, 41, 4, 4),
