@@ -23,8 +23,8 @@ public class Interact extends Packet {
 	}
 
 	// action
-	public static final byte ATTACK = 1;
-	public static final byte INTERACT = 2;
+	public static final byte INTERACT = 1;
+	public static final byte ATTACK = 2;
 	public static final byte LEAVE_VEHICLE = 3;
 	public static final byte HOVER = 4;
 
