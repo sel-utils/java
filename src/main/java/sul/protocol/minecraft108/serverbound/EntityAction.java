@@ -56,7 +56,7 @@ public class EntityAction extends Packet {
 		this.writeVaruint(ID);
 		this.writeVaruint(entityId);
 		this.writeVaruint(action);
-		if(action==5){ this.writeVaruint(jumpBoost); }
+		this.writeVaruint(jumpBoost);
 		return this.getBuffer();
 	}
 
@@ -66,7 +66,7 @@ public class EntityAction extends Packet {
 		this.readVaruint();
 		entityId=this.readVaruint();
 		action=this.readVaruint();
-		if(action==5){ jumpBoost=this.readVaruint(); }
+		jumpBoost=this.readVaruint();
 	}
 
 	public static EntityAction fromBuffer(byte[] buffer) {
