@@ -57,7 +57,7 @@ public class UseEntity extends Packet {
 		this.writeVaruint(target);
 		this.writeVaruint(type);
 		if(type==2){ this.writeBigEndianFloat(targetPosition.x); this.writeBigEndianFloat(targetPosition.y); this.writeBigEndianFloat(targetPosition.z); }
-		if(type==2){ this.writeVaruint(hand); }
+		if(type==0||type==2){ this.writeVaruint(hand); }
 		return this.getBuffer();
 	}
 
@@ -68,7 +68,7 @@ public class UseEntity extends Packet {
 		target=this.readVaruint();
 		type=this.readVaruint();
 		if(type==2){ targetPosition=new Tuples.FloatXYZ(); targetPosition.x=readBigEndianFloat(); targetPosition.y=readBigEndianFloat(); targetPosition.z=readBigEndianFloat(); }
-		if(type==2){ hand=this.readVaruint(); }
+		if(type==0||type==2){ hand=this.readVaruint(); }
 	}
 
 	public static UseEntity fromBuffer(byte[] buffer) {
