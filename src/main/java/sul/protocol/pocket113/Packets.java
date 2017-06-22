@@ -114,8 +114,8 @@ public final class Packets {
 		play.put(61, sul.protocol.pocket113.play.ChangeDimension.class);
 		play.put(62, sul.protocol.pocket113.play.SetPlayerGameType.class);
 		play.put(63, sul.protocol.pocket113.play.PlayerList.class);
-		play.put(63, sul.protocol.pocket113.play.SimpleEvent.class);
-		play.put(64, sul.protocol.pocket113.play.TelemetryEvent.class);
+		play.put(64, sul.protocol.pocket113.play.SimpleEvent.class);
+		play.put(65, sul.protocol.pocket113.play.TelemetryEvent.class);
 		play.put(66, sul.protocol.pocket113.play.SpawnExperienceOrb.class);
 		play.put(67, sul.protocol.pocket113.play.ClientboundMapItemData.class);
 		play.put(68, sul.protocol.pocket113.play.MapInfoRequest.class);

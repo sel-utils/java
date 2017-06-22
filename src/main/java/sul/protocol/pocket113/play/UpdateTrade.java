@@ -25,47 +25,47 @@ public class UpdateTrade extends Packet {
 		return ID;
 	}
 
-	public byte unknown0;
-	public byte unknown1;
+	public byte window;
+	public byte windowType = 15;
 	public int unknown2;
 	public int unknown3;
-	public boolean unknown4;
+	public boolean willing;
 	public long trader;
 	public long player;
-	public String unknown7;
+	public String displayName;
 	public byte[] offers = new byte[0];
 
 	public UpdateTrade() {}
 
-	public UpdateTrade(byte unknown0, byte unknown1, int unknown2, int unknown3, boolean unknown4, long trader, long player, String unknown7, byte[] offers) {
-		this.unknown0 = unknown0;
-		this.unknown1 = unknown1;
+	public UpdateTrade(byte window, byte windowType, int unknown2, int unknown3, boolean willing, long trader, long player, String displayName, byte[] offers) {
+		this.window = window;
+		this.windowType = windowType;
 		this.unknown2 = unknown2;
 		this.unknown3 = unknown3;
-		this.unknown4 = unknown4;
+		this.willing = willing;
 		this.trader = trader;
 		this.player = player;
-		this.unknown7 = unknown7;
+		this.displayName = displayName;
 		this.offers = offers;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varintLength(unknown2) + Buffer.varintLength(unknown3) + Buffer.varlongLength(trader) + Buffer.varlongLength(player) + Buffer.varuintLength(unknown7.getBytes(StandardCharsets.UTF_8).length) + unknown7.getBytes(StandardCharsets.UTF_8).length + offers.length + 4;
+		return Buffer.varintLength(unknown2) + Buffer.varintLength(unknown3) + Buffer.varlongLength(trader) + Buffer.varlongLength(player) + Buffer.varuintLength(displayName.getBytes(StandardCharsets.UTF_8).length) + displayName.getBytes(StandardCharsets.UTF_8).length + offers.length + 4;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		this.writeBigEndianByte(ID);
-		this.writeBigEndianByte(unknown0);
-		this.writeBigEndianByte(unknown1);
+		this.writeBigEndianByte(window);
+		this.writeBigEndianByte(windowType);
 		this.writeVarint(unknown2);
 		this.writeVarint(unknown3);
-		this.writeBool(unknown4);
+		this.writeBool(willing);
 		this.writeVarlong(trader);
 		this.writeVarlong(player);
-		byte[] d5b9bc=unknown7.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)d5b9bc.length); this.writeBytes(d5b9bc);
+		byte[] zlcxe5bu=displayName.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)zlcxe5bu.length); this.writeBytes(zlcxe5bu);
 		this.writeBytes(offers);
 		return this.getBuffer();
 	}
@@ -74,14 +74,14 @@ public class UpdateTrade extends Packet {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		readBigEndianByte();
-		unknown0=readBigEndianByte();
-		unknown1=readBigEndianByte();
+		window=readBigEndianByte();
+		windowType=readBigEndianByte();
 		unknown2=this.readVarint();
 		unknown3=this.readVarint();
-		unknown4=this.readBool();
+		willing=this.readBool();
 		trader=this.readVarlong();
 		player=this.readVarlong();
-		int bvd5b9bc=this.readVaruint(); unknown7=new String(this.readBytes(bvd5b9bc), StandardCharsets.UTF_8);
+		int bvzlcxe5=this.readVaruint(); displayName=new String(this.readBytes(bvzlcxe5), StandardCharsets.UTF_8);
 		offers=this.readBytes(this._buffer.length-this._index);
 	}
 
@@ -93,7 +93,7 @@ public class UpdateTrade extends Packet {
 
 	@Override
 	public String toString() {
-		return "UpdateTrade(unknown0: " + this.unknown0 + ", unknown1: " + this.unknown1 + ", unknown2: " + this.unknown2 + ", unknown3: " + this.unknown3 + ", unknown4: " + this.unknown4 + ", trader: " + this.trader + ", player: " + this.player + ", unknown7: " + this.unknown7 + ", offers: " + Arrays.toString(this.offers) + ")";
+		return "UpdateTrade(window: " + this.window + ", windowType: " + this.windowType + ", unknown2: " + this.unknown2 + ", unknown3: " + this.unknown3 + ", willing: " + this.willing + ", trader: " + this.trader + ", player: " + this.player + ", displayName: " + this.displayName + ", offers: " + Arrays.toString(this.offers) + ")";
 	}
 
 }
