@@ -29,6 +29,62 @@ public final class Tuples {
 
 	}
 
+	public static class FloatXYZ {
+
+		public float x, y, z;
+
+		public FloatXYZ() {}
+
+		public FloatXYZ(float x, float y, float z) {
+			this.x = x;
+			this.y = y;
+			this.z = z;
+		}
+
+		@Override
+		public String toString() {
+			return "FloatXYZ(x: " + x + ", y: " + y + ", z: " + z + ")";
+		}
+
+	}
+
+	public static class IntXYZ {
+
+		public int x, y, z;
+
+		public IntXYZ() {}
+
+		public IntXYZ(int x, int y, int z) {
+			this.x = x;
+			this.y = y;
+			this.z = z;
+		}
+
+		@Override
+		public String toString() {
+			return "IntXYZ(x: " + x + ", y: " + y + ", z: " + z + ")";
+		}
+
+	}
+
+	public static class IntXZ {
+
+		public int x, z;
+
+		public IntXZ() {}
+
+		public IntXZ(int x, int z) {
+			this.x = x;
+			this.z = z;
+		}
+
+		@Override
+		public String toString() {
+			return "IntXZ(x: " + x + ", z: " + z + ")";
+		}
+
+	}
+
 	public static class DoubleXYZ {
 
 		public double x, y, z;
@@ -63,62 +119,6 @@ public final class Tuples {
 		@Override
 		public String toString() {
 			return "ShortXYZ(x: " + x + ", y: " + y + ", z: " + z + ")";
-		}
-
-	}
-
-	public static class IntXZ {
-
-		public int x, z;
-
-		public IntXZ() {}
-
-		public IntXZ(int x, int z) {
-			this.x = x;
-			this.z = z;
-		}
-
-		@Override
-		public String toString() {
-			return "IntXZ(x: " + x + ", z: " + z + ")";
-		}
-
-	}
-
-	public static class IntXYZ {
-
-		public int x, y, z;
-
-		public IntXYZ() {}
-
-		public IntXYZ(int x, int y, int z) {
-			this.x = x;
-			this.y = y;
-			this.z = z;
-		}
-
-		@Override
-		public String toString() {
-			return "IntXYZ(x: " + x + ", y: " + y + ", z: " + z + ")";
-		}
-
-	}
-
-	public static class FloatXYZ {
-
-		public float x, y, z;
-
-		public FloatXYZ() {}
-
-		public FloatXYZ(float x, float y, float z) {
-			this.x = x;
-			this.y = y;
-			this.z = z;
-		}
-
-		@Override
-		public String toString() {
-			return "FloatXYZ(x: " + x + ", y: " + y + ", z: " + z + ")";
 		}
 
 	}
