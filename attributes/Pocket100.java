@@ -13,7 +13,7 @@ public enum Pocket100
 
     HEALTH("minecraft:health", 0f, 20f, 20f),
 
-    ABSORPTION("minecraft:generic.absorption", 0f, 4f, 0f),
+    ABSORPTION("minecraft:absorption", 0f, 4f, 0f),
 
     HUNGER("minecraft:player.hunger", 0f, 20f, 20f),
 
