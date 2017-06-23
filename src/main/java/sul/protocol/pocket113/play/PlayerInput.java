@@ -22,30 +22,33 @@ public class PlayerInput extends Packet {
 		return ID;
 	}
 
-	public Tuples.FloatXYZ motion = new Tuples.FloatXYZ();
-	public byte flags;
+	public float sideways;
+	public float forward;
 	public boolean unknown2;
+	public boolean unknown3;
 
 	public PlayerInput() {}
 
-	public PlayerInput(Tuples.FloatXYZ motion, byte flags, boolean unknown2) {
-		this.motion = motion;
-		this.flags = flags;
+	public PlayerInput(float sideways, float forward, boolean unknown2, boolean unknown3) {
+		this.sideways = sideways;
+		this.forward = forward;
 		this.unknown2 = unknown2;
+		this.unknown3 = unknown3;
 	}
 
 	@Override
 	public int length() {
-		return 15;
+		return 11;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		this.writeBigEndianByte(ID);
-		this.writeLittleEndianFloat(motion.x); this.writeLittleEndianFloat(motion.y); this.writeLittleEndianFloat(motion.z);
-		this.writeBigEndianByte(flags);
+		this.writeLittleEndianFloat(sideways);
+		this.writeLittleEndianFloat(forward);
 		this.writeBool(unknown2);
+		this.writeBool(unknown3);
 		return this.getBuffer();
 	}
 
@@ -53,9 +56,10 @@ public class PlayerInput extends Packet {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		readBigEndianByte();
-		motion=new Tuples.FloatXYZ(); motion.x=readLittleEndianFloat(); motion.y=readLittleEndianFloat(); motion.z=readLittleEndianFloat();
-		flags=readBigEndianByte();
+		sideways=readLittleEndianFloat();
+		forward=readLittleEndianFloat();
 		unknown2=this.readBool();
+		unknown3=this.readBool();
 	}
 
 	public static PlayerInput fromBuffer(byte[] buffer) {
@@ -66,7 +70,7 @@ public class PlayerInput extends Packet {
 
 	@Override
 	public String toString() {
-		return "PlayerInput(motion: " + this.motion.toString() + ", flags: " + this.flags + ", unknown2: " + this.unknown2 + ")";
+		return "PlayerInput(sideways: " + this.sideways + ", forward: " + this.forward + ", unknown2: " + this.unknown2 + ", unknown3: " + this.unknown3 + ")";
 	}
 
 }
