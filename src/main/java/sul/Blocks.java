@@ -2379,10 +2379,10 @@ public final class Blocks
         add(SNOW = new Blocks("snow", (short)887, new BlockData(80, 0), new BlockData(80, 0), true, (double)0.2, (double)1, (byte)15, (byte)0, false));
         add(ICE = new Blocks("ice", (short)888, new BlockData(79, 0), new BlockData(79, 0), true, (double)0.5, (double)2.5, (byte)3, (byte)0, false));
         add(PACKED_ICE = new Blocks("packed ice", (short)889, new BlockData(174, 0), new BlockData(174, 0), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
-        add(FROSTED_ICE_0 = new Blocks("frosted ice 0", (short)890, new BlockData(212, 0), null, true, (double)0.5, (double)2.5, (byte)3, (byte)0, false));
-        add(FROSTED_ICE_1 = new Blocks("frosted ice 1", (short)891, new BlockData(212, 1), null, true, (double)0.5, (double)2.5, (byte)3, (byte)0, false));
-        add(FROSTED_ICE_2 = new Blocks("frosted ice 2", (short)892, new BlockData(212, 2), null, true, (double)0.5, (double)2.5, (byte)3, (byte)0, false));
-        add(FROSTED_ICE_3 = new Blocks("frosted ice 3", (short)893, new BlockData(212, 3), null, true, (double)0.5, (double)2.5, (byte)3, (byte)0, false));
+        add(FROSTED_ICE_0 = new Blocks("frosted ice 0", (short)890, new BlockData(212, 0), new BlockData(212, 0), true, (double)0.5, (double)2.5, (byte)3, (byte)0, false));
+        add(FROSTED_ICE_1 = new Blocks("frosted ice 1", (short)891, new BlockData(212, 1), new BlockData(212, 1), true, (double)0.5, (double)2.5, (byte)3, (byte)0, false));
+        add(FROSTED_ICE_2 = new Blocks("frosted ice 2", (short)892, new BlockData(212, 2), new BlockData(212, 2), true, (double)0.5, (double)2.5, (byte)3, (byte)0, false));
+        add(FROSTED_ICE_3 = new Blocks("frosted ice 3", (short)893, new BlockData(212, 3), new BlockData(212, 3), true, (double)0.5, (double)2.5, (byte)3, (byte)0, false));
         add(CACTUS_0 = new Blocks("cactus 0", (short)894, new BlockData(81, 0), new BlockData(81, 0), true, (double)0.4, (double)2, (byte)15, (byte)0, false));
         add(CACTUS_1 = new Blocks("cactus 1", (short)895, new BlockData(81, 1), new BlockData(81, 1), true, (double)0.4, (double)2, (byte)15, (byte)0, false));
         add(CACTUS_2 = new Blocks("cactus 2", (short)896, new BlockData(81, 2), new BlockData(81, 2), true, (double)0.4, (double)2, (byte)15, (byte)0, false));
