@@ -1168,10 +1168,10 @@ public final class Items
         add(REPEATING_COMMAND_BLOCK = new Items("repeating command block", new ItemData(210, 0), null, (byte)64, (short)0));
         add(CHAIN_COMMAND_BLOCK = new Items("chain command block", new ItemData(211, 0), null, (byte)64, (short)0));
         add(FROSTED_ICE = new Items("frosted ice", new ItemData(212, 0), new ItemData(207, 0), (byte)64, (short)0));
-        add(MAGMA_BLOCK = new Items("magma block", new ItemData(213, 0), null, (byte)64, (short)0));
-        add(NETHER_WART_BLOCK = new Items("nether wart block", new ItemData(214, 0), null, (byte)64, (short)0));
-        add(RED_NETHER_BRICK = new Items("red nether brick", new ItemData(215, 0), null, (byte)64, (short)0));
-        add(BONE_BLOCK = new Items("bone block", new ItemData(216, 0), null, (byte)64, (short)0));
+        add(MAGMA_BLOCK = new Items("magma block", new ItemData(213, 0), new ItemData(213, 0), (byte)64, (short)0));
+        add(NETHER_WART_BLOCK = new Items("nether wart block", new ItemData(214, 0), new ItemData(214, 0), (byte)64, (short)0));
+        add(RED_NETHER_BRICK = new Items("red nether brick", new ItemData(215, 0), new ItemData(215, 0), (byte)64, (short)0));
+        add(BONE_BLOCK = new Items("bone block", new ItemData(216, 0), new ItemData(216, 0), (byte)64, (short)0));
         add(STRUCTURE_VOID = new Items("structure void", new ItemData(217, 0), null, (byte)64, (short)0));
         add(OBSERVER = new Items("observer", new ItemData(218, 0), new ItemData(251, 0), (byte)64, (short)0));
         add(WHITE_SHULKER_BOX = new Items("white shulker box", new ItemData(219, 0), new ItemData(218, 0), (byte)64, (short)0));

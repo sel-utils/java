@@ -2445,7 +2445,7 @@ public final class Blocks
         add(SOUL_SAND = new Blocks("soul sand", (short)953, new BlockData(88, 0), new BlockData(88, 0), true, (double)0.5, (double)2.5, (byte)15, (byte)0, false));
         add(GLOWSTONE = new Blocks("glowstone", (short)954, new BlockData(89, 0), new BlockData(89, 0), true, (double)0.3, (double)1.5, (byte)15, (byte)15, false));
         add(NETHER_BRICK = new Blocks("nether brick", (short)955, new BlockData(112, 0), new BlockData(112, 0), true, (double)2, (double)30, (byte)15, (byte)0, false));
-        add(RED_NETHER_BRICK = new Blocks("red nether brick", (short)956, new BlockData(215, 0), null, true, (double)2, (double)30, (byte)15, (byte)0, false));
+        add(RED_NETHER_BRICK = new Blocks("red nether brick", (short)956, new BlockData(215, 0), new BlockData(215, 0), true, (double)2, (double)30, (byte)15, (byte)0, false));
         add(NETHER_PORTAL_EAST_WEST = new Blocks("nether portal east west", (short)957, new BlockData(90, 0), new BlockData(90, 0), false, (double)0, (double)0, (byte)15, (byte)0, false));
         add(NETHER_PORTAL_NORTH_SOUTH = new Blocks("nether portal north south", (short)958, new BlockData(90, 1), new BlockData(90, 1), false, (double)0, (double)0, (byte)15, (byte)0, false));
         add(CAKE_0 = new Blocks("cake 0", (short)959, new BlockData(92, 0), new BlockData(92, 0), true, (double)0.5, (double)2.5, (byte)0, (byte)0, false));
@@ -2842,11 +2842,11 @@ public final class Blocks
         add(PURPUR_PILLAR_VERTICAL = new Blocks("purpur pillar vertical", (short)1346, new BlockData(202, 0), new BlockData(201, 2), true, (double)1.5, (double)30, (byte)15, (byte)0, false));
         add(PURPUR_PILLAR_EAST_WEST = new Blocks("purpur pillar east west", (short)1347, new BlockData(202, 4), new BlockData(201, 6), true, (double)1.5, (double)30, (byte)15, (byte)0, false));
         add(PURPUR_PILLAR_NORTH_SOUTH = new Blocks("purpur pillar north south", (short)1348, new BlockData(202, 8), new BlockData(201, 10), true, (double)1.5, (double)30, (byte)15, (byte)0, false));
-        add(MAGMA_BLOCK = new Blocks("magma block", (short)1349, new BlockData(213, 0), null, true, (double)0.5, (double)2.5, (byte)15, (byte)3, false));
-        add(NETHER_WART_BLOCK = new Blocks("nether wart block", (short)1350, new BlockData(214, 0), null, true, (double)1, (double)5, (byte)15, (byte)0, false));
-        add(BONE_BLOCK_VERTICAL = new Blocks("bone block vertical", (short)1351, new BlockData(216, 0), null, true, (double)2, (double)10, (byte)15, (byte)0, false));
-        add(BONE_BLOCK_EAST_WEST = new Blocks("bone block east west", (short)1352, new BlockData(216, 4), null, true, (double)2, (double)10, (byte)15, (byte)0, false));
-        add(BONE_BLOCK_NORTH_SOUTH = new Blocks("bone block north south", (short)1353, new BlockData(216, 8), null, true, (double)2, (double)10, (byte)15, (byte)0, false));
+        add(MAGMA_BLOCK = new Blocks("magma block", (short)1349, new BlockData(213, 0), new BlockData(213, 0), true, (double)0.5, (double)2.5, (byte)15, (byte)3, false));
+        add(NETHER_WART_BLOCK = new Blocks("nether wart block", (short)1350, new BlockData(214, 0), new BlockData(214, 0), true, (double)1, (double)5, (byte)15, (byte)0, false));
+        add(BONE_BLOCK_VERTICAL = new Blocks("bone block vertical", (short)1351, new BlockData(216, 0), new BlockData(216, 0), true, (double)2, (double)10, (byte)15, (byte)0, false));
+        add(BONE_BLOCK_EAST_WEST = new Blocks("bone block east west", (short)1352, new BlockData(216, 4), new BlockData(216, 4), true, (double)2, (double)10, (byte)15, (byte)0, false));
+        add(BONE_BLOCK_NORTH_SOUTH = new Blocks("bone block north south", (short)1353, new BlockData(216, 8), new BlockData(216, 8), true, (double)2, (double)10, (byte)15, (byte)0, false));
         add(STRUCTURE_VOID = new Blocks("structure void", (short)1354, new BlockData(217, 0), null, false, (double)-1, (double)0, (byte)0, (byte)0, false));
         add(WHITE_SHULKER_BOX = new Blocks("white shulker box", (short)1355, new BlockData(219, 0), null, true, (double)6, (double)30, (byte)0, (byte)0, false));
         add(ORANGE_SHULKER_BOX = new Blocks("orange shulker box", (short)1356, new BlockData(220, 0), null, true, (double)6, (double)30, (byte)0, (byte)0, false));
