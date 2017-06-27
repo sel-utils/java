@@ -23,33 +23,32 @@ public class SetEntityLink extends Packet {
 	}
 
 	// action
-	public static final byte ADD = 0;
-	public static final byte RIDE = 1;
-	public static final byte REMOVE = 2;
+	public static final byte REMOVE = 0;
+	public static final byte ADD = 1;
 
-	public long from;
-	public long to;
+	public long vehicle;
+	public long passenger;
 	public byte action;
 
 	public SetEntityLink() {}
 
-	public SetEntityLink(long from, long to, byte action) {
-		this.from = from;
-		this.to = to;
+	public SetEntityLink(long vehicle, long passenger, byte action) {
+		this.vehicle = vehicle;
+		this.passenger = passenger;
 		this.action = action;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varlongLength(from) + Buffer.varlongLength(to) + 2;
+		return Buffer.varlongLength(vehicle) + Buffer.varlongLength(passenger) + 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		this.writeBigEndianByte(ID);
-		this.writeVarlong(from);
-		this.writeVarlong(to);
+		this.writeVarlong(vehicle);
+		this.writeVarlong(passenger);
 		this.writeBigEndianByte(action);
 		return this.getBuffer();
 	}
@@ -58,8 +57,8 @@ public class SetEntityLink extends Packet {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		readBigEndianByte();
-		from=this.readVarlong();
-		to=this.readVarlong();
+		vehicle=this.readVarlong();
+		passenger=this.readVarlong();
 		action=readBigEndianByte();
 	}
 
@@ -71,7 +70,7 @@ public class SetEntityLink extends Packet {
 
 	@Override
 	public String toString() {
-		return "SetEntityLink(from: " + this.from + ", to: " + this.to + ", action: " + this.action + ")";
+		return "SetEntityLink(vehicle: " + this.vehicle + ", passenger: " + this.passenger + ", action: " + this.action + ")";
 	}
 
 }
