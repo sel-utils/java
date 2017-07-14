@@ -37,6 +37,7 @@ public class EntityEvent extends Packet {
 	public static final byte SQUID_INK_CLOUD = 15;
 	public static final byte AMBIENT_SOUND = 16;
 	public static final byte RESPAWN = 17;
+	public static final byte UNLEASH = 63;
 
 	public long entityId;
 	public byte eventId;
