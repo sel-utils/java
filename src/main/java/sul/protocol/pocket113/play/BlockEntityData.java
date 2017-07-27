@@ -16,13 +16,14 @@ import sul.utils.*;
  * Sets a block entity's nbt tag, block's additional data that cannot be indicated
  * in the block's meta. More informations about block entities and their tag format
  * can be found on Minecraft Wiki.
+ * The client sends this packet when it writes a sign.
  */
 public class BlockEntityData extends Packet {
 
 	public static final byte ID = (byte)56;
 
 	public static final boolean CLIENTBOUND = true;
-	public static final boolean SERVERBOUND = false;
+	public static final boolean SERVERBOUND = true;
 
 	@Override
 	public int getId() {
