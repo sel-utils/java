@@ -4,7 +4,7 @@
  * 
  * License: https://github.com/sel-project/sel-utils/blob/master/LICENSE
  * Repository: https://github.com/sel-project/sel-utils
- * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft335.xml
+ * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft338.xml
  */
 package sul.protocol.minecraft.clientbound;
 
@@ -15,7 +15,7 @@ import sul.utils.*;
 
 public class Teams extends Packet {
 
-	public static final int ID = (int)67;
+	public static final int ID = (int)68;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;

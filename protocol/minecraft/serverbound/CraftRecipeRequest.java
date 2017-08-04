@@ -10,9 +10,9 @@ package sul.protocol.minecraft.serverbound;
 
 import sul.utils.*;
 
-public class KeepAlive extends Packet {
+public class CraftRecipeRequest extends Packet {
 
-	public static final int ID = (int)11;
+	public static final int ID = (int)18;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -22,24 +22,30 @@ public class KeepAlive extends Packet {
 		return ID;
 	}
 
-	public int id;
+	public byte window;
+	public int recipe;
+	public boolean makeAll;
 
-	public KeepAlive() {}
+	public CraftRecipeRequest() {}
 
-	public KeepAlive(int id) {
-		this.id = id;
+	public CraftRecipeRequest(byte window, int recipe, boolean makeAll) {
+		this.window = window;
+		this.recipe = recipe;
+		this.makeAll = makeAll;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(id) + 1;
+		return Buffer.varuintLength(recipe) + 3;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		this.writeVaruint(ID);
-		this.writeVaruint(id);
+		this.writeBigEndianByte(window);
+		this.writeVaruint(recipe);
+		this.writeBool(makeAll);
 		return this.getBuffer();
 	}
 
@@ -47,18 +53,20 @@ public class KeepAlive extends Packet {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		this.readVaruint();
-		id=this.readVaruint();
+		window=readBigEndianByte();
+		recipe=this.readVaruint();
+		makeAll=this.readBool();
 	}
 
-	public static KeepAlive fromBuffer(byte[] buffer) {
-		KeepAlive ret = new KeepAlive();
+	public static CraftRecipeRequest fromBuffer(byte[] buffer) {
+		CraftRecipeRequest ret = new CraftRecipeRequest();
 		ret.decode(buffer);
 		return ret;
 	}
 
 	@Override
 	public String toString() {
-		return "KeepAlive(id: " + this.id + ")";
+		return "CraftRecipeRequest(window: " + this.window + ", recipe: " + this.recipe + ", makeAll: " + this.makeAll + ")";
 	}
 
 }

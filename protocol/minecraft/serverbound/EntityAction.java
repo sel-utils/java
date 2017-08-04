@@ -4,7 +4,7 @@
  * 
  * License: https://github.com/sel-project/sel-utils/blob/master/LICENSE
  * Repository: https://github.com/sel-project/sel-utils
- * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft335.xml
+ * Generated from https://github.com/sel-project/sel-utils/blob/master/xml/protocol/minecraft338.xml
  */
 package sul.protocol.minecraft.serverbound;
 

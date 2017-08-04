@@ -10,9 +10,9 @@ package sul.protocol.minecraft.clientbound;
 
 import sul.utils.*;
 
-public class EntityMetadata extends Packet {
+public class CraftRecipeResponse extends Packet {
 
-	public static final int ID = (int)60;
+	public static final int ID = (int)43;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -22,27 +22,27 @@ public class EntityMetadata extends Packet {
 		return ID;
 	}
 
-	public int entityId;
-	public sul.metadata.Minecraft metadata;
+	public byte window;
+	public int recipe;
 
-	public EntityMetadata() {}
+	public CraftRecipeResponse() {}
 
-	public EntityMetadata(int entityId, sul.metadata.Minecraft metadata) {
-		this.entityId = entityId;
-		this.metadata = metadata;
+	public CraftRecipeResponse(byte window, int recipe) {
+		this.window = window;
+		this.recipe = recipe;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(entityId) + metadata.length() + 1;
+		return Buffer.varuintLength(recipe) + 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		this.writeVaruint(ID);
-		this.writeVaruint(entityId);
-		this.writeBytes(metadata.encode());
+		this.writeBigEndianByte(window);
+		this.writeVaruint(recipe);
 		return this.getBuffer();
 	}
 
@@ -50,19 +50,19 @@ public class EntityMetadata extends Packet {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		this.readVaruint();
-		entityId=this.readVaruint();
-		metadata=new sul.metadata.Minecraft(); metadata._index=this._index; metadata.decode(this._buffer); this._index=metadata._index;
+		window=readBigEndianByte();
+		recipe=this.readVaruint();
 	}
 
-	public static EntityMetadata fromBuffer(byte[] buffer) {
-		EntityMetadata ret = new EntityMetadata();
+	public static CraftRecipeResponse fromBuffer(byte[] buffer) {
+		CraftRecipeResponse ret = new CraftRecipeResponse();
 		ret.decode(buffer);
 		return ret;
 	}
 
 	@Override
 	public String toString() {
-		return "EntityMetadata(entityId: " + this.entityId + ", metadata: " + this.metadata.toString() + ")";
+		return "CraftRecipeResponse(window: " + this.window + ", recipe: " + this.recipe + ")";
 	}
 
 }
