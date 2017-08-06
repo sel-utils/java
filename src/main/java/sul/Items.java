@@ -1393,10 +1393,10 @@ public final class Items
         add(NETHER_REACTOR_CORE = new Items("nether reactor core", null, new ItemData(247, 0, ""), (byte)64, (short)0));
         add(UPDATE_BLOCK = new Items("update block", null, new ItemData(248, 0, ""), (byte)64, (short)0));
         add(ATEUPD_BLOCK = new Items("ateupd block", null, new ItemData(249, 0, ""), (byte)64, (short)0));
-        add(STRUCTURE_SAVE = new Items("structure save", new ItemData(255, 0, ""), null, (byte)64, (short)0));
-        add(STRUCTURE_LOAD = new Items("structure load", new ItemData(255, 1, ""), null, (byte)64, (short)0));
-        add(STRUCTURE_CORNER = new Items("structure corner", new ItemData(255, 2, ""), null, (byte)64, (short)0));
-        add(STRUCTURE_DATA = new Items("structure data", new ItemData(255, 3, ""), null, (byte)64, (short)0));
+        add(STRUCTURE_SAVE = new Items("structure save", new ItemData(255, 0, ""), new ItemData(252, 0, ""), (byte)64, (short)0));
+        add(STRUCTURE_LOAD = new Items("structure load", new ItemData(255, 1, ""), new ItemData(252, 1, ""), (byte)64, (short)0));
+        add(STRUCTURE_CORNER = new Items("structure corner", new ItemData(255, 2, ""), new ItemData(252, 2, ""), (byte)64, (short)0));
+        add(STRUCTURE_DATA = new Items("structure data", new ItemData(255, 3, ""), new ItemData(252, 3, ""), (byte)64, (short)0));
         add(IRON_SHOVEL = new Items("iron shovel", new ItemData(256, 0, ""), new ItemData(256, 0, ""), (byte)1, (short)251));
         add(IRON_PICKAXE = new Items("iron pickaxe", new ItemData(257, 0, ""), new ItemData(257, 0, ""), (byte)1, (short)251));
         add(IRON_AXE = new Items("iron axe", new ItemData(258, 0, ""), new ItemData(258, 0, ""), (byte)1, (short)251));
@@ -1643,8 +1643,8 @@ public final class Items
         add(SPAWN_NPC = new Items("spawn npc", null, new ItemData(383, 51, ""), (byte)64, (short)0));
         add(BOTTLE_O_ENCHANTING = new Items("bottle o enchanting", new ItemData(384, 0, ""), new ItemData(384, 0, ""), (byte)64, (short)0));
         add(FIRE_CHARGE = new Items("fire charge", new ItemData(385, 0, ""), new ItemData(385, 0, ""), (byte)64, (short)0));
-        add(BOOK_AND_QUILL = new Items("book and quill", new ItemData(386, 0, ""), null, (byte)1, (short)0));
-        add(WRITTEN_BOOK = new Items("written book", new ItemData(387, 0, ""), null, (byte)1, (short)0));
+        add(BOOK_AND_QUILL = new Items("book and quill", new ItemData(386, 0, ""), new ItemData(386, 0, ""), (byte)1, (short)0));
+        add(WRITTEN_BOOK = new Items("written book", new ItemData(387, 0, ""), new ItemData(387, 0, ""), (byte)1, (short)0));
         add(EMERALD = new Items("emerald", new ItemData(388, 0, ""), new ItemData(388, 0, ""), (byte)64, (short)0));
         add(ITEM_FRAME = new Items("item frame", new ItemData(389, 0, ""), new ItemData(389, 0, ""), (byte)64, (short)0));
         add(FLOWER_POT = new Items("flower pot", new ItemData(390, 0, ""), new ItemData(390, 0, ""), (byte)64, (short)0));
@@ -1664,8 +1664,8 @@ public final class Items
         add(CARROT_ON_A_STICK = new Items("carrot on a stick", new ItemData(398, 0, ""), new ItemData(398, 0, ""), (byte)1, (short)26));
         add(NETHER_STAR = new Items("nether star", new ItemData(399, 0, ""), new ItemData(399, 0, ""), (byte)64, (short)0));
         add(PUMPKIN_PIE = new Items("pumpkin pie", new ItemData(400, 0, ""), new ItemData(400, 0, ""), (byte)64, (short)0));
-        add(FIREWORK_ROCKET = new Items("firework rocket", new ItemData(401, 0, ""), null, (byte)64, (short)0));
-        add(FIREWORK_STAR = new Items("firework star", new ItemData(402, 0, ""), null, (byte)64, (short)0));
+        add(FIREWORK_ROCKET = new Items("firework rocket", new ItemData(401, 0, ""), new ItemData(401, 0, ""), (byte)64, (short)0));
+        add(FIREWORK_STAR = new Items("firework star", new ItemData(402, 0, ""), new ItemData(402, 0, ""), (byte)64, (short)0));
         add(ENCHANTED_BOOK = new Items("enchanted book", new ItemData(403, 0, ""), new ItemData(403, 0, ""), (byte)1, (short)0));
         add(REDSTONE_COMPARATOR = new Items("redstone comparator", new ItemData(404, 0, ""), new ItemData(404, 0, ""), (byte)64, (short)0));
         add(NETHER_BRICK = new Items("nether brick", new ItemData(405, 0, ""), new ItemData(405, 0, ""), (byte)64, (short)0));
@@ -1679,7 +1679,7 @@ public final class Items
         add(RABBIT_STEW = new Items("rabbit stew", new ItemData(413, 0, ""), new ItemData(413, 0, ""), (byte)1, (short)0));
         add(RABBIT_FOOT = new Items("rabbit foot", new ItemData(414, 0, ""), new ItemData(414, 0, ""), (byte)64, (short)0));
         add(RABBIT_HIDE = new Items("rabbit hide", new ItemData(415, 0, ""), new ItemData(415, 0, ""), (byte)64, (short)0));
-        add(ARMOR_STAND = new Items("armor stand", new ItemData(416, 0, ""), null, (byte)16, (short)0));
+        add(ARMOR_STAND = new Items("armor stand", new ItemData(416, 0, ""), new ItemData(425, 0, ""), (byte)16, (short)0));
         add(LEATHER_HORSE_ARMOR = new Items("leather horse armor", null, new ItemData(416, 0, ""), (byte)1, (short)0));
         add(IRON_HORSE_ARMOR = new Items("iron horse armor", new ItemData(417, 0, ""), new ItemData(417, 0, ""), (byte)1, (short)0));
         add(GOLDEN_HORSE_ARMOR = new Items("golden horse armor", new ItemData(418, 0, ""), new ItemData(418, 0, ""), (byte)1, (short)0));
@@ -1689,7 +1689,7 @@ public final class Items
         add(MINECART_WITH_COMMAND_BLOCK = new Items("minecart with command block", new ItemData(422, 0, ""), new ItemData(443, 0, ""), (byte)1, (short)0));
         add(RAW_MUTTON = new Items("raw mutton", new ItemData(423, 0, ""), new ItemData(423, 0, ""), (byte)64, (short)0));
         add(COOKED_MUTTON = new Items("cooked mutton", new ItemData(424, 0, ""), new ItemData(424, 0, ""), (byte)64, (short)0));
-        add(BANNER = new Items("banner", new ItemData(425, 0, ""), null, (byte)64, (short)0));
+        add(BANNER = new Items("banner", new ItemData(425, 0, ""), new ItemData(446, 0, ""), (byte)64, (short)0));
         add(END_CRYSTAL = new Items("end crystal", new ItemData(426, 0, ""), new ItemData(426, 0, ""), (byte)64, (short)0));
         add(SPRUCE_DOOR = new Items("spruce door", new ItemData(427, 0, ""), new ItemData(427, 0, ""), (byte)64, (short)0));
         add(BIRCH_DOOR = new Items("birch door", new ItemData(428, 0, ""), new ItemData(428, 0, ""), (byte)64, (short)0));
@@ -1828,18 +1828,18 @@ public final class Items
         add(SHULKER_SHELL = new Items("shulker shell", new ItemData(450, 0, ""), new ItemData(445, 0, ""), (byte)64, (short)0));
         add(IRON_NUGGET = new Items("iron nugget", new ItemData(452, 0, ""), new ItemData(452, 0, ""), (byte)64, (short)0));
         add(KNOWLEDGE_BOOK = new Items("knowledge book", new ItemData(453, 0, ""), null, (byte)1, (short)0));
-        add(DISC_13 = new Items("disc 13", new ItemData(2256, 0, ""), null, (byte)1, (short)0));
-        add(DISC_CAT = new Items("disc cat", new ItemData(2257, 0, ""), null, (byte)1, (short)0));
-        add(DISC_BLOCKS = new Items("disc blocks", new ItemData(2258, 0, ""), null, (byte)1, (short)0));
-        add(DISC_CHIRP = new Items("disc chirp", new ItemData(2259, 0, ""), null, (byte)1, (short)0));
-        add(DISC_FAR = new Items("disc far", new ItemData(2260, 0, ""), null, (byte)1, (short)0));
-        add(DISC_MALL = new Items("disc mall", new ItemData(2261, 0, ""), null, (byte)1, (short)0));
-        add(DISC_MELLOHI = new Items("disc mellohi", new ItemData(2262, 0, ""), null, (byte)1, (short)0));
-        add(DISC_STAL = new Items("disc stal", new ItemData(2263, 0, ""), null, (byte)1, (short)0));
-        add(DISC_STRAD = new Items("disc strad", new ItemData(2264, 0, ""), null, (byte)1, (short)0));
-        add(DISC_WARD = new Items("disc ward", new ItemData(2265, 0, ""), null, (byte)1, (short)0));
-        add(DISC_11 = new Items("disc 11", new ItemData(2266, 0, ""), null, (byte)1, (short)0));
-        add(DISC_WAIT = new Items("disc wait", new ItemData(2267, 0, ""), null, (byte)1, (short)0));
+        add(DISC_13 = new Items("disc 13", new ItemData(2256, 0, ""), new ItemData(500, 0, ""), (byte)1, (short)0));
+        add(DISC_CAT = new Items("disc cat", new ItemData(2257, 0, ""), new ItemData(501, 0, ""), (byte)1, (short)0));
+        add(DISC_BLOCKS = new Items("disc blocks", new ItemData(2258, 0, ""), new ItemData(502, 0, ""), (byte)1, (short)0));
+        add(DISC_CHIRP = new Items("disc chirp", new ItemData(2259, 0, ""), new ItemData(503, 0, ""), (byte)1, (short)0));
+        add(DISC_FAR = new Items("disc far", new ItemData(2260, 0, ""), new ItemData(504, 0, ""), (byte)1, (short)0));
+        add(DISC_MALL = new Items("disc mall", new ItemData(2261, 0, ""), new ItemData(505, 0, ""), (byte)1, (short)0));
+        add(DISC_MELLOHI = new Items("disc mellohi", new ItemData(2262, 0, ""), new ItemData(506, 0, ""), (byte)1, (short)0));
+        add(DISC_STAL = new Items("disc stal", new ItemData(2263, 0, ""), new ItemData(507, 0, ""), (byte)1, (short)0));
+        add(DISC_STRAD = new Items("disc strad", new ItemData(2264, 0, ""), new ItemData(508, 0, ""), (byte)1, (short)0));
+        add(DISC_WARD = new Items("disc ward", new ItemData(2265, 0, ""), new ItemData(509, 0, ""), (byte)1, (short)0));
+        add(DISC_11 = new Items("disc 11", new ItemData(2266, 0, ""), new ItemData(510, 0, ""), (byte)1, (short)0));
+        add(DISC_WAIT = new Items("disc wait", new ItemData(2267, 0, ""), new ItemData(511, 0, ""), (byte)1, (short)0));
 
     }
 

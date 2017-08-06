@@ -12,7 +12,7 @@ public final class About {
 
 	private About() {}
 
-	public static final int VERSION = 80;
+	public static final int VERSION = 81;
 
 }
 	

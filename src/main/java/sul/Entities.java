@@ -38,9 +38,9 @@ public enum Entities
     EYE_OF_ENDER("eye of ender", true, 72, 70, 0.25, 0.25),
     SPLASH_POTION("splash potion", true, 73, 86, 0.25, 0.25),
     EXP_BOTTLE("exp bottle", true, 75, 68, 0.25, 0.25),
-    FIREWORK_ROCKET("firework rocket", true, 76, 0, 0.25, 0.25),
+    FIREWORK_ROCKET("firework rocket", true, 76, 72, 0.25, 0.25),
     LEASH_KNOT("leash knot", true, 77, 88, 0.375, 0.25),
-    ARMOR_STAND("armor stand", true, 78, 0, 0.5, 1.975),
+    ARMOR_STAND("armor stand", true, 78, 61, 0.5, 1.975),
     EVOCATION_FANGS("evocation fangs", true, 79, 103, 0.5, 0.8),
     FISHING_HOOK("fishing hook", true, 0, 77, 0.25, 0.25),
     SPECTRAL_ARROW("spectral arrow", true, 91, 0, 0.5, 0.5),
@@ -94,7 +94,7 @@ public enum Entities
     RABBIT("rabbit", false, 101, 18, 0.4, 0.5),
     POLAR_BEAR("polar bear", false, 102, 28, 1.3, 1.4),
     LLAMA("llama", false, 103, 29, 0.9, 1.87),
-    PARROT("parrot", false, 105, 0, 0.5, 1),
+    PARROT("parrot", false, 105, 30, 0.5, 1),
     VILLAGER("villager", false, 120, 15, 0.6, 1.95),
     NPC("npc", false, 0, 51, 0.6, 1.95);
 
