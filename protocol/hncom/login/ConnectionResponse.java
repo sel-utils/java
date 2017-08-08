@@ -27,15 +27,15 @@ public class ConnectionResponse extends Packet {
 	}
 
 	// status
-	public static final byte OK = 0;
-	public static final byte OUTDATED_HUB = 1;
-	public static final byte OUTDATED_NODE = 2;
-	public static final byte PASSWORD_REQUIRED = 3;
-	public static final byte WRONG_PASSWORD = 4;
-	public static final byte INVALID_NAME_LENGTH = 5;
-	public static final byte INVALID_NAME_CHARACTERS = 6;
-	public static final byte NAME_ALREADY_USED = 7;
-	public static final byte NAME_RESERVED = 8;
+	public static final byte OK = (byte)0;
+	public static final byte OUTDATED_HUB = (byte)1;
+	public static final byte OUTDATED_NODE = (byte)2;
+	public static final byte PASSWORD_REQUIRED = (byte)3;
+	public static final byte WRONG_PASSWORD = (byte)4;
+	public static final byte INVALID_NAME_LENGTH = (byte)5;
+	public static final byte INVALID_NAME_CHARACTERS = (byte)6;
+	public static final byte NAME_ALREADY_USED = (byte)7;
+	public static final byte NAME_RESERVED = (byte)8;
 
 	/**
 	 * Indicates the status of connection. If not 0, it indicates an error.

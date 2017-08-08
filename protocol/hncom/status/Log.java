@@ -28,7 +28,7 @@ public class Log extends Packet {
 	}
 
 	// world
-	public static final int NO_WORLD = -1;
+	public static final int NO_WORLD = (int)-1;
 
 	/**
 	 * Unix time (in milliseconds) that indicates the exact creation time of the log (for

@@ -26,7 +26,7 @@ public class Players extends Packet {
 	}
 
 	// max
-	public static final int UNLIMITED = -1;
+	public static final int UNLIMITED = (int)-1;
 
 	/**
 	 * Players currently online in the whole server (connected to a node).

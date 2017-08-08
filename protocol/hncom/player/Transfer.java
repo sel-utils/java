@@ -29,9 +29,9 @@ public class Transfer extends Packet {
 	}
 
 	// on fail
-	public static final byte DISCONNECT = 0;
-	public static final byte AUTO = 1;
-	public static final byte RECONNECT = 2;
+	public static final byte DISCONNECT = (byte)0;
+	public static final byte AUTO = (byte)1;
+	public static final byte RECONNECT = (byte)2;
 
 	public int hubId;
 

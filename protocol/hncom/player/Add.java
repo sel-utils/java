@@ -30,19 +30,19 @@ public class Add extends Packet {
 	}
 
 	// reason
-	public static final byte FIRST_JOIN = 0;
-	public static final byte TRANSFERRED = 1;
-	public static final byte FORCIBLY_TRANSFERRED = 2;
+	public static final byte FIRST_JOIN = (byte)0;
+	public static final byte TRANSFERRED = (byte)1;
+	public static final byte FORCIBLY_TRANSFERRED = (byte)2;
 
 	// dimension
-	public static final byte OVERWORLD = 0;
-	public static final byte NETHER = 1;
-	public static final byte END = 2;
+	public static final byte OVERWORLD = (byte)0;
+	public static final byte NETHER = (byte)1;
+	public static final byte END = (byte)2;
 
 	// input mode
-	public static final byte KEYBOARD = 0;
-	public static final byte TOUCH = 1;
-	public static final byte CONTROLLER = 2;
+	public static final byte KEYBOARD = (byte)0;
+	public static final byte TOUCH = (byte)1;
+	public static final byte CONTROLLER = (byte)2;
 
 	public int hubId;
 
@@ -246,16 +246,16 @@ public class Add extends Packet {
 		}
 
 		// device os
-		public static final byte UNKNOWN = 0;
-		public static final byte ANDROID = 1;
-		public static final byte IOS = 2;
-		public static final byte OSX = 3;
-		public static final byte FIRE_OS = 4;
-		public static final byte GEAR_VR = 5;
-		public static final byte HOLOLENS = 6;
-		public static final byte WINDOWS10 = 7;
-		public static final byte WINDOWS32 = 8;
-		public static final byte DEDICATED = 9;
+		public static final byte UNKNOWN = (byte)0;
+		public static final byte ANDROID = (byte)1;
+		public static final byte IOS = (byte)2;
+		public static final byte OSX = (byte)3;
+		public static final byte FIRE_OS = (byte)4;
+		public static final byte GEAR_VR = (byte)5;
+		public static final byte HOLOLENS = (byte)6;
+		public static final byte WINDOWS10 = (byte)7;
+		public static final byte WINDOWS32 = (byte)8;
+		public static final byte DEDICATED = (byte)9;
 
 		/**
 		 * XBOX Live id, which is a unique identifier for authenticated players or 0 if the

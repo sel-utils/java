@@ -29,12 +29,12 @@ public class UpdateList extends Packet {
 	}
 
 	// list
-	public static final byte WHITELIST = 0;
-	public static final byte BLACKLIST = 1;
+	public static final byte WHITELIST = (byte)0;
+	public static final byte BLACKLIST = (byte)1;
 
 	// action
-	public static final byte ADD = 0;
-	public static final byte REMOVE = 1;
+	public static final byte ADD = (byte)0;
+	public static final byte REMOVE = (byte)1;
 
 	/**
 	 * Type of the list to update.
@@ -207,9 +207,9 @@ public class UpdateList extends Packet {
 		}
 
 		// game
-		public static final byte POCKET = 1;
-		public static final byte MINECRAFT = 2;
-		public static final byte CONSOLE = 3;
+		public static final byte POCKET = (byte)1;
+		public static final byte MINECRAFT = (byte)2;
+		public static final byte CONSOLE = (byte)3;
 
 		public byte game;
 		public UUID uuid;

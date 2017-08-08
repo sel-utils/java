@@ -18,9 +18,9 @@ import sul.utils.*;
 public class Game extends Stream {
 
 	// type
-	public static final byte POCKET = 1;
-	public static final byte MINECRAFT = 2;
-	public static final byte CONSOLE = 3;
+	public static final byte POCKET = (byte)1;
+	public static final byte MINECRAFT = (byte)2;
+	public static final byte CONSOLE = (byte)3;
 
 	/**
 	 * Identifier of the game.
