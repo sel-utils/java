@@ -15,7 +15,7 @@ import sul.utils.*;
  */
 public class RemoveEntity extends Packet {
 
-	public static final byte ID = (byte)14;
+	public static final int ID = (int)14;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -41,7 +41,7 @@ public class RemoveEntity extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(entityId);
 		return this.getBuffer();
 	}
@@ -49,7 +49,7 @@ public class RemoveEntity extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		entityId=this.readVarlong();
 	}
 

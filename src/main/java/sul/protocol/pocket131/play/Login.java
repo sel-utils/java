@@ -16,7 +16,7 @@ import sul.utils.*;
  */
 public class Login extends Packet {
 
-	public static final byte ID = (byte)1;
+	public static final int ID = (int)1;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -52,7 +52,7 @@ public class Login extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeBigEndianInt(protocol);
 		this.writeBytes(body.encode());
 		return this.getBuffer();
@@ -61,7 +61,7 @@ public class Login extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		protocol=readBigEndianInt();
 		body=new sul.protocol.pocket131.types.LoginBody(); body._index=this._index; body.decode(this._buffer); this._index=body._index;
 	}

@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class SimpleEvent extends Packet {
 
-	public static final byte ID = (byte)64;
+	public static final int ID = (int)64;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = true;
@@ -24,20 +24,20 @@ public class SimpleEvent extends Packet {
 
 	@Override
 	public int length() {
-		return 1;
+		return 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 	}
 
 	public static SimpleEvent fromBuffer(byte[] buffer) {

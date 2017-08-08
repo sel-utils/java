@@ -15,7 +15,7 @@ import sul.utils.*;
 
 public class ResourcePackChunkData extends Packet {
 
-	public static final byte ID = (byte)83;
+	public static final int ID = (int)83;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -41,13 +41,13 @@ public class ResourcePackChunkData extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + data.length + 17;
+		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + data.length + 18;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		byte[] aq=id.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)aq.length); this.writeBytes(aq);
 		this.writeLittleEndianInt(chunkIndex);
 		this.writeLittleEndianLong(progress);
@@ -58,7 +58,7 @@ public class ResourcePackChunkData extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		int bvaq=this.readVaruint(); id=new String(this.readBytes(bvaq), StandardCharsets.UTF_8);
 		chunkIndex=readLittleEndianInt();
 		progress=readLittleEndianLong();

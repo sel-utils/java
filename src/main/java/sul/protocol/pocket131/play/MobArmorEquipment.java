@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class MobArmorEquipment extends Packet {
 
-	public static final byte ID = (byte)32;
+	public static final int ID = (int)32;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = true;
@@ -42,7 +42,7 @@ public class MobArmorEquipment extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(entityId);
 		for(sul.protocol.pocket131.types.Slot yjbi:armor){ this.writeBytes(yjbi.encode()); }
 		return this.getBuffer();
@@ -51,7 +51,7 @@ public class MobArmorEquipment extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		entityId=this.readVarlong();
 		final int bfb9=4; armor=new sul.protocol.pocket131.types.Slot[bfb9]; for(int yjbi=0;yjbi<armor.length;yjbi++){ armor[yjbi]=new sul.protocol.pocket131.types.Slot(); armor[yjbi]._index=this._index; armor[yjbi].decode(this._buffer); this._index=armor[yjbi]._index; }
 	}

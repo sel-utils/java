@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class ContainerSetData extends Packet {
 
-	public static final byte ID = (byte)51;
+	public static final int ID = (int)51;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -42,8 +42,8 @@ public class ContainerSetData extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
-		this.writeBigEndianByte(window);
+		this.writeVaruint(ID);
+		this.writeLittleEndianByte(window);
 		this.writeVarint(property);
 		this.writeVarint(value);
 		return this.getBuffer();
@@ -52,8 +52,8 @@ public class ContainerSetData extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
-		window=readBigEndianByte();
+		this.readVaruint();
+		window=readLittleEndianByte();
 		property=this.readVarint();
 		value=this.readVarint();
 	}

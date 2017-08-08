@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class PlayerHotbar extends Packet {
 
-	public static final byte ID = (byte)48;
+	public static final int ID = (int)48;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = false;
@@ -30,14 +30,14 @@ public class PlayerHotbar extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 	}
 
 	public static PlayerHotbar fromBuffer(byte[] buffer) {

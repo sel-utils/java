@@ -386,6 +386,9 @@ public final class Items
     public static final Items REPEATING_COMMAND_BLOCK;
     public static final Items CHAIN_COMMAND_BLOCK;
     public static final Items FROSTED_ICE;
+    public static final Items ALLOW;
+    public static final Items DENY;
+    public static final Items BORDER_BLOCK;
     public static final Items MAGMA_BLOCK;
     public static final Items NETHER_WART_BLOCK;
     public static final Items RED_NETHER_BRICK;
@@ -456,6 +459,8 @@ public final class Items
     public static final Items GREEN_CONCRETE_POWDER;
     public static final Items RED_CONCRETE_POWDER;
     public static final Items BLACK_CONCRETE_POWDER;
+    public static final Items CHALKBOARD;
+    public static final Items CAMERA;
     public static final Items STONECUTTER;
     public static final Items GLOWING_OBSIDIAN;
     public static final Items NETHER_REACTOR_CORE;
@@ -1315,9 +1320,12 @@ public final class Items
         add(BEETROOT_BLOCK = new Items("beetroot block", new ItemData(207, 0, ""), new ItemData(244, 0, ""), (byte)64, (short)0));
         add(GRASS_PATH = new Items("grass path", new ItemData(208, 0, ""), new ItemData(198, 0, ""), (byte)64, (short)0));
         add(END_GATEWAY = new Items("end gateway", new ItemData(209, 0, ""), new ItemData(209, 0, ""), (byte)64, (short)0));
-        add(REPEATING_COMMAND_BLOCK = new Items("repeating command block", new ItemData(210, 0, ""), null, (byte)64, (short)0));
-        add(CHAIN_COMMAND_BLOCK = new Items("chain command block", new ItemData(211, 0, ""), null, (byte)64, (short)0));
+        add(REPEATING_COMMAND_BLOCK = new Items("repeating command block", new ItemData(210, 0, ""), new ItemData(188, 0, ""), (byte)64, (short)0));
+        add(CHAIN_COMMAND_BLOCK = new Items("chain command block", new ItemData(211, 0, ""), new ItemData(189, 0, ""), (byte)64, (short)0));
         add(FROSTED_ICE = new Items("frosted ice", new ItemData(212, 0, ""), new ItemData(207, 0, ""), (byte)64, (short)0));
+        add(ALLOW = new Items("allow", null, new ItemData(210, 0, ""), (byte)64, (short)0));
+        add(DENY = new Items("deny", null, new ItemData(211, 0, ""), (byte)64, (short)0));
+        add(BORDER_BLOCK = new Items("border block", null, new ItemData(212, 0, ""), (byte)64, (short)0));
         add(MAGMA_BLOCK = new Items("magma block", new ItemData(213, 0, ""), new ItemData(213, 0, ""), (byte)64, (short)0));
         add(NETHER_WART_BLOCK = new Items("nether wart block", new ItemData(214, 0, ""), new ItemData(214, 0, ""), (byte)64, (short)0));
         add(RED_NETHER_BRICK = new Items("red nether brick", new ItemData(215, 0, ""), new ItemData(215, 0, ""), (byte)64, (short)0));
@@ -1388,6 +1396,8 @@ public final class Items
         add(GREEN_CONCRETE_POWDER = new Items("green concrete powder", new ItemData(252, 13, ""), new ItemData(237, 13, ""), (byte)64, (short)0));
         add(RED_CONCRETE_POWDER = new Items("red concrete powder", new ItemData(252, 14, ""), new ItemData(237, 14, ""), (byte)64, (short)0));
         add(BLACK_CONCRETE_POWDER = new Items("black concrete powder", new ItemData(252, 15, ""), new ItemData(237, 15, ""), (byte)64, (short)0));
+        add(CHALKBOARD = new Items("chalkboard", null, new ItemData(230, 0, ""), (byte)64, (short)0));
+        add(CAMERA = new Items("camera", null, new ItemData(242, 0, ""), (byte)64, (short)0));
         add(STONECUTTER = new Items("stonecutter", null, new ItemData(245, 0, ""), (byte)64, (short)0));
         add(GLOWING_OBSIDIAN = new Items("glowing obsidian", null, new ItemData(246, 0, ""), (byte)64, (short)0));
         add(NETHER_REACTOR_CORE = new Items("nether reactor core", null, new ItemData(247, 0, ""), (byte)64, (short)0));

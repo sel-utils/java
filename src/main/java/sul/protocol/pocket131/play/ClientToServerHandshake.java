@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class ClientToServerHandshake extends Packet {
 
-	public static final byte ID = (byte)4;
+	public static final int ID = (int)4;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -30,14 +30,14 @@ public class ClientToServerHandshake extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 	}
 
 	public static ClientToServerHandshake fromBuffer(byte[] buffer) {

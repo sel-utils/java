@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class MobEffect extends Packet {
 
-	public static final byte ID = (byte)28;
+	public static final int ID = (int)28;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -53,9 +53,9 @@ public class MobEffect extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(entityId);
-		this.writeBigEndianByte(eventId);
+		this.writeLittleEndianByte(eventId);
 		this.writeVarint(effect);
 		this.writeVarint(amplifier);
 		this.writeBool(particles);
@@ -66,9 +66,9 @@ public class MobEffect extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		entityId=this.readVarlong();
-		eventId=readBigEndianByte();
+		eventId=readLittleEndianByte();
 		effect=this.readVarint();
 		amplifier=this.readVarint();
 		particles=this.readBool();

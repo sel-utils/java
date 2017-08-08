@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class InventoryContent extends Packet {
 
-	public static final byte ID = (byte)49;
+	public static final int ID = (int)49;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -42,7 +42,7 @@ public class InventoryContent extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVaruint(window);
 		this.writeVaruint((int)slots.length); for(sul.protocol.pocket131.types.Slot cxdm:slots){ this.writeBytes(cxdm.encode()); }
 		return this.getBuffer();
@@ -51,7 +51,7 @@ public class InventoryContent extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		window=this.readVaruint();
 		int bnbr=this.readVaruint(); slots=new sul.protocol.pocket131.types.Slot[bnbr]; for(int cxdm=0;cxdm<slots.length;cxdm++){ slots[cxdm]=new sul.protocol.pocket131.types.Slot(); slots[cxdm]._index=this._index; slots[cxdm].decode(this._buffer); this._index=slots[cxdm]._index; }
 	}

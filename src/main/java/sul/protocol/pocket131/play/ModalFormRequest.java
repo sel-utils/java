@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class ModalFormRequest extends Packet {
 
-	public static final byte ID = (byte)100;
+	public static final int ID = (int)100;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -36,13 +36,13 @@ public class ModalFormRequest extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(formId) + Buffer.varuintLength(data.getBytes(StandardCharsets.UTF_8).length) + data.getBytes(StandardCharsets.UTF_8).length + 1;
+		return Buffer.varuintLength(formId) + Buffer.varuintLength(data.getBytes(StandardCharsets.UTF_8).length) + data.getBytes(StandardCharsets.UTF_8).length + 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVaruint(formId);
 		byte[] zfy=data.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)zfy.length); this.writeBytes(zfy);
 		return this.getBuffer();
@@ -51,7 +51,7 @@ public class ModalFormRequest extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		formId=this.readVaruint();
 		int bvzfy=this.readVaruint(); data=new String(this.readBytes(bvzfy), StandardCharsets.UTF_8);
 	}

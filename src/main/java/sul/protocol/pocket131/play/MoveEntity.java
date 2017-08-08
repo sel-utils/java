@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class MoveEntity extends Packet {
 
-	public static final byte ID = (byte)18;
+	public static final int ID = (int)18;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -50,12 +50,12 @@ public class MoveEntity extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(entityId);
 		this.writeLittleEndianFloat(position.x); this.writeLittleEndianFloat(position.y); this.writeLittleEndianFloat(position.z);
-		this.writeBigEndianByte(pitch);
-		this.writeBigEndianByte(headYaw);
-		this.writeBigEndianByte(yaw);
+		this.writeLittleEndianByte(pitch);
+		this.writeLittleEndianByte(headYaw);
+		this.writeLittleEndianByte(yaw);
 		this.writeBool(onGround);
 		this.writeBool(teleported);
 		return this.getBuffer();
@@ -64,12 +64,12 @@ public class MoveEntity extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		entityId=this.readVarlong();
 		position=new Tuples.FloatXYZ(); position.x=readLittleEndianFloat(); position.y=readLittleEndianFloat(); position.z=readLittleEndianFloat();
-		pitch=readBigEndianByte();
-		headYaw=readBigEndianByte();
-		yaw=readBigEndianByte();
+		pitch=readLittleEndianByte();
+		headYaw=readLittleEndianByte();
+		yaw=readLittleEndianByte();
 		onGround=this.readBool();
 		teleported=this.readBool();
 	}

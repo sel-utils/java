@@ -10,9 +10,9 @@ package sul.protocol.pocket131.play;
 
 import sul.utils.*;
 
-public class SetLastHurt extends Packet {
+public class ShowProfile extends Packet {
 
-	public static final byte ID = (byte)96;
+	public static final int ID = (int)104;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -24,31 +24,31 @@ public class SetLastHurt extends Packet {
 
 	@Override
 	public int length() {
-		return 1;
+		return 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 	}
 
-	public static SetLastHurt fromBuffer(byte[] buffer) {
-		SetLastHurt ret = new SetLastHurt();
+	public static ShowProfile fromBuffer(byte[] buffer) {
+		ShowProfile ret = new ShowProfile();
 		ret.decode(buffer);
 		return ret;
 	}
 
 	@Override
 	public String toString() {
-		return "SetLastHurt()";
+		return "ShowProfile()";
 	}
 
 }

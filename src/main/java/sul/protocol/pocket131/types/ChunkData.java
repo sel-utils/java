@@ -23,11 +23,6 @@ public class ChunkData extends Stream {
 	 * The amount of sections should be in a range from 0 (empty chunk) to 16.
 	 */
 	public sul.protocol.pocket131.types.Section[] sections = new sul.protocol.pocket131.types.Section[0];
-
-	/**
-	 * Coordinates of the highest block in the column that receives sky light (order `xz`).
-	 * It is used to increase the speed when calculating the block's light level.
-	 */
 	public short[] heights = new short[256];
 
 	/**
@@ -71,7 +66,7 @@ public class ChunkData extends Stream {
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		this.writeVaruint((int)sections.length); for(sul.protocol.pocket131.types.Section cvdlbm:sections){ this.writeBytes(cvdlbm.encode()); }
-		for(short avzhc:heights){ this.writeBigEndianShort(avzhc); }
+		for(short avzhc:heights){ this.writeLittleEndianShort(avzhc); }
 		this.writeBytes(biomes);
 		this.writeVaruint((int)borders.length); this.writeBytes(borders);
 		this.writeVaruint((int)extraData.length); for(sul.protocol.pocket131.types.ExtraData zhcfyr:extraData){ this.writeBytes(zhcfyr.encode()); }
@@ -92,7 +87,7 @@ public class ChunkData extends Stream {
 		this._buffer = this.readBytes(_length);
 		this._index = 0;
 		int bnyrb5=this.readVaruint(); sections=new sul.protocol.pocket131.types.Section[bnyrb5]; for(int cvdlbm=0;cvdlbm<sections.length;cvdlbm++){ sections[cvdlbm]=new sul.protocol.pocket131.types.Section(); sections[cvdlbm]._index=this._index; sections[cvdlbm].decode(this._buffer); this._index=sections[cvdlbm]._index; }
-		final int bhaddm=256; heights=new short[bhaddm]; for(int avzhc=0;avzhc<heights.length;avzhc++){ heights[avzhc]=readBigEndianShort(); }
+		final int bhaddm=256; heights=new short[bhaddm]; for(int avzhc=0;avzhc<heights.length;avzhc++){ heights[avzhc]=readLittleEndianShort(); }
 		final int bjb1c=256; biomes=this.readBytes(bjb1c);
 		int bjcrcm=this.readVaruint(); borders=this.readBytes(bjcrcm);
 		int bvdjrfy=this.readVaruint(); extraData=new sul.protocol.pocket131.types.ExtraData[bvdjrfy]; for(int zhcfyr=0;zhcfyr<extraData.length;zhcfyr++){ extraData[zhcfyr]=new sul.protocol.pocket131.types.ExtraData(); extraData[zhcfyr]._index=this._index; extraData[zhcfyr].decode(this._buffer); this._index=extraData[zhcfyr]._index; }

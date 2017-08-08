@@ -19,7 +19,7 @@ import sul.utils.*;
  */
 public class Transfer extends Packet {
 
-	public static final byte ID = (byte)85;
+	public static final int ID = (int)85;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -50,13 +50,13 @@ public class Transfer extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(ip.getBytes(StandardCharsets.UTF_8).length) + ip.getBytes(StandardCharsets.UTF_8).length + 3;
+		return Buffer.varuintLength(ip.getBytes(StandardCharsets.UTF_8).length) + ip.getBytes(StandardCharsets.UTF_8).length + 4;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		byte[] aa=ip.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)aa.length); this.writeBytes(aa);
 		this.writeLittleEndianShort(port);
 		return this.getBuffer();
@@ -65,7 +65,7 @@ public class Transfer extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		int bvaa=this.readVaruint(); ip=new String(this.readBytes(bvaa), StandardCharsets.UTF_8);
 		port=readLittleEndianShort();
 	}

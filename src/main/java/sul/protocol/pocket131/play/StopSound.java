@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class StopSound extends Packet {
 
-	public static final byte ID = (byte)87;
+	public static final int ID = (int)87;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -36,13 +36,13 @@ public class StopSound extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(name.getBytes(StandardCharsets.UTF_8).length) + name.getBytes(StandardCharsets.UTF_8).length + 2;
+		return Buffer.varuintLength(name.getBytes(StandardCharsets.UTF_8).length) + name.getBytes(StandardCharsets.UTF_8).length + 3;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		byte[] bfz=name.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)bfz.length); this.writeBytes(bfz);
 		this.writeBool(stopAll);
 		return this.getBuffer();
@@ -51,7 +51,7 @@ public class StopSound extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		int bvbfz=this.readVaruint(); name=new String(this.readBytes(bvbfz), StandardCharsets.UTF_8);
 		stopAll=this.readBool();
 	}

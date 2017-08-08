@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class ClientboundMapItemData extends Packet {
 
-	public static final byte ID = (byte)67;
+	public static final int ID = (int)67;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -59,16 +59,16 @@ public class ClientboundMapItemData extends Packet {
 
 	@Override
 	public int length() {
-		int length=Buffer.varlongLength(mapId) + Buffer.varuintLength(update) + Buffer.varintLength(size.x) + Buffer.varintLength(size.z) + Buffer.varintLength(offset.x) + Buffer.varintLength(offset.z) + data.length + Buffer.varuintLength(decorations.length) + 2; for(sul.protocol.pocket131.types.Decoration zvbjdlbm:decorations){ length+=zvbjdlbm.length(); } return length;
+		int length=Buffer.varlongLength(mapId) + Buffer.varuintLength(update) + Buffer.varintLength(size.x) + Buffer.varintLength(size.z) + Buffer.varintLength(offset.x) + Buffer.varintLength(offset.z) + data.length + Buffer.varuintLength(decorations.length) + 3; for(sul.protocol.pocket131.types.Decoration zvbjdlbm:decorations){ length+=zvbjdlbm.length(); } return length;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(mapId);
 		this.writeVaruint(update);
-		if(update==2||update==4){ this.writeBigEndianByte(scale); }
+		if(update==2||update==4){ this.writeLittleEndianByte(scale); }
 		if(update==2){ this.writeVarint(size.x); this.writeVarint(size.z); }
 		if(update==2){ this.writeVarint(offset.x); this.writeVarint(offset.z); }
 		if(update==2){ this.writeBytes(data); }
@@ -79,10 +79,10 @@ public class ClientboundMapItemData extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		mapId=this.readVarlong();
 		update=this.readVaruint();
-		if(update==2||update==4){ scale=readBigEndianByte(); }
+		if(update==2||update==4){ scale=readLittleEndianByte(); }
 		if(update==2){ size=new Tuples.IntXZ(); size.x=this.readVarint(); size.z=this.readVarint(); }
 		if(update==2){ offset=new Tuples.IntXZ(); offset.x=this.readVarint(); offset.z=this.readVarint(); }
 		if(update==2){ data=this.readBytes(this._buffer.length-this._index); }

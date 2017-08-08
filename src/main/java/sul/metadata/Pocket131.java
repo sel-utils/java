@@ -31,11 +31,11 @@ public class Pocket131 extends Stream {
 		byte metadata;
 		int length=this.readVaruint();
 		while(length-- > 0) {
-			metadata=readBigEndianByte();
-			switch(readBigEndianByte()) {
+			metadata=readLittleEndianByte();
+			switch(readLittleEndianByte()) {
 				case 0:
 					byte _0;
-					_0=readBigEndianByte();
+					_0=readLittleEndianByte();
 					break;
 				case 1:
 					short _1;

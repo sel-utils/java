@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class Explode extends Packet {
 
-	public static final byte ID = (byte)23;
+	public static final int ID = (int)23;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -44,7 +44,7 @@ public class Explode extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeLittleEndianFloat(position.x); this.writeLittleEndianFloat(position.y); this.writeLittleEndianFloat(position.z);
 		this.writeLittleEndianFloat(radius);
 		this.writeVaruint((int)destroyedBlocks.length); for(sul.protocol.pocket131.types.BlockPosition zvdjevqx:destroyedBlocks){ this.writeBytes(zvdjevqx.encode()); }
@@ -54,7 +54,7 @@ public class Explode extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		position=new Tuples.FloatXYZ(); position.x=readLittleEndianFloat(); position.y=readLittleEndianFloat(); position.z=readLittleEndianFloat();
 		radius=readLittleEndianFloat();
 		int brcrblzj=this.readVaruint(); destroyedBlocks=new sul.protocol.pocket131.types.BlockPosition[brcrblzj]; for(int zvdjevqx=0;zvdjevqx<destroyedBlocks.length;zvdjevqx++){ destroyedBlocks[zvdjevqx]=new sul.protocol.pocket131.types.BlockPosition(); destroyedBlocks[zvdjevqx]._index=this._index; destroyedBlocks[zvdjevqx].decode(this._buffer); this._index=destroyedBlocks[zvdjevqx]._index; }

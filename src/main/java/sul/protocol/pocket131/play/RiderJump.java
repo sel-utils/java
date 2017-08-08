@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class RiderJump extends Packet {
 
-	public static final byte ID = (byte)20;
+	public static final int ID = (int)20;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = true;
@@ -38,7 +38,7 @@ public class RiderJump extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(rider);
 		return this.getBuffer();
 	}
@@ -46,7 +46,7 @@ public class RiderJump extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		rider=this.readVarlong();
 	}
 

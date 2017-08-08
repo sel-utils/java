@@ -17,7 +17,7 @@ import sul.utils.*;
  */
 public class Disconnect extends Packet {
 
-	public static final byte ID = (byte)5;
+	public static final int ID = (int)5;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -53,7 +53,7 @@ public class Disconnect extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeBool(hideDisconnectionScreen);
 		if(hideDisconnectionScreen==false){ byte[] bvcfz=message.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)bvcfz.length); this.writeBytes(bvcfz); }
 		return this.getBuffer();
@@ -62,7 +62,7 @@ public class Disconnect extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		hideDisconnectionScreen=this.readBool();
 		if(hideDisconnectionScreen==false){ int bvbvcfz=this.readVaruint(); message=new String(this.readBytes(bvbvcfz), StandardCharsets.UTF_8); }
 	}

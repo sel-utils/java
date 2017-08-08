@@ -15,7 +15,7 @@ import sul.utils.*;
 
 public class ResourcePackClientResponse extends Packet {
 
-	public static final byte ID = (byte)8;
+	public static final int ID = (int)8;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -49,8 +49,8 @@ public class ResourcePackClientResponse extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
-		this.writeBigEndianByte(status);
+		this.writeVaruint(ID);
+		this.writeLittleEndianByte(status);
 		this.writeLittleEndianShort((short)packIds.length); for(String cfalc:packIds){ byte[] yzbm=cfalc.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)yzbm.length); this.writeBytes(yzbm); }
 		return this.getBuffer();
 	}
@@ -58,8 +58,8 @@ public class ResourcePackClientResponse extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
-		status=readBigEndianByte();
+		this.readVaruint();
+		status=readLittleEndianByte();
 		int bbytzm=readLittleEndianShort(); packIds=new String[bbytzm]; for(int cfalc=0;cfalc<packIds.length;cfalc++){ int bvcfalct=this.readVaruint(); packIds[cfalc]=new String(this.readBytes(bvcfalct), StandardCharsets.UTF_8); }
 	}
 

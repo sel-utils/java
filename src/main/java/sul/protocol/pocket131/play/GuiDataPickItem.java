@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class GuiDataPickItem extends Packet {
 
-	public static final byte ID = (byte)54;
+	public static final int ID = (int)54;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -22,22 +22,32 @@ public class GuiDataPickItem extends Packet {
 		return ID;
 	}
 
+	public int slot;
+
+	public GuiDataPickItem() {}
+
+	public GuiDataPickItem(int slot) {
+		this.slot = slot;
+	}
+
 	@Override
 	public int length() {
-		return 1;
+		return 5;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
+		this.writeLittleEndianInt(slot);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
+		slot=readLittleEndianInt();
 	}
 
 	public static GuiDataPickItem fromBuffer(byte[] buffer) {
@@ -48,7 +58,7 @@ public class GuiDataPickItem extends Packet {
 
 	@Override
 	public String toString() {
-		return "GuiDataPickItem()";
+		return "GuiDataPickItem(slot: " + this.slot + ")";
 	}
 
 }

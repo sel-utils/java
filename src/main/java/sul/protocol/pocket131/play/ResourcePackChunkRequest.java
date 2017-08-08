@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class ResourcePackChunkRequest extends Packet {
 
-	public static final byte ID = (byte)84;
+	public static final int ID = (int)84;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -36,13 +36,13 @@ public class ResourcePackChunkRequest extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + 5;
+		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + 6;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		byte[] aq=id.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)aq.length); this.writeBytes(aq);
 		this.writeLittleEndianInt(chunkIndex);
 		return this.getBuffer();
@@ -51,7 +51,7 @@ public class ResourcePackChunkRequest extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		int bvaq=this.readVaruint(); id=new String(this.readBytes(bvaq), StandardCharsets.UTF_8);
 		chunkIndex=readLittleEndianInt();
 	}

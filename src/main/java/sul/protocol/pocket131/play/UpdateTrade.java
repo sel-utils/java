@@ -15,7 +15,7 @@ import sul.utils.*;
 
 public class UpdateTrade extends Packet {
 
-	public static final byte ID = (byte)80;
+	public static final int ID = (int)80;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -51,15 +51,15 @@ public class UpdateTrade extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varintLength(unknown2) + Buffer.varintLength(unknown3) + Buffer.varlongLength(trader) + Buffer.varlongLength(player) + Buffer.varuintLength(displayName.getBytes(StandardCharsets.UTF_8).length) + displayName.getBytes(StandardCharsets.UTF_8).length + offers.length + 4;
+		return Buffer.varintLength(unknown2) + Buffer.varintLength(unknown3) + Buffer.varlongLength(trader) + Buffer.varlongLength(player) + Buffer.varuintLength(displayName.getBytes(StandardCharsets.UTF_8).length) + displayName.getBytes(StandardCharsets.UTF_8).length + offers.length + 5;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
-		this.writeBigEndianByte(window);
-		this.writeBigEndianByte(windowType);
+		this.writeVaruint(ID);
+		this.writeLittleEndianByte(window);
+		this.writeLittleEndianByte(windowType);
 		this.writeVarint(unknown2);
 		this.writeVarint(unknown3);
 		this.writeBool(willing);
@@ -73,9 +73,9 @@ public class UpdateTrade extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
-		window=readBigEndianByte();
-		windowType=readBigEndianByte();
+		this.readVaruint();
+		window=readLittleEndianByte();
+		windowType=readLittleEndianByte();
 		unknown2=this.readVarint();
 		unknown3=this.readVarint();
 		willing=this.readBool();

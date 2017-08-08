@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class LevelEvent extends Packet {
 
-	public static final byte ID = (byte)25;
+	public static final int ID = (int)25;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -97,7 +97,7 @@ public class LevelEvent extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarint(eventId);
 		this.writeLittleEndianFloat(position.x); this.writeLittleEndianFloat(position.y); this.writeLittleEndianFloat(position.z);
 		this.writeVarint(data);
@@ -107,7 +107,7 @@ public class LevelEvent extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		eventId=this.readVarint();
 		position=new Tuples.FloatXYZ(); position.x=readLittleEndianFloat(); position.y=readLittleEndianFloat(); position.z=readLittleEndianFloat();
 		data=this.readVarint();

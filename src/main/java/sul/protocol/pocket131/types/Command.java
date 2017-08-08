@@ -43,8 +43,8 @@ public class Command extends Stream {
 		this._buffer = new byte[this.length()];
 		byte[] bfz=name.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)bfz.length); this.writeBytes(bfz);
 		byte[] zvyjcrb4=description.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)zvyjcrb4.length); this.writeBytes(zvyjcrb4);
-		this.writeBigEndianByte(unknown2);
-		this.writeBigEndianByte(permissionLevel);
+		this.writeLittleEndianByte(unknown2);
+		this.writeLittleEndianByte(permissionLevel);
 		this.writeLittleEndianInt(aliasesId);
 		this.writeVaruint((int)overloads.length); for(sul.protocol.pocket131.types.Overload bzcxyr:overloads){ this.writeBytes(bzcxyr.encode()); }
 		return this.getBuffer();
@@ -55,8 +55,8 @@ public class Command extends Stream {
 		this._buffer = buffer;
 		int bvbfz=this.readVaruint(); name=new String(this.readBytes(bvbfz), StandardCharsets.UTF_8);
 		int bvzvyjcr=this.readVaruint(); description=new String(this.readBytes(bvzvyjcr), StandardCharsets.UTF_8);
-		unknown2=readBigEndianByte();
-		permissionLevel=readBigEndianByte();
+		unknown2=readLittleEndianByte();
+		permissionLevel=readLittleEndianByte();
 		aliasesId=readLittleEndianInt();
 		int b9zjbfc=this.readVaruint(); overloads=new sul.protocol.pocket131.types.Overload[b9zjbfc]; for(int bzcxyr=0;bzcxyr<overloads.length;bzcxyr++){ overloads[bzcxyr]=new sul.protocol.pocket131.types.Overload(); overloads[bzcxyr]._index=this._index; overloads[bzcxyr].decode(this._buffer); this._index=overloads[bzcxyr]._index; }
 	}

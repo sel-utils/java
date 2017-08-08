@@ -10,12 +10,9 @@ package sul.protocol.pocket131.play;
 
 import sul.utils.*;
 
-/**
- * Sets the time.
- */
-public class SetTime extends Packet {
+public class SetLastHurtBy extends Packet {
 
-	public static final int ID = (int)10;
+	public static final int ID = (int)96;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -25,28 +22,24 @@ public class SetTime extends Packet {
 		return ID;
 	}
 
-	/**
-	 * Time of the day in a range from 0 to 24000. If higher or lower it will be moduled
-	 * to 24000.
-	 */
-	public int time;
+	public int unknown0;
 
-	public SetTime() {}
+	public SetLastHurtBy() {}
 
-	public SetTime(int time) {
-		this.time = time;
+	public SetLastHurtBy(int unknown0) {
+		this.unknown0 = unknown0;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varintLength(time) + 1;
+		return Buffer.varintLength(unknown0) + 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		this.writeVaruint(ID);
-		this.writeVarint(time);
+		this.writeVarint(unknown0);
 		return this.getBuffer();
 	}
 
@@ -54,18 +47,18 @@ public class SetTime extends Packet {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		this.readVaruint();
-		time=this.readVarint();
+		unknown0=this.readVarint();
 	}
 
-	public static SetTime fromBuffer(byte[] buffer) {
-		SetTime ret = new SetTime();
+	public static SetLastHurtBy fromBuffer(byte[] buffer) {
+		SetLastHurtBy ret = new SetLastHurtBy();
 		ret.decode(buffer);
 		return ret;
 	}
 
 	@Override
 	public String toString() {
-		return "SetTime(time: " + this.time + ")";
+		return "SetLastHurtBy(unknown0: " + this.unknown0 + ")";
 	}
 
 }

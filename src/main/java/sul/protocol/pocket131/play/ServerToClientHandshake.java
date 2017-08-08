@@ -15,7 +15,7 @@ import sul.utils.*;
 
 public class ServerToClientHandshake extends Packet {
 
-	public static final byte ID = (byte)3;
+	public static final int ID = (int)3;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -43,7 +43,7 @@ public class ServerToClientHandshake extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		byte[] cvdvuvbl=serverPublicKey.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)cvdvuvbl.length); this.writeBytes(cvdvuvbl);
 		this.writeVaruint((int)token.length); this.writeBytes(token);
 		return this.getBuffer();
@@ -52,7 +52,7 @@ public class ServerToClientHandshake extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		int bvcvdvuv=this.readVaruint(); serverPublicKey=new String(this.readBytes(bvcvdvuv), StandardCharsets.UTF_8);
 		int brav=this.readVaruint(); token=this.readBytes(brav);
 	}

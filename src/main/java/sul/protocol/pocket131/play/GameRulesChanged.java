@@ -19,7 +19,7 @@ import sul.utils.*;
  */
 public class GameRulesChanged extends Packet {
 
-	public static final byte ID = (byte)72;
+	public static final int ID = (int)72;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -39,22 +39,22 @@ public class GameRulesChanged extends Packet {
 
 	@Override
 	public int length() {
-		int length=5; for(sul.protocol.pocket131.types.Rule cvzm:rules){ length+=cvzm.length(); } return length;
+		int length=Buffer.varuintLength(rules.length) + 2; for(sul.protocol.pocket131.types.Rule cvzm:rules){ length+=cvzm.length(); } return length;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
-		this.writeBigEndianInt((int)rules.length); for(sul.protocol.pocket131.types.Rule cvzm:rules){ this.writeBytes(cvzm.encode()); }
+		this.writeVaruint(ID);
+		this.writeVaruint((int)rules.length); for(sul.protocol.pocket131.types.Rule cvzm:rules){ this.writeBytes(cvzm.encode()); }
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
-		int bjbv=readBigEndianInt(); rules=new sul.protocol.pocket131.types.Rule[bjbv]; for(int cvzm=0;cvzm<rules.length;cvzm++){ rules[cvzm]=new sul.protocol.pocket131.types.Rule(); rules[cvzm]._index=this._index; rules[cvzm].decode(this._buffer); this._index=rules[cvzm]._index; }
+		this.readVaruint();
+		int bjbv=this.readVaruint(); rules=new sul.protocol.pocket131.types.Rule[bjbv]; for(int cvzm=0;cvzm<rules.length;cvzm++){ rules[cvzm]=new sul.protocol.pocket131.types.Rule(); rules[cvzm]._index=this._index; rules[cvzm].decode(this._buffer); this._index=rules[cvzm]._index; }
 	}
 
 	public static GameRulesChanged fromBuffer(byte[] buffer) {
