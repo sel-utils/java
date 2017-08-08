@@ -15,10 +15,10 @@ import sul.utils.*;
 public class ListUpdateGamemode extends Stream {
 
 	// gamemode
-	public static final int SURVIVAL = 0;
-	public static final int CREATIVE = 1;
-	public static final int ADVENTURE = 2;
-	public static final int SPECTATOR = 3;
+	public static final int SURVIVAL = (int)0;
+	public static final int CREATIVE = (int)1;
+	public static final int ADVENTURE = (int)2;
+	public static final int SPECTATOR = (int)3;
 
 	public UUID uuid;
 	public int gamemode;

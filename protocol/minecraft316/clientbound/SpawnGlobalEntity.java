@@ -23,7 +23,7 @@ public class SpawnGlobalEntity extends Packet {
 	}
 
 	// type
-	public static final byte THUNDERBOLT = 1;
+	public static final byte THUNDERBOLT = (byte)1;
 
 	public int entityId;
 	public byte type;
