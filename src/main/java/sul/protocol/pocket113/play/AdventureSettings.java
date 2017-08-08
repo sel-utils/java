@@ -26,23 +26,23 @@ public class AdventureSettings extends Packet {
 	}
 
 	// flags
-	public static final int IMMUTABLE_WORLD = 1;
-	public static final int PVP_DISABLED = 2;
-	public static final int PVM_DISABLED = 4;
-	public static final int MVP_DISBALED = 8;
-	public static final int EVP_DISABLED = 16;
-	public static final int AUTO_JUMP = 32;
-	public static final int ALLOW_FLIGHT = 64;
-	public static final int NO_CLIP = 128;
-	public static final int FLYING = 512;
-	public static final int MUTED = 1024;
+	public static final int IMMUTABLE_WORLD = (int)1;
+	public static final int PVP_DISABLED = (int)2;
+	public static final int PVM_DISABLED = (int)4;
+	public static final int MVP_DISBALED = (int)8;
+	public static final int EVP_DISABLED = (int)16;
+	public static final int AUTO_JUMP = (int)32;
+	public static final int ALLOW_FLIGHT = (int)64;
+	public static final int NO_CLIP = (int)128;
+	public static final int FLYING = (int)512;
+	public static final int MUTED = (int)1024;
 
 	// permissions
-	public static final int USER = 0;
-	public static final int OPERATOR = 1;
-	public static final int HOST = 2;
-	public static final int AUTOMATION = 3;
-	public static final int ADMIN = 4;
+	public static final int USER = (int)0;
+	public static final int OPERATOR = (int)1;
+	public static final int HOST = (int)2;
+	public static final int AUTOMATION = (int)3;
+	public static final int ADMIN = (int)4;
 
 	public int flags;
 	public int permissions;

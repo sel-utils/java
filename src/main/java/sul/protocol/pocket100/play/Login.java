@@ -25,8 +25,8 @@ public class Login extends Packet {
 	}
 
 	// edition
-	public static final byte CLASSIC = 0;
-	public static final byte EDUCATION = 1;
+	public static final byte CLASSIC = (byte)0;
+	public static final byte EDUCATION = (byte)1;
 
 	public int protocol;
 	public byte edition;

@@ -23,9 +23,9 @@ public class MobEffect extends Packet {
 	}
 
 	// event id
-	public static final byte ADD = 1;
-	public static final byte MODIFY = 2;
-	public static final byte REMOVE = 3;
+	public static final byte ADD = (byte)1;
+	public static final byte MODIFY = (byte)2;
+	public static final byte REMOVE = (byte)3;
 
 	public long entityId;
 	public byte eventId;

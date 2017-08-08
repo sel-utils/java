@@ -23,8 +23,8 @@ public class ShowCredits extends Packet {
 	}
 
 	// status
-	public static final int START = 0;
-	public static final int END = 1;
+	public static final int START = (int)0;
+	public static final int END = (int)1;
 
 	public long entityId;
 	public int status;

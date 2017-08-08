@@ -26,10 +26,10 @@ public class ResourcePackClientResponse extends Packet {
 	}
 
 	// status
-	public static final byte REFUSED = 1;
-	public static final byte SEND_PACKS = 2;
-	public static final byte HAVE_ALL_PACKS = 3;
-	public static final byte COMPLETED = 4;
+	public static final byte REFUSED = (byte)1;
+	public static final byte SEND_PACKS = (byte)2;
+	public static final byte HAVE_ALL_PACKS = (byte)3;
+	public static final byte COMPLETED = (byte)4;
 
 	public byte status;
 	public String[] packIds = new String[0];

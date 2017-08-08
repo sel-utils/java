@@ -23,9 +23,9 @@ public class Interact extends Packet {
 	}
 
 	// action
-	public static final byte LEAVE_VEHICLE = 3;
-	public static final byte HOVER = 4;
-	public static final byte OPEN_INVENTORY = 6;
+	public static final byte LEAVE_VEHICLE = (byte)3;
+	public static final byte HOVER = (byte)4;
+	public static final byte OPEN_INVENTORY = (byte)6;
 
 	public byte action;
 	public long target;

@@ -23,14 +23,14 @@ public class PlayerDigging extends Packet {
 	}
 
 	// status
-	public static final int START_DIGGING = 0;
-	public static final int CANCEL_DIGGING = 1;
-	public static final int FINISH_DIGGING = 2;
-	public static final int DROP_ITEM_STACK = 3;
-	public static final int DROP_ITEM = 4;
-	public static final int SHOOT_ARROW = 5;
-	public static final int FINISH_EATING = 5;
-	public static final int SWAP_ITEM_IN_HAND = 6;
+	public static final int START_DIGGING = (int)0;
+	public static final int CANCEL_DIGGING = (int)1;
+	public static final int FINISH_DIGGING = (int)2;
+	public static final int DROP_ITEM_STACK = (int)3;
+	public static final int DROP_ITEM = (int)4;
+	public static final int SHOOT_ARROW = (int)5;
+	public static final int FINISH_EATING = (int)5;
+	public static final int SWAP_ITEM_IN_HAND = (int)6;
 
 	public int status;
 	public long position;

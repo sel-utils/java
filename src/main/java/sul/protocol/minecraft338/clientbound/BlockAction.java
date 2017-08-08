@@ -23,26 +23,26 @@ public class BlockAction extends Packet {
 	}
 
 	// action
-	public static final byte NOTE_BLOCK_HARP = 0;
-	public static final byte NOTE_BLOCK_BASS_DRUM = 1;
-	public static final byte NOTE_BLOCK_SNARE_DRUM = 2;
-	public static final byte NOTE_BLOCK_CLICKS = 3;
-	public static final byte NOTE_BLOCK_STICKS = 3;
-	public static final byte NOTE_BLOCK_BASS_GUITAR = 4;
-	public static final byte PISTON_EXTEND = 0;
-	public static final byte PISTON_RETRACT = 1;
-	public static final byte CHEST_WATCHERS = 1;
-	public static final byte BEACON_RECALCULATE = 1;
-	public static final byte MOB_SPAWNER_RESET_DELAY = 1;
-	public static final byte END_GATEWAY_YELLOW_BEAM = 1;
+	public static final byte NOTE_BLOCK_HARP = (byte)0;
+	public static final byte NOTE_BLOCK_BASS_DRUM = (byte)1;
+	public static final byte NOTE_BLOCK_SNARE_DRUM = (byte)2;
+	public static final byte NOTE_BLOCK_CLICKS = (byte)3;
+	public static final byte NOTE_BLOCK_STICKS = (byte)3;
+	public static final byte NOTE_BLOCK_BASS_GUITAR = (byte)4;
+	public static final byte PISTON_EXTEND = (byte)0;
+	public static final byte PISTON_RETRACT = (byte)1;
+	public static final byte CHEST_WATCHERS = (byte)1;
+	public static final byte BEACON_RECALCULATE = (byte)1;
+	public static final byte MOB_SPAWNER_RESET_DELAY = (byte)1;
+	public static final byte END_GATEWAY_YELLOW_BEAM = (byte)1;
 
 	// parameter
-	public static final byte PISTON_DOWN = 0;
-	public static final byte PISTON_UP = 1;
-	public static final byte PISTON_SOUTH = 2;
-	public static final byte PISTON_WEST = 3;
-	public static final byte PISTON_NORTH = 4;
-	public static final byte PISTON_EAST = 5;
+	public static final byte PISTON_DOWN = (byte)0;
+	public static final byte PISTON_UP = (byte)1;
+	public static final byte PISTON_SOUTH = (byte)2;
+	public static final byte PISTON_WEST = (byte)3;
+	public static final byte PISTON_NORTH = (byte)4;
+	public static final byte PISTON_EAST = (byte)5;
 
 	public long position;
 	public byte action;

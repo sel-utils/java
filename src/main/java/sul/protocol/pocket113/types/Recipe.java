@@ -15,11 +15,11 @@ import sul.utils.*;
 public class Recipe extends Stream {
 
 	// type
-	public static final int SHAPELESS = 0;
-	public static final int SHAPED = 1;
-	public static final int FURNACE = 2;
-	public static final int FURNACE_DATA = 3;
-	public static final int MULTI = 4;
+	public static final int SHAPELESS = (int)0;
+	public static final int SHAPED = (int)1;
+	public static final int FURNACE = (int)2;
+	public static final int FURNACE_DATA = (int)3;
+	public static final int MULTI = (int)4;
 
 	public int type;
 	public byte[] data = new byte[0];

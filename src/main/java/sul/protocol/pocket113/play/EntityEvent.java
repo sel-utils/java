@@ -23,21 +23,21 @@ public class EntityEvent extends Packet {
 	}
 
 	// event id
-	public static final byte HURT_ANIMATION = 2;
-	public static final byte DEATH_ANIMATION = 3;
-	public static final byte TAME_FAIL = 6;
-	public static final byte TAME_SUCCESS = 7;
-	public static final byte SHAKE_WET = 8;
-	public static final byte USE_ITEM = 9;
-	public static final byte EAT_GRASS_ANIMATION = 10;
-	public static final byte FISH_HOOK_BUBBLES = 11;
-	public static final byte FISH_HOOK_POSITION = 12;
-	public static final byte FISH_HOOK_HOOK = 13;
-	public static final byte FISH_HOOK_TEASE = 14;
-	public static final byte SQUID_INK_CLOUD = 15;
-	public static final byte AMBIENT_SOUND = 16;
-	public static final byte RESPAWN = 17;
-	public static final byte UNLEASH = 63;
+	public static final byte HURT_ANIMATION = (byte)2;
+	public static final byte DEATH_ANIMATION = (byte)3;
+	public static final byte TAME_FAIL = (byte)6;
+	public static final byte TAME_SUCCESS = (byte)7;
+	public static final byte SHAKE_WET = (byte)8;
+	public static final byte USE_ITEM = (byte)9;
+	public static final byte EAT_GRASS_ANIMATION = (byte)10;
+	public static final byte FISH_HOOK_BUBBLES = (byte)11;
+	public static final byte FISH_HOOK_POSITION = (byte)12;
+	public static final byte FISH_HOOK_HOOK = (byte)13;
+	public static final byte FISH_HOOK_TEASE = (byte)14;
+	public static final byte SQUID_INK_CLOUD = (byte)15;
+	public static final byte AMBIENT_SOUND = (byte)16;
+	public static final byte RESPAWN = (byte)17;
+	public static final byte UNLEASH = (byte)63;
 
 	public long entityId;
 	public byte eventId;

@@ -25,12 +25,12 @@ public class SetTitle extends Packet {
 	}
 
 	// action
-	public static final int HIDE = 0;
-	public static final int RESET = 1;
-	public static final int SET_TITLE = 2;
-	public static final int SET_SUBTITLE = 3;
-	public static final int SET_ACTION_BAR = 4;
-	public static final int SET_TIMINGS = 5;
+	public static final int HIDE = (int)0;
+	public static final int RESET = (int)1;
+	public static final int SET_TITLE = (int)2;
+	public static final int SET_SUBTITLE = (int)3;
+	public static final int SET_ACTION_BAR = (int)4;
+	public static final int SET_TIMINGS = (int)5;
 
 	public int action;
 	public String text;

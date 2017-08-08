@@ -46,8 +46,8 @@ public class ResourcePacksInfo extends Packet {
 		this._buffer = new byte[this.length()];
 		this.writeVaruint(ID);
 		this.writeBool(mustAccept);
-		this.writeLittleEndianShort((short)behaviourPacks.length); for(sul.protocol.pocket131.types.PackWithSize yvyzbvuf:behaviourPacks){ this.writeBytes(yvyzbvuf.encode()); }
-		this.writeLittleEndianShort((short)resourcePacks.length); for(sul.protocol.pocket131.types.PackWithSize cvbvyvyn:resourcePacks){ this.writeBytes(cvbvyvyn.encode()); }
+		this.writeBigEndianShort((short)behaviourPacks.length); for(sul.protocol.pocket131.types.PackWithSize yvyzbvuf:behaviourPacks){ this.writeBytes(yvyzbvuf.encode()); }
+		this.writeBigEndianShort((short)resourcePacks.length); for(sul.protocol.pocket131.types.PackWithSize cvbvyvyn:resourcePacks){ this.writeBytes(cvbvyvyn.encode()); }
 		return this.getBuffer();
 	}
 
@@ -56,8 +56,8 @@ public class ResourcePacksInfo extends Packet {
 		this._buffer = buffer;
 		this.readVaruint();
 		mustAccept=this.readBool();
-		int bjafa9cb=readLittleEndianShort(); behaviourPacks=new sul.protocol.pocket131.types.PackWithSize[bjafa9cb]; for(int yvyzbvuf=0;yvyzbvuf<behaviourPacks.length;yvyzbvuf++){ behaviourPacks[yvyzbvuf]=new sul.protocol.pocket131.types.PackWithSize(); behaviourPacks[yvyzbvuf]._index=this._index; behaviourPacks[yvyzbvuf].decode(this._buffer); this._index=behaviourPacks[yvyzbvuf]._index; }
-		int bjc9cnuf=readLittleEndianShort(); resourcePacks=new sul.protocol.pocket131.types.PackWithSize[bjc9cnuf]; for(int cvbvyvyn=0;cvbvyvyn<resourcePacks.length;cvbvyvyn++){ resourcePacks[cvbvyvyn]=new sul.protocol.pocket131.types.PackWithSize(); resourcePacks[cvbvyvyn]._index=this._index; resourcePacks[cvbvyvyn].decode(this._buffer); this._index=resourcePacks[cvbvyvyn]._index; }
+		int bjafa9cb=readBigEndianShort(); behaviourPacks=new sul.protocol.pocket131.types.PackWithSize[bjafa9cb]; for(int yvyzbvuf=0;yvyzbvuf<behaviourPacks.length;yvyzbvuf++){ behaviourPacks[yvyzbvuf]=new sul.protocol.pocket131.types.PackWithSize(); behaviourPacks[yvyzbvuf]._index=this._index; behaviourPacks[yvyzbvuf].decode(this._buffer); this._index=behaviourPacks[yvyzbvuf]._index; }
+		int bjc9cnuf=readBigEndianShort(); resourcePacks=new sul.protocol.pocket131.types.PackWithSize[bjc9cnuf]; for(int cvbvyvyn=0;cvbvyvyn<resourcePacks.length;cvbvyvyn++){ resourcePacks[cvbvyvyn]=new sul.protocol.pocket131.types.PackWithSize(); resourcePacks[cvbvyvyn]._index=this._index; resourcePacks[cvbvyvyn].decode(this._buffer); this._index=resourcePacks[cvbvyvyn]._index; }
 	}
 
 	public static ResourcePacksInfo fromBuffer(byte[] buffer) {

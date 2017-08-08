@@ -23,10 +23,10 @@ public class PlayerAbilities extends Packet {
 	}
 
 	// flags
-	public static final byte CREATIVE_MODE = 1;
-	public static final byte FLYING = 2;
-	public static final byte ALLOW_FLYING = 4;
-	public static final byte INVINCIBLE = 8;
+	public static final byte CREATIVE_MODE = (byte)1;
+	public static final byte FLYING = (byte)2;
+	public static final byte ALLOW_FLYING = (byte)4;
+	public static final byte INVINCIBLE = (byte)8;
 
 	public byte flags;
 	public float flyingSpeed;

@@ -23,10 +23,10 @@ public class ServerDifficulty extends Packet {
 	}
 
 	// difficulty
-	public static final byte PEACEFUL = 0;
-	public static final byte EASY = 1;
-	public static final byte NORMAL = 2;
-	public static final byte HARD = 3;
+	public static final byte PEACEFUL = (byte)0;
+	public static final byte EASY = (byte)1;
+	public static final byte NORMAL = (byte)2;
+	public static final byte HARD = (byte)3;
 
 	public byte difficulty;
 

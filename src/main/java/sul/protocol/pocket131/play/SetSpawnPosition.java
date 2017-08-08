@@ -23,8 +23,8 @@ public class SetSpawnPosition extends Packet {
 	}
 
 	// type
-	public static final int PLAYER_SPAWN = 0;
-	public static final int WORLD_SPAWN = 1;
+	public static final int PLAYER_SPAWN = (int)0;
+	public static final int WORLD_SPAWN = (int)1;
 
 	public int type;
 	public sul.protocol.pocket131.types.BlockPosition position;

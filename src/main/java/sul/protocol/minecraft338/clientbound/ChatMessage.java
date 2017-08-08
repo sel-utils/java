@@ -25,9 +25,9 @@ public class ChatMessage extends Packet {
 	}
 
 	// position
-	public static final byte CHAT = 0;
-	public static final byte SYSTEM_MESSAGE = 1;
-	public static final byte ABOVE_HOTBAR = 2;
+	public static final byte CHAT = (byte)0;
+	public static final byte SYSTEM_MESSAGE = (byte)1;
+	public static final byte ABOVE_HOTBAR = (byte)2;
 
 	public String message;
 	public byte position;

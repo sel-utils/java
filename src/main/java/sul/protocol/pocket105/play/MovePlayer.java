@@ -23,9 +23,9 @@ public class MovePlayer extends Packet {
 	}
 
 	// animation
-	public static final byte FULL = 0;
-	public static final byte NONE = 1;
-	public static final byte ROTATION = 2;
+	public static final byte FULL = (byte)0;
+	public static final byte NONE = (byte)1;
+	public static final byte ROTATION = (byte)2;
 
 	public long entityId;
 	public Tuples.FloatXYZ position = new Tuples.FloatXYZ();

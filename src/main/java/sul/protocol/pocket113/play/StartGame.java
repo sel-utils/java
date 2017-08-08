@@ -26,29 +26,29 @@ public class StartGame extends Packet {
 	}
 
 	// gamemode
-	public static final int SURVIVAL = 0;
-	public static final int CREATIVE = 1;
-	public static final int ADVENTURE = 2;
+	public static final int SURVIVAL = (int)0;
+	public static final int CREATIVE = (int)1;
+	public static final int ADVENTURE = (int)2;
 
 	// dimension
-	public static final int OVERWORLD = 0;
-	public static final int NETHER = 1;
-	public static final int END = 2;
+	public static final int OVERWORLD = (int)0;
+	public static final int NETHER = (int)1;
+	public static final int END = (int)2;
 
 	// generator
-	public static final int OLD = 0;
-	public static final int INFINITE = 1;
-	public static final int FLAT = 2;
+	public static final int OLD = (int)0;
+	public static final int INFINITE = (int)1;
+	public static final int FLAT = (int)2;
 
 	// difficulty
-	public static final int PEACEFUL = 0;
-	public static final int EASY = 1;
-	public static final int NORMAL = 2;
-	public static final int HARD = 3;
+	public static final int PEACEFUL = (int)0;
+	public static final int EASY = (int)1;
+	public static final int NORMAL = (int)2;
+	public static final int HARD = (int)3;
 
 	// version
-	public static final byte VANILLA = 0;
-	public static final byte EDUCATION = 1;
+	public static final byte VANILLA = (byte)0;
+	public static final byte EDUCATION = (byte)1;
 
 	/**
 	 * Player's entity id that uniquely identifies the entity of the server.

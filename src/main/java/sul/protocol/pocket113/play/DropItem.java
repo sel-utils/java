@@ -23,7 +23,7 @@ public class DropItem extends Packet {
 	}
 
 	// action
-	public static final byte DROP = 0;
+	public static final byte DROP = (byte)0;
 
 	public byte action;
 	public sul.protocol.pocket113.types.Slot item;

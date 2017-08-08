@@ -23,8 +23,8 @@ public class Animation extends Packet {
 	}
 
 	// hand
-	public static final int MAIN_HAND = 0;
-	public static final int OFF_HAND = 1;
+	public static final int MAIN_HAND = (int)0;
+	public static final int OFF_HAND = (int)1;
 
 	public int hand;
 

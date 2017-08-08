@@ -29,8 +29,8 @@ public class Login extends Packet {
 	}
 
 	// edition
-	public static final byte CLASSIC = 0;
-	public static final byte EDUCATION = 1;
+	public static final byte CLASSIC = (byte)0;
+	public static final byte EDUCATION = (byte)1;
 
 	/**
 	 * Version of the protocol used by the player.

@@ -27,9 +27,9 @@ public class BossEvent extends Packet {
 	}
 
 	// event id
-	public static final int ADD = 0;
-	public static final int UPDATE = 1;
-	public static final int REMOVE = 2;
+	public static final int ADD = (int)0;
+	public static final int UPDATE = (int)1;
+	public static final int REMOVE = (int)2;
 
 	public long entityId;
 	public int eventId;

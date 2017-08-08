@@ -25,8 +25,8 @@ public class Handshake extends Packet {
 	}
 
 	// next
-	public static final int STATUS = 1;
-	public static final int LOGIN = 2;
+	public static final int STATUS = (int)1;
+	public static final int LOGIN = (int)2;
 
 	public int protocol;
 	public String serverAddress;

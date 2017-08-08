@@ -23,19 +23,19 @@ public class PlayerAction extends Packet {
 	}
 
 	// action
-	public static final int START_BREAK = 0;
-	public static final int ABORT_BREAK = 1;
-	public static final int STOP_BREAK = 2;
-	public static final int RELEASE_ITEM = 5;
-	public static final int STOP_SLEEPING = 6;
-	public static final int RESPAWN = 7;
-	public static final int JUMP = 8;
-	public static final int START_SPRINT = 9;
-	public static final int STOP_SPRINT = 10;
-	public static final int START_SNEAK = 11;
-	public static final int STOP_SNEAK = 12;
-	public static final int START_GLIDING = 15;
-	public static final int STOP_GLIDING = 16;
+	public static final int START_BREAK = (int)0;
+	public static final int ABORT_BREAK = (int)1;
+	public static final int STOP_BREAK = (int)2;
+	public static final int RELEASE_ITEM = (int)5;
+	public static final int STOP_SLEEPING = (int)6;
+	public static final int RESPAWN = (int)7;
+	public static final int JUMP = (int)8;
+	public static final int START_SPRINT = (int)9;
+	public static final int STOP_SPRINT = (int)10;
+	public static final int START_SNEAK = (int)11;
+	public static final int STOP_SNEAK = (int)12;
+	public static final int START_GLIDING = (int)15;
+	public static final int STOP_GLIDING = (int)16;
 
 	public long entityId;
 	public int action;

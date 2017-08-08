@@ -28,9 +28,9 @@ public class RemoteCommand extends Packet {
 	}
 
 	// origin
-	public static final byte HUB = 0;
-	public static final byte EXTERNAL_CONSOLE = 1;
-	public static final byte RCON = 2;
+	public static final byte HUB = (byte)0;
+	public static final byte EXTERNAL_CONSOLE = (byte)1;
+	public static final byte RCON = (byte)2;
 
 	/**
 	 * Origin of the command. It could be the hub itself or an external source.

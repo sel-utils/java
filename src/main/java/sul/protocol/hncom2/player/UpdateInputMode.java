@@ -26,9 +26,9 @@ public class UpdateInputMode extends Packet {
 	}
 
 	// input mode
-	public static final byte KEYBOARD = 0;
-	public static final byte TOUCH = 1;
-	public static final byte CONTROLLER = 2;
+	public static final byte KEYBOARD = (byte)0;
+	public static final byte TOUCH = (byte)1;
+	public static final byte CONTROLLER = (byte)2;
 
 	public int hubId;
 

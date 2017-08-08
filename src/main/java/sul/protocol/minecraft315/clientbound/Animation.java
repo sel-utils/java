@@ -23,12 +23,12 @@ public class Animation extends Packet {
 	}
 
 	// animation
-	public static final byte SWING_MAIN_ARM = 0;
-	public static final byte TAKE_DAMAGE = 1;
-	public static final byte LEAVE_BED = 2;
-	public static final byte SWING_OFFHAND = 3;
-	public static final byte CRITICAL_EFFECT = 4;
-	public static final byte MAGICAL_CRITICAL_EFFECT = 5;
+	public static final byte SWING_MAIN_ARM = (byte)0;
+	public static final byte TAKE_DAMAGE = (byte)1;
+	public static final byte LEAVE_BED = (byte)2;
+	public static final byte SWING_OFFHAND = (byte)3;
+	public static final byte CRITICAL_EFFECT = (byte)4;
+	public static final byte MAGICAL_CRITICAL_EFFECT = (byte)5;
 
 	public int entityId;
 	public byte animation;

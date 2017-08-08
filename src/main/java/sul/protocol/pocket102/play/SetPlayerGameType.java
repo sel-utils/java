@@ -28,8 +28,8 @@ public class SetPlayerGameType extends Packet {
 	}
 
 	// gamemode
-	public static final int SURVIVAL = 0;
-	public static final int CREATIVE = 1;
+	public static final int SURVIVAL = (int)0;
+	public static final int CREATIVE = (int)1;
 
 	public int gamemode;
 
