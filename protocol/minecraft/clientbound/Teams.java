@@ -86,8 +86,8 @@ public class Teams extends Packet {
 		}
 
 		// friendly flags
-		public static final byte FRIENDLY_FIRE = 1;
-		public static final byte SEE_TEAM_INVISIBLE_PLAYERS = 2;
+		public static final byte FRIENDLY_FIRE = (byte)1;
+		public static final byte SEE_TEAM_INVISIBLE_PLAYERS = (byte)2;
 
 		// nametag visibility
 		public static final String ALWAYS_HIDE = "always";
@@ -216,8 +216,8 @@ public class Teams extends Packet {
 		}
 
 		// friendly flags
-		public static final byte FRIENDLY_FIRE = 1;
-		public static final byte SEE_TEAM_INVISIBLE_PLAYERS = 2;
+		public static final byte FRIENDLY_FIRE = (byte)1;
+		public static final byte SEE_TEAM_INVISIBLE_PLAYERS = (byte)2;
 
 		// nametag visibility
 		public static final String ALWAYS_HIDE = "always";

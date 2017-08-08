@@ -26,10 +26,10 @@ public class SpawnPainting extends Packet {
 	}
 
 	// direction
-	public static final byte SOUTH = 0;
-	public static final byte WEST = 1;
-	public static final byte NORTH = 2;
-	public static final byte EAST = 3;
+	public static final byte SOUTH = (byte)0;
+	public static final byte WEST = (byte)1;
+	public static final byte NORTH = (byte)2;
+	public static final byte EAST = (byte)3;
 
 	public int entityId;
 	public UUID uuid;

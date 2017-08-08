@@ -25,21 +25,21 @@ public class JoinGame extends Packet {
 	}
 
 	// gamemode
-	public static final byte SURVIVAL = 0;
-	public static final byte CREATIVE = 1;
-	public static final byte ADVENTURE = 2;
-	public static final byte SPECTATOR = 3;
+	public static final byte SURVIVAL = (byte)0;
+	public static final byte CREATIVE = (byte)1;
+	public static final byte ADVENTURE = (byte)2;
+	public static final byte SPECTATOR = (byte)3;
 
 	// dimension
-	public static final int NETHER = -1;
-	public static final int OVERWORLD = 0;
-	public static final int END = 1;
+	public static final int NETHER = (int)-1;
+	public static final int OVERWORLD = (int)0;
+	public static final int END = (int)1;
 
 	// difficulty
-	public static final byte PEACEFUL = 0;
-	public static final byte EASY = 1;
-	public static final byte NORMAL = 2;
-	public static final byte HARD = 3;
+	public static final byte PEACEFUL = (byte)0;
+	public static final byte EASY = (byte)1;
+	public static final byte NORMAL = (byte)2;
+	public static final byte HARD = (byte)3;
 
 	// level type
 	public static final String INFINITY = "default";

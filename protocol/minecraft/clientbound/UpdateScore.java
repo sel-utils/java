@@ -25,8 +25,8 @@ public class UpdateScore extends Packet {
 	}
 
 	// action
-	public static final byte UPDATE = 0;
-	public static final byte REMOVE = 1;
+	public static final byte UPDATE = (byte)0;
+	public static final byte REMOVE = (byte)1;
 
 	public String scoreName;
 	public byte action;

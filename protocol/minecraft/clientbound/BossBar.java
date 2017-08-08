@@ -86,24 +86,24 @@ public class BossBar extends Packet {
 		}
 
 		// color
-		public static final int PINK = 0;
-		public static final int BLUE = 1;
-		public static final int RED = 2;
-		public static final int GREEN = 3;
-		public static final int YELLOW = 4;
-		public static final int PURPLE = 5;
-		public static final int WHITE = 6;
+		public static final int PINK = (int)0;
+		public static final int BLUE = (int)1;
+		public static final int RED = (int)2;
+		public static final int GREEN = (int)3;
+		public static final int YELLOW = (int)4;
+		public static final int PURPLE = (int)5;
+		public static final int WHITE = (int)6;
 
 		// division
-		public static final int NO_DIVISION = 0;
-		public static final int SIX_NOTCHES = 1;
-		public static final int TEN_NOTCHES = 2;
-		public static final int TWELVE_NOTCHES = 3;
-		public static final int TWENTY_NOTCHES = 4;
+		public static final int NO_DIVISION = (int)0;
+		public static final int SIX_NOTCHES = (int)1;
+		public static final int TEN_NOTCHES = (int)2;
+		public static final int TWELVE_NOTCHES = (int)3;
+		public static final int TWENTY_NOTCHES = (int)4;
 
 		// flags
-		public static final byte DARK_SKY = 1;
-		public static final byte IS_DRAGON_BAR = 2;
+		public static final byte DARK_SKY = (byte)1;
+		public static final byte IS_DRAGON_BAR = (byte)2;
 
 		public String title;
 		public float health;
@@ -304,20 +304,20 @@ public class BossBar extends Packet {
 		}
 
 		// color
-		public static final int PINK = 0;
-		public static final int BLUE = 1;
-		public static final int RED = 2;
-		public static final int GREEN = 3;
-		public static final int YELLOW = 4;
-		public static final int PURPLE = 5;
-		public static final int WHITE = 6;
+		public static final int PINK = (int)0;
+		public static final int BLUE = (int)1;
+		public static final int RED = (int)2;
+		public static final int GREEN = (int)3;
+		public static final int YELLOW = (int)4;
+		public static final int PURPLE = (int)5;
+		public static final int WHITE = (int)6;
 
 		// division
-		public static final int NO_DIVISION = 0;
-		public static final int SIX_NOTCHES = 1;
-		public static final int TEN_NOTCHES = 2;
-		public static final int TWELVE_NOTCHES = 3;
-		public static final int TWENTY_NOTCHES = 4;
+		public static final int NO_DIVISION = (int)0;
+		public static final int SIX_NOTCHES = (int)1;
+		public static final int TEN_NOTCHES = (int)2;
+		public static final int TWELVE_NOTCHES = (int)3;
+		public static final int TWENTY_NOTCHES = (int)4;
 
 		public int color;
 		public int division;
@@ -372,8 +372,8 @@ public class BossBar extends Packet {
 		}
 
 		// flags
-		public static final byte DARK_SKY = 1;
-		public static final byte IS_DRAGON_BAR = 2;
+		public static final byte DARK_SKY = (byte)1;
+		public static final byte IS_DRAGON_BAR = (byte)2;
 
 		public byte flags;
 
