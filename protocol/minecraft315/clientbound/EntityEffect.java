@@ -23,8 +23,8 @@ public class EntityEffect extends Packet {
 	}
 
 	// flags
-	public static final byte AMBIENT = 1;
-	public static final byte SHOW_PARTICLES = 2;
+	public static final byte AMBIENT = (byte)1;
+	public static final byte SHOW_PARTICLES = (byte)2;
 
 	public int entityId;
 	public byte effectId;

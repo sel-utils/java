@@ -23,10 +23,10 @@ public class ResourcePackStatus extends Packet {
 	}
 
 	// result
-	public static final int LOADED = 0;
-	public static final int DECLINED = 1;
-	public static final int FAILED = 2;
-	public static final int ACCEPTED = 3;
+	public static final int LOADED = (int)0;
+	public static final int DECLINED = (int)1;
+	public static final int FAILED = (int)2;
+	public static final int ACCEPTED = (int)3;
 
 	public int result;
 
