@@ -23,23 +23,23 @@ public class PlayerAction extends Packet {
 	}
 
 	// action
-	public static final int START_BREAK = 0;
-	public static final int ABORT_BREAK = 1;
-	public static final int STOP_BREAK = 2;
-	public static final int GET_UPDATED_BLOCK = 3;
-	public static final int DROP_ITEM = 4;
-	public static final int STOP_SLEEPING = 5;
-	public static final int RESPAWN = 6;
-	public static final int JUMP = 7;
-	public static final int START_SPRINT = 8;
-	public static final int STOP_SPRINT = 9;
-	public static final int START_SNEAK = 10;
-	public static final int STOP_SNEAK = 11;
-	public static final int START_GLIDING = 14;
-	public static final int STOP_GLIDING = 15;
-	public static final int BUILD_DENIED = 16;
-	public static final int CONTINUE_BREAK = 17;
-	public static final int SET_ENCHANTMENT_SEED = 18;
+	public static final int START_BREAK = (int)0;
+	public static final int ABORT_BREAK = (int)1;
+	public static final int STOP_BREAK = (int)2;
+	public static final int GET_UPDATED_BLOCK = (int)3;
+	public static final int DROP_ITEM = (int)4;
+	public static final int STOP_SLEEPING = (int)5;
+	public static final int RESPAWN = (int)6;
+	public static final int JUMP = (int)7;
+	public static final int START_SPRINT = (int)8;
+	public static final int STOP_SPRINT = (int)9;
+	public static final int START_SNEAK = (int)10;
+	public static final int STOP_SNEAK = (int)11;
+	public static final int START_GLIDING = (int)14;
+	public static final int STOP_GLIDING = (int)15;
+	public static final int BUILD_DENIED = (int)16;
+	public static final int CONTINUE_BREAK = (int)17;
+	public static final int SET_ENCHANTMENT_SEED = (int)18;
 
 	public long entityId;
 	public int action;

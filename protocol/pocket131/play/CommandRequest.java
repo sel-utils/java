@@ -25,10 +25,10 @@ public class CommandRequest extends Packet {
 	}
 
 	// type
-	public static final int PLAYER = 0;
-	public static final int COMMAND_BLOCK = 1;
-	public static final int MINECART_COMMAND_BLOCK = 2;
-	public static final int DEV_CONSOLE = 3;
+	public static final int PLAYER = (int)0;
+	public static final int COMMAND_BLOCK = (int)1;
+	public static final int MINECART_COMMAND_BLOCK = (int)2;
+	public static final int DEV_CONSOLE = (int)3;
 
 	public String command;
 	public int type;

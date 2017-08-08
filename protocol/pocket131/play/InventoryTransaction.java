@@ -161,9 +161,9 @@ public class InventoryTransaction extends Packet {
 		}
 
 		// action type
-		public static final int CLICK_BLOCK = 0;
-		public static final int CLICK_AIR = 1;
-		public static final int BREAK_BLOCK = 2;
+		public static final int CLICK_BLOCK = (int)0;
+		public static final int CLICK_AIR = (int)1;
+		public static final int BREAK_BLOCK = (int)2;
 
 		public int actionType;
 		public sul.protocol.pocket131.types.BlockPosition blockPosition;
@@ -238,8 +238,8 @@ public class InventoryTransaction extends Packet {
 		}
 
 		// action type
-		public static final int INTERACT = 0;
-		public static final int ATTACK = 1;
+		public static final int INTERACT = (int)0;
+		public static final int ATTACK = (int)1;
 
 		public long entityId;
 		public int actionType;
@@ -310,8 +310,8 @@ public class InventoryTransaction extends Packet {
 		}
 
 		// action type
-		public static final int SHOOT_BOW = 0;
-		public static final int CONSUME = 1;
+		public static final int SHOOT_BOW = (int)0;
+		public static final int CONSUME = (int)1;
 
 		public int actionType;
 		public int hotbarSlot;
