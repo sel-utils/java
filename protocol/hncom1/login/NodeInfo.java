@@ -29,7 +29,7 @@ public class NodeInfo extends Packet {
 	}
 
 	// max
-	public static final int UNLIMITED = 0;
+	public static final int UNLIMITED = (int)0;
 
 	/**
 	 * Unix time with microseconds precision that indicates the exact moment when this
