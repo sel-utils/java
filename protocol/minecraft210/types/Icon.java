@@ -13,13 +13,13 @@ import sul.utils.*;
 public class Icon extends Stream {
 
 	// direction and type
-	public static final byte WHITE_ARROW = 0;
-	public static final byte GREEN_ARROW = 1;
-	public static final byte RED_ARROW = 2;
-	public static final byte BLUE_ARROW = 3;
-	public static final byte WHITE_CROSS = 4;
-	public static final byte RED_POINTER = 5;
-	public static final byte WHITE_CIRCLE = 6;
+	public static final byte WHITE_ARROW = (byte)0;
+	public static final byte GREEN_ARROW = (byte)1;
+	public static final byte RED_ARROW = (byte)2;
+	public static final byte BLUE_ARROW = (byte)3;
+	public static final byte WHITE_CROSS = (byte)4;
+	public static final byte RED_POINTER = (byte)5;
+	public static final byte WHITE_CIRCLE = (byte)6;
 
 	public byte directionAndType;
 	public Tuples.ByteXZ position = new Tuples.ByteXZ();

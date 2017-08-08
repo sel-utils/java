@@ -23,15 +23,15 @@ public class EntityAction extends Packet {
 	}
 
 	// action
-	public static final int START_SNEAKING = 0;
-	public static final int STOP_SNEAKING = 1;
-	public static final int LEAVE_BED = 2;
-	public static final int START_SPRINTING = 3;
-	public static final int STOP_SPRINTING = 4;
-	public static final int START_HORSE_JUMP = 5;
-	public static final int STOP_HORSE_JUMP = 6;
-	public static final int OPEN_HORSE_INVENTORY = 7;
-	public static final int START_ELYTRA_FLYING = 8;
+	public static final int START_SNEAKING = (int)0;
+	public static final int STOP_SNEAKING = (int)1;
+	public static final int LEAVE_BED = (int)2;
+	public static final int START_SPRINTING = (int)3;
+	public static final int STOP_SPRINTING = (int)4;
+	public static final int START_HORSE_JUMP = (int)5;
+	public static final int STOP_HORSE_JUMP = (int)6;
+	public static final int OPEN_HORSE_INVENTORY = (int)7;
+	public static final int START_ELYTRA_FLYING = (int)8;
 
 	public int entityId;
 	public int action;
