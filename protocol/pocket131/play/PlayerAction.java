@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class PlayerAction extends Packet {
 
-	public static final byte ID = (byte)36;
+	public static final int ID = (int)36;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -26,7 +26,8 @@ public class PlayerAction extends Packet {
 	public static final int START_BREAK = 0;
 	public static final int ABORT_BREAK = 1;
 	public static final int STOP_BREAK = 2;
-	public static final int RELEASE_ITEM = 4;
+	public static final int GET_UPDATED_BLOCK = 3;
+	public static final int DROP_ITEM = 4;
 	public static final int STOP_SLEEPING = 5;
 	public static final int RESPAWN = 6;
 	public static final int JUMP = 7;
@@ -36,7 +37,9 @@ public class PlayerAction extends Packet {
 	public static final int STOP_SNEAK = 11;
 	public static final int START_GLIDING = 14;
 	public static final int STOP_GLIDING = 15;
+	public static final int BUILD_DENIED = 16;
 	public static final int CONTINUE_BREAK = 17;
+	public static final int SET_ENCHANTMENT_SEED = 18;
 
 	public long entityId;
 	public int action;
@@ -60,7 +63,7 @@ public class PlayerAction extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(entityId);
 		this.writeVarint(action);
 		this.writeBytes(position.encode());
@@ -71,7 +74,7 @@ public class PlayerAction extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		entityId=this.readVarlong();
 		action=this.readVarint();
 		position=new sul.protocol.pocket131.types.BlockPosition(); position._index=this._index; position.decode(this._buffer); this._index=position._index;

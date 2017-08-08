@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class PlayerInput extends Packet {
 
-	public static final byte ID = (byte)57;
+	public static final int ID = (int)57;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -44,7 +44,7 @@ public class PlayerInput extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeLittleEndianFloat(sideways);
 		this.writeLittleEndianFloat(forward);
 		this.writeBool(unknown2);
@@ -55,7 +55,7 @@ public class PlayerInput extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		sideways=readLittleEndianFloat();
 		forward=readLittleEndianFloat();
 		unknown2=this.readBool();

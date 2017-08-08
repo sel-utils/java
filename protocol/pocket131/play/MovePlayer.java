@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class MovePlayer extends Packet {
 
-	public static final byte ID = (byte)19;
+	public static final int ID = (int)19;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = true;
@@ -62,13 +62,13 @@ public class MovePlayer extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(entityId);
 		this.writeLittleEndianFloat(position.x); this.writeLittleEndianFloat(position.y); this.writeLittleEndianFloat(position.z);
 		this.writeLittleEndianFloat(pitch);
 		this.writeLittleEndianFloat(headYaw);
 		this.writeLittleEndianFloat(yaw);
-		this.writeBigEndianByte(animation);
+		this.writeLittleEndianByte(animation);
 		this.writeBool(onGround);
 		this.writeVarlong(unknown7);
 		if(animation==3){ this.writeLittleEndianInt(unknown8); }
@@ -79,13 +79,13 @@ public class MovePlayer extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		entityId=this.readVarlong();
 		position=new Tuples.FloatXYZ(); position.x=readLittleEndianFloat(); position.y=readLittleEndianFloat(); position.z=readLittleEndianFloat();
 		pitch=readLittleEndianFloat();
 		headYaw=readLittleEndianFloat();
 		yaw=readLittleEndianFloat();
-		animation=readBigEndianByte();
+		animation=readLittleEndianByte();
 		onGround=this.readBool();
 		unknown7=this.readVarlong();
 		if(animation==3){ unknown8=readLittleEndianInt(); }

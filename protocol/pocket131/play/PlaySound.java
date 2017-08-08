@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class PlaySound extends Packet {
 
-	public static final byte ID = (byte)86;
+	public static final int ID = (int)86;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -40,13 +40,13 @@ public class PlaySound extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(name.getBytes(StandardCharsets.UTF_8).length) + name.getBytes(StandardCharsets.UTF_8).length + position.length() + 9;
+		return Buffer.varuintLength(name.getBytes(StandardCharsets.UTF_8).length) + name.getBytes(StandardCharsets.UTF_8).length + position.length() + 10;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		byte[] bfz=name.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)bfz.length); this.writeBytes(bfz);
 		this.writeBytes(position.encode());
 		this.writeLittleEndianFloat(volume);
@@ -57,7 +57,7 @@ public class PlaySound extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		int bvbfz=this.readVaruint(); name=new String(this.readBytes(bvbfz), StandardCharsets.UTF_8);
 		position=new sul.protocol.pocket131.types.BlockPosition(); position._index=this._index; position.decode(this._buffer); this._index=position._index;
 		volume=readLittleEndianFloat();

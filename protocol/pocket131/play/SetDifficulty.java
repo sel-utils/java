@@ -15,7 +15,7 @@ import sul.utils.*;
  */
 public class SetDifficulty extends Packet {
 
-	public static final byte ID = (byte)60;
+	public static final int ID = (int)60;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -47,7 +47,7 @@ public class SetDifficulty extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVaruint(difficulty);
 		return this.getBuffer();
 	}
@@ -55,7 +55,7 @@ public class SetDifficulty extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		difficulty=this.readVaruint();
 	}
 

@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class SetEntityLink extends Packet {
 
-	public static final byte ID = (byte)41;
+	public static final int ID = (int)41;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -46,20 +46,20 @@ public class SetEntityLink extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(vehicle);
 		this.writeVarlong(passenger);
-		this.writeBigEndianByte(action);
+		this.writeLittleEndianByte(action);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		vehicle=this.readVarlong();
 		passenger=this.readVarlong();
-		action=readBigEndianByte();
+		action=readLittleEndianByte();
 	}
 
 	public static SetEntityLink fromBuffer(byte[] buffer) {

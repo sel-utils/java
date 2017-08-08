@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class SetSpawnPosition extends Packet {
 
-	public static final byte ID = (byte)43;
+	public static final int ID = (int)43;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -46,7 +46,7 @@ public class SetSpawnPosition extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarint(type);
 		this.writeBytes(position.encode());
 		this.writeBool(forced);
@@ -56,7 +56,7 @@ public class SetSpawnPosition extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		type=this.readVarint();
 		position=new sul.protocol.pocket131.types.BlockPosition(); position._index=this._index; position.decode(this._buffer); this._index=position._index;
 		forced=this.readBool();

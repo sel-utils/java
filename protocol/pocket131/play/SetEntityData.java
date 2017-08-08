@@ -15,7 +15,7 @@ import sul.utils.*;
  */
 public class SetEntityData extends Packet {
 
-	public static final byte ID = (byte)39;
+	public static final int ID = (int)39;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -43,7 +43,7 @@ public class SetEntityData extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(entityId);
 		this.writeBytes(metadata.encode());
 		return this.getBuffer();
@@ -52,7 +52,7 @@ public class SetEntityData extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		entityId=this.readVarlong();
 		metadata=new sul.metadata.Pocket131(); metadata._index=this._index; metadata.decode(this._buffer); this._index=metadata._index;
 	}

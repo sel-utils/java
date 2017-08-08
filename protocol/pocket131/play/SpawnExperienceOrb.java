@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class SpawnExperienceOrb extends Packet {
 
-	public static final byte ID = (byte)66;
+	public static final int ID = (int)66;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -34,13 +34,13 @@ public class SpawnExperienceOrb extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varintLength(count) + 13;
+		return Buffer.varintLength(count) + 14;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeLittleEndianFloat(position.x); this.writeLittleEndianFloat(position.y); this.writeLittleEndianFloat(position.z);
 		this.writeVarint(count);
 		return this.getBuffer();
@@ -49,7 +49,7 @@ public class SpawnExperienceOrb extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		position=new Tuples.FloatXYZ(); position.x=readLittleEndianFloat(); position.y=readLittleEndianFloat(); position.z=readLittleEndianFloat();
 		count=this.readVarint();
 	}

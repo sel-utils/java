@@ -8,11 +8,13 @@
  */
 package sul.protocol.pocket131.play;
 
+import java.nio.charset.StandardCharsets;
+
 import sul.utils.*;
 
 public class BookEdit extends Packet {
 
-	public static final byte ID = (byte)97;
+	public static final int ID = (int)97;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = true;
@@ -22,22 +24,44 @@ public class BookEdit extends Packet {
 		return ID;
 	}
 
+	public byte type;
+	public byte slot;
+
+	public BookEdit() {}
+
+	public BookEdit(byte type, byte slot) {
+		this.type = type;
+		this.slot = slot;
+	}
+
 	@Override
 	public int length() {
-		return 1;
+		return 4;
 	}
 
 	@Override
 	public byte[] encode() {
+		return this.encodeImpl();
+	}
+
+	private byte[] encodeImpl() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
+		this.writeLittleEndianByte(type);
+		this.writeLittleEndianByte(slot);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
+		type=readLittleEndianByte();
+		slot=readLittleEndianByte();
+	}
+
+	private byte[] remainingBuffer() {
+		return java.util.Arrays.copyOfRange(this._buffer, this._index, this._buffer.length);
 	}
 
 	public static BookEdit fromBuffer(byte[] buffer) {
@@ -48,7 +72,271 @@ public class BookEdit extends Packet {
 
 	@Override
 	public String toString() {
-		return "BookEdit()";
+		return "BookEdit(type: " + this.type + ", slot: " + this.slot + ")";
+	}
+
+	public class ReplacePage extends Packet {
+
+		public static final byte TYPE = (byte)0;
+
+		@Override
+		public int getId() {
+			return ID;
+		}
+
+		public byte pageNumber;
+		public String unknown1;
+		public String unknown2;
+
+		public ReplacePage() {}
+
+		public ReplacePage(byte pageNumber, String unknown1, String unknown2) {
+			this.pageNumber = pageNumber;
+			this.unknown1 = unknown1;
+			this.unknown2 = unknown2;
+		}
+
+		@Override
+		public int length() {
+			return Buffer.varuintLength(unknown1.getBytes(StandardCharsets.UTF_8).length) + unknown1.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(unknown2.getBytes(StandardCharsets.UTF_8).length) + unknown2.getBytes(StandardCharsets.UTF_8).length + 1;
+		}
+
+		@Override
+		public byte[] encode() {
+			byte[] _encode = encodeImpl();
+			this._buffer = new byte[_encode.length + this.length()];
+			this.writeBytes(_encode);
+			this.writeLittleEndianByte(pageNumber);
+			byte[] d5b9be=unknown1.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)d5b9be.length); this.writeBytes(d5b9be);
+			byte[] d5b9bi=unknown2.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)d5b9bi.length); this.writeBytes(d5b9bi);
+			return this.getBuffer();
+		}
+
+		@Override
+		public void decode(byte[] buffer) {
+			this._buffer = buffer;
+			pageNumber=readLittleEndianByte();
+			int bvd5b9be=this.readVaruint(); unknown1=new String(this.readBytes(bvd5b9be), StandardCharsets.UTF_8);
+			int bvd5b9bi=this.readVaruint(); unknown2=new String(this.readBytes(bvd5b9bi), StandardCharsets.UTF_8);
+		}
+
+		public void decode() {
+			this.decode(remainingBuffer());
+		}
+
+		@Override
+		public String toString() {
+			return "BookEdit.ReplacePage(pageNumber: " + this.pageNumber + ", unknown1: " + this.unknown1 + ", unknown2: " + this.unknown2 + ")";
+		}
+
+	}
+
+	public class AddPage extends Packet {
+
+		public static final byte TYPE = (byte)1;
+
+		@Override
+		public int getId() {
+			return ID;
+		}
+
+		public byte pageNumber;
+		public String unknown1;
+		public String unknown2;
+
+		public AddPage() {}
+
+		public AddPage(byte pageNumber, String unknown1, String unknown2) {
+			this.pageNumber = pageNumber;
+			this.unknown1 = unknown1;
+			this.unknown2 = unknown2;
+		}
+
+		@Override
+		public int length() {
+			return Buffer.varuintLength(unknown1.getBytes(StandardCharsets.UTF_8).length) + unknown1.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(unknown2.getBytes(StandardCharsets.UTF_8).length) + unknown2.getBytes(StandardCharsets.UTF_8).length + 1;
+		}
+
+		@Override
+		public byte[] encode() {
+			byte[] _encode = encodeImpl();
+			this._buffer = new byte[_encode.length + this.length()];
+			this.writeBytes(_encode);
+			this.writeLittleEndianByte(pageNumber);
+			byte[] d5b9be=unknown1.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)d5b9be.length); this.writeBytes(d5b9be);
+			byte[] d5b9bi=unknown2.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)d5b9bi.length); this.writeBytes(d5b9bi);
+			return this.getBuffer();
+		}
+
+		@Override
+		public void decode(byte[] buffer) {
+			this._buffer = buffer;
+			pageNumber=readLittleEndianByte();
+			int bvd5b9be=this.readVaruint(); unknown1=new String(this.readBytes(bvd5b9be), StandardCharsets.UTF_8);
+			int bvd5b9bi=this.readVaruint(); unknown2=new String(this.readBytes(bvd5b9bi), StandardCharsets.UTF_8);
+		}
+
+		public void decode() {
+			this.decode(remainingBuffer());
+		}
+
+		@Override
+		public String toString() {
+			return "BookEdit.AddPage(pageNumber: " + this.pageNumber + ", unknown1: " + this.unknown1 + ", unknown2: " + this.unknown2 + ")";
+		}
+
+	}
+
+	public class DeletePage extends Packet {
+
+		public static final byte TYPE = (byte)2;
+
+		@Override
+		public int getId() {
+			return ID;
+		}
+
+		public byte pageNumber;
+
+		public DeletePage() {}
+
+		public DeletePage(byte pageNumber) {
+			this.pageNumber = pageNumber;
+		}
+
+		@Override
+		public int length() {
+			return 1;
+		}
+
+		@Override
+		public byte[] encode() {
+			byte[] _encode = encodeImpl();
+			this._buffer = new byte[_encode.length + this.length()];
+			this.writeBytes(_encode);
+			this.writeLittleEndianByte(pageNumber);
+			return this.getBuffer();
+		}
+
+		@Override
+		public void decode(byte[] buffer) {
+			this._buffer = buffer;
+			pageNumber=readLittleEndianByte();
+		}
+
+		public void decode() {
+			this.decode(remainingBuffer());
+		}
+
+		@Override
+		public String toString() {
+			return "BookEdit.DeletePage(pageNumber: " + this.pageNumber + ")";
+		}
+
+	}
+
+	public class SwapPages extends Packet {
+
+		public static final byte TYPE = (byte)3;
+
+		@Override
+		public int getId() {
+			return ID;
+		}
+
+		public byte page1;
+		public byte page2;
+
+		public SwapPages() {}
+
+		public SwapPages(byte page1, byte page2) {
+			this.page1 = page1;
+			this.page2 = page2;
+		}
+
+		@Override
+		public int length() {
+			return 2;
+		}
+
+		@Override
+		public byte[] encode() {
+			byte[] _encode = encodeImpl();
+			this._buffer = new byte[_encode.length + this.length()];
+			this.writeBytes(_encode);
+			this.writeLittleEndianByte(page1);
+			this.writeLittleEndianByte(page2);
+			return this.getBuffer();
+		}
+
+		@Override
+		public void decode(byte[] buffer) {
+			this._buffer = buffer;
+			page1=readLittleEndianByte();
+			page2=readLittleEndianByte();
+		}
+
+		public void decode() {
+			this.decode(remainingBuffer());
+		}
+
+		@Override
+		public String toString() {
+			return "BookEdit.SwapPages(page1: " + this.page1 + ", page2: " + this.page2 + ")";
+		}
+
+	}
+
+	public class Sign extends Packet {
+
+		public static final byte TYPE = (byte)4;
+
+		@Override
+		public int getId() {
+			return ID;
+		}
+
+		public String title;
+		public String author;
+
+		public Sign() {}
+
+		public Sign(String title, String author) {
+			this.title = title;
+			this.author = author;
+		}
+
+		@Override
+		public int length() {
+			return Buffer.varuintLength(title.getBytes(StandardCharsets.UTF_8).length) + title.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(author.getBytes(StandardCharsets.UTF_8).length) + author.getBytes(StandardCharsets.UTF_8).length;
+		}
+
+		@Override
+		public byte[] encode() {
+			byte[] _encode = encodeImpl();
+			this._buffer = new byte[_encode.length + this.length()];
+			this.writeBytes(_encode);
+			byte[] dlbu=title.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)dlbu.length); this.writeBytes(dlbu);
+			byte[] yva9=author.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)yva9.length); this.writeBytes(yva9);
+			return this.getBuffer();
+		}
+
+		@Override
+		public void decode(byte[] buffer) {
+			this._buffer = buffer;
+			int bvdlbu=this.readVaruint(); title=new String(this.readBytes(bvdlbu), StandardCharsets.UTF_8);
+			int bvyva9=this.readVaruint(); author=new String(this.readBytes(bvyva9), StandardCharsets.UTF_8);
+		}
+
+		public void decode() {
+			this.decode(remainingBuffer());
+		}
+
+		@Override
+		public String toString() {
+			return "BookEdit.Sign(title: " + this.title + ", author: " + this.author + ")";
+		}
+
 	}
 
 }

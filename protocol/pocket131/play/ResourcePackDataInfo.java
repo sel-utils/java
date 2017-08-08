@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class ResourcePackDataInfo extends Packet {
 
-	public static final byte ID = (byte)82;
+	public static final int ID = (int)82;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -42,13 +42,13 @@ public class ResourcePackDataInfo extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(sha256.getBytes(StandardCharsets.UTF_8).length) + sha256.getBytes(StandardCharsets.UTF_8).length + 17;
+		return Buffer.varuintLength(id.getBytes(StandardCharsets.UTF_8).length) + id.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(sha256.getBytes(StandardCharsets.UTF_8).length) + sha256.getBytes(StandardCharsets.UTF_8).length + 18;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		byte[] aq=id.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)aq.length); this.writeBytes(aq);
 		this.writeLittleEndianInt(maxChunkSize);
 		this.writeLittleEndianInt(chunkCount);
@@ -60,7 +60,7 @@ public class ResourcePackDataInfo extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		int bvaq=this.readVaruint(); id=new String(this.readBytes(bvaq), StandardCharsets.UTF_8);
 		maxChunkSize=readLittleEndianInt();
 		chunkCount=readLittleEndianInt();

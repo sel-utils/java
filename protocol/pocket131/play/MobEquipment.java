@@ -15,7 +15,7 @@ import sul.utils.*;
  */
 public class MobEquipment extends Packet {
 
-	public static final byte ID = (byte)31;
+	public static final int ID = (int)31;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = true;
@@ -58,24 +58,24 @@ public class MobEquipment extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(entityId);
 		this.writeBytes(item.encode());
-		this.writeBigEndianByte(inventorySlot);
-		this.writeBigEndianByte(hotbarSlot);
-		this.writeBigEndianByte(unknown4);
+		this.writeLittleEndianByte(inventorySlot);
+		this.writeLittleEndianByte(hotbarSlot);
+		this.writeLittleEndianByte(unknown4);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		entityId=this.readVarlong();
 		item=new sul.protocol.pocket131.types.Slot(); item._index=this._index; item.decode(this._buffer); this._index=item._index;
-		inventorySlot=readBigEndianByte();
-		hotbarSlot=readBigEndianByte();
-		unknown4=readBigEndianByte();
+		inventorySlot=readLittleEndianByte();
+		hotbarSlot=readLittleEndianByte();
+		unknown4=readLittleEndianByte();
 	}
 
 	public static MobEquipment fromBuffer(byte[] buffer) {

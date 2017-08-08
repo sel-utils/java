@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class EntityEvent extends Packet {
 
-	public static final byte ID = (byte)27;
+	public static final int ID = (int)27;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = true;
@@ -59,9 +59,9 @@ public class EntityEvent extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(entityId);
-		this.writeBigEndianByte(eventId);
+		this.writeLittleEndianByte(eventId);
 		this.writeVarint(unknown2);
 		return this.getBuffer();
 	}
@@ -69,9 +69,9 @@ public class EntityEvent extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		entityId=this.readVarlong();
-		eventId=readBigEndianByte();
+		eventId=readLittleEndianByte();
 		unknown2=this.readVarint();
 	}
 

@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class CommandRequest extends Packet {
 
-	public static final byte ID = (byte)77;
+	public static final int ID = (int)77;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -46,13 +46,13 @@ public class CommandRequest extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(command.getBytes(StandardCharsets.UTF_8).length) + command.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(type) + Buffer.varuintLength(requestId.getBytes(StandardCharsets.UTF_8).length) + requestId.getBytes(StandardCharsets.UTF_8).length + Buffer.varintLength(playerId) + 1;
+		return Buffer.varuintLength(command.getBytes(StandardCharsets.UTF_8).length) + command.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(type) + Buffer.varuintLength(requestId.getBytes(StandardCharsets.UTF_8).length) + requestId.getBytes(StandardCharsets.UTF_8).length + Buffer.varintLength(playerId) + 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		byte[] y9bfz=command.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)y9bfz.length); this.writeBytes(y9bfz);
 		this.writeVaruint(type);
 		byte[] cvdvdl=requestId.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)cvdvdl.length); this.writeBytes(cvdvdl);
@@ -63,7 +63,7 @@ public class CommandRequest extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		int bvy9bfz=this.readVaruint(); command=new String(this.readBytes(bvy9bfz), StandardCharsets.UTF_8);
 		type=this.readVaruint();
 		int bvcvdvdl=this.readVaruint(); requestId=new String(this.readBytes(bvcvdvdl), StandardCharsets.UTF_8);

@@ -17,7 +17,7 @@ import sul.utils.*;
  */
 public class SetTitle extends Packet {
 
-	public static final byte ID = (byte)88;
+	public static final int ID = (int)88;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -57,13 +57,13 @@ public class SetTitle extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varintLength(action) + Buffer.varuintLength(text.getBytes(StandardCharsets.UTF_8).length) + text.getBytes(StandardCharsets.UTF_8).length + Buffer.varintLength(fadeIn) + Buffer.varintLength(stay) + Buffer.varintLength(fadeOut) + 1;
+		return Buffer.varintLength(action) + Buffer.varuintLength(text.getBytes(StandardCharsets.UTF_8).length) + text.getBytes(StandardCharsets.UTF_8).length + Buffer.varintLength(fadeIn) + Buffer.varintLength(stay) + Buffer.varintLength(fadeOut) + 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarint(action);
 		byte[] dvd=text.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)dvd.length); this.writeBytes(dvd);
 		this.writeVarint(fadeIn);
@@ -75,7 +75,7 @@ public class SetTitle extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		action=this.readVarint();
 		int bvdvd=this.readVaruint(); text=new String(this.readBytes(bvdvd), StandardCharsets.UTF_8);
 		fadeIn=this.readVarint();

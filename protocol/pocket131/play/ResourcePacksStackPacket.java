@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class ResourcePacksStackPacket extends Packet {
 
-	public static final byte ID = (byte)7;
+	public static final int ID = (int)7;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -44,7 +44,7 @@ public class ResourcePacksStackPacket extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeBool(mustAccept);
 		this.writeVaruint((int)behaviourPacks.length); for(sul.protocol.pocket131.types.Pack yvyzbvuf:behaviourPacks){ this.writeBytes(yvyzbvuf.encode()); }
 		this.writeVaruint((int)resourcePacks.length); for(sul.protocol.pocket131.types.Pack cvbvyvyn:resourcePacks){ this.writeBytes(cvbvyvyn.encode()); }
@@ -54,7 +54,7 @@ public class ResourcePacksStackPacket extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		mustAccept=this.readBool();
 		int bjafa9cb=this.readVaruint(); behaviourPacks=new sul.protocol.pocket131.types.Pack[bjafa9cb]; for(int yvyzbvuf=0;yvyzbvuf<behaviourPacks.length;yvyzbvuf++){ behaviourPacks[yvyzbvuf]=new sul.protocol.pocket131.types.Pack(); behaviourPacks[yvyzbvuf]._index=this._index; behaviourPacks[yvyzbvuf].decode(this._buffer); this._index=behaviourPacks[yvyzbvuf]._index; }
 		int bjc9cnuf=this.readVaruint(); resourcePacks=new sul.protocol.pocket131.types.Pack[bjc9cnuf]; for(int cvbvyvyn=0;cvbvyvyn<resourcePacks.length;cvbvyvyn++){ resourcePacks[cvbvyvyn]=new sul.protocol.pocket131.types.Pack(); resourcePacks[cvbvyvyn]._index=this._index; resourcePacks[cvbvyvyn].decode(this._buffer); this._index=resourcePacks[cvbvyvyn]._index; }

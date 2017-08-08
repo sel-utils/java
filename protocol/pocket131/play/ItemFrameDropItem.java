@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class ItemFrameDropItem extends Packet {
 
-	public static final byte ID = (byte)71;
+	public static final int ID = (int)71;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -34,13 +34,13 @@ public class ItemFrameDropItem extends Packet {
 
 	@Override
 	public int length() {
-		return position.length() + item.length() + 1;
+		return position.length() + item.length() + 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeBytes(position.encode());
 		this.writeBytes(item.encode());
 		return this.getBuffer();
@@ -49,7 +49,7 @@ public class ItemFrameDropItem extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		position=new sul.protocol.pocket131.types.BlockPosition(); position._index=this._index; position.decode(this._buffer); this._index=position._index;
 		item=new sul.protocol.pocket131.types.Slot(); item._index=this._index; item.decode(this._buffer); this._index=item._index;
 	}

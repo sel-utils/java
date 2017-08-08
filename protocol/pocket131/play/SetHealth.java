@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class SetHealth extends Packet {
 
-	public static final byte ID = (byte)42;
+	public static final int ID = (int)42;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -38,7 +38,7 @@ public class SetHealth extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarint(health);
 		return this.getBuffer();
 	}
@@ -46,7 +46,7 @@ public class SetHealth extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		health=this.readVarint();
 	}
 

@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class CraftingEvent extends Packet {
 
-	public static final byte ID = (byte)53;
+	public static final int ID = (int)53;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -48,8 +48,8 @@ public class CraftingEvent extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
-		this.writeBigEndianByte(window);
+		this.writeVaruint(ID);
+		this.writeLittleEndianByte(window);
 		this.writeVarint(type);
 		this.writeBytes(uuid.encode());
 		this.writeVaruint((int)input.length); for(sul.protocol.pocket131.types.Slot a5dq:input){ this.writeBytes(a5dq.encode()); }
@@ -60,8 +60,8 @@ public class CraftingEvent extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
-		window=readBigEndianByte();
+		this.readVaruint();
+		window=readLittleEndianByte();
 		type=this.readVarint();
 		uuid=new sul.protocol.pocket131.types.McpeUuid(); uuid._index=this._index; uuid.decode(this._buffer); this._index=uuid._index;
 		int blcv=this.readVaruint(); input=new sul.protocol.pocket131.types.Slot[blcv]; for(int a5dq=0;a5dq<input.length;a5dq++){ input[a5dq]=new sul.protocol.pocket131.types.Slot(); input[a5dq]._index=this._index; input[a5dq].decode(this._buffer); this._index=input[a5dq]._index; }

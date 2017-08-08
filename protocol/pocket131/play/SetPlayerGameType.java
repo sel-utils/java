@@ -17,7 +17,7 @@ import sul.utils.*;
  */
 public class SetPlayerGameType extends Packet {
 
-	public static final byte ID = (byte)62;
+	public static final int ID = (int)62;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = true;
@@ -48,7 +48,7 @@ public class SetPlayerGameType extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarint(gamemode);
 		return this.getBuffer();
 	}
@@ -56,7 +56,7 @@ public class SetPlayerGameType extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		gamemode=this.readVarint();
 	}
 

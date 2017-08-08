@@ -19,7 +19,7 @@ import sul.utils.*;
  */
 public class PlayerList extends Packet {
 
-	public static final byte ID = (byte)63;
+	public static final int ID = (int)63;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -49,16 +49,16 @@ public class PlayerList extends Packet {
 
 	private byte[] encodeImpl() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
-		this.writeBigEndianByte(action);
+		this.writeVaruint(ID);
+		this.writeLittleEndianByte(action);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
-		action=readBigEndianByte();
+		this.readVaruint();
+		action=readLittleEndianByte();
 	}
 
 	private byte[] remainingBuffer() {

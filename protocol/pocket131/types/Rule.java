@@ -62,16 +62,16 @@ public class Rule extends Stream {
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(name.getBytes(StandardCharsets.UTF_8).length) + name.getBytes(StandardCharsets.UTF_8).length + 10;
+		return Buffer.varuintLength(name.getBytes(StandardCharsets.UTF_8).length) + name.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(integerValue) + 6;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		byte[] bfz=name.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)bfz.length); this.writeBytes(bfz);
-		this.writeBigEndianByte(type);
+		this.writeLittleEndianByte(type);
 		if(type==1){ this.writeBool(booleanValue); }
-		if(type==2){ this.writeBigEndianInt(integerValue); }
+		if(type==2){ this.writeVaruint(integerValue); }
 		if(type==3){ this.writeLittleEndianFloat(floatingValue); }
 		return this.getBuffer();
 	}
@@ -80,9 +80,9 @@ public class Rule extends Stream {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		int bvbfz=this.readVaruint(); name=new String(this.readBytes(bvbfz), StandardCharsets.UTF_8);
-		type=readBigEndianByte();
+		type=readLittleEndianByte();
 		if(type==1){ booleanValue=this.readBool(); }
-		if(type==2){ integerValue=readBigEndianInt(); }
+		if(type==2){ integerValue=this.readVaruint(); }
 		if(type==3){ floatingValue=readLittleEndianFloat(); }
 	}
 

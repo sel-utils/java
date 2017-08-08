@@ -147,7 +147,7 @@ public final class Packets {
 		play.put(93, sul.protocol.pocket131.play.PlayerSkin.class);
 		play.put(94, sul.protocol.pocket131.play.SubClientLogin.class);
 		play.put(95, sul.protocol.pocket131.play.InitiateWebSocketConnection.class);
-		play.put(96, sul.protocol.pocket131.play.SetLastHurt.class);
+		play.put(96, sul.protocol.pocket131.play.SetLastHurtBy.class);
 		play.put(97, sul.protocol.pocket131.play.BookEdit.class);
 		play.put(98, sul.protocol.pocket131.play.NpcRequest.class);
 		play.put(99, sul.protocol.pocket131.play.PhotoTransfer.class);
@@ -155,6 +155,7 @@ public final class Packets {
 		play.put(101, sul.protocol.pocket131.play.ModalFormResponse.class);
 		play.put(102, sul.protocol.pocket131.play.ServerSettingsRequest.class);
 		play.put(103, sul.protocol.pocket131.play.ServerSettingsResponse.class);
+		play.put(104, sul.protocol.pocket131.play.ShowProfile.class);
 		PLAY = Collections.unmodifiableMap(play);
 
 	}

@@ -39,7 +39,7 @@ public class Link extends Stream {
 		this._buffer = new byte[this.length()];
 		this.writeVarlong(from);
 		this.writeVarlong(to);
-		this.writeBigEndianByte(action);
+		this.writeLittleEndianByte(action);
 		return this.getBuffer();
 	}
 
@@ -48,7 +48,7 @@ public class Link extends Stream {
 		this._buffer = buffer;
 		from=this.readVarlong();
 		to=this.readVarlong();
-		action=readBigEndianByte();
+		action=readLittleEndianByte();
 	}
 
 	@Override

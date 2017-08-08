@@ -19,7 +19,7 @@ import sul.utils.*;
  */
 public class Text extends Packet {
 
-	public static final byte ID = (byte)9;
+	public static final int ID = (int)9;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = true;
@@ -51,18 +51,18 @@ public class Text extends Packet {
 
 	private byte[] encodeImpl() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
-		this.writeBigEndianByte(type);
-		this.writeBigEndianByte(unknown1);
+		this.writeVaruint(ID);
+		this.writeLittleEndianByte(type);
+		this.writeLittleEndianByte(unknown1);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
-		type=readBigEndianByte();
-		unknown1=readBigEndianByte();
+		this.readVaruint();
+		type=readLittleEndianByte();
+		unknown1=readLittleEndianByte();
 	}
 
 	private byte[] remainingBuffer() {

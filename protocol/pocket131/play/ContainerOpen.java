@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class ContainerOpen extends Packet {
 
-	public static final byte ID = (byte)46;
+	public static final int ID = (int)46;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -44,9 +44,9 @@ public class ContainerOpen extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
-		this.writeBigEndianByte(window);
-		this.writeBigEndianByte(type);
+		this.writeVaruint(ID);
+		this.writeLittleEndianByte(window);
+		this.writeLittleEndianByte(type);
 		this.writeBytes(position.encode());
 		this.writeVarlong(entityId);
 		return this.getBuffer();
@@ -55,9 +55,9 @@ public class ContainerOpen extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
-		window=readBigEndianByte();
-		type=readBigEndianByte();
+		this.readVaruint();
+		window=readLittleEndianByte();
+		type=readLittleEndianByte();
 		position=new sul.protocol.pocket131.types.BlockPosition(); position._index=this._index; position.decode(this._buffer); this._index=position._index;
 		entityId=this.readVarlong();
 	}

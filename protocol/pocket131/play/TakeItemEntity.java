@@ -15,7 +15,7 @@ import sul.utils.*;
  */
 public class TakeItemEntity extends Packet {
 
-	public static final byte ID = (byte)17;
+	public static final int ID = (int)17;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -51,7 +51,7 @@ public class TakeItemEntity extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(collected);
 		this.writeVarlong(collector);
 		return this.getBuffer();
@@ -60,7 +60,7 @@ public class TakeItemEntity extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		collected=this.readVarlong();
 		collector=this.readVarlong();
 	}

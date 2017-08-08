@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class MapInfoRequest extends Packet {
 
-	public static final byte ID = (byte)68;
+	public static final int ID = (int)68;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -32,13 +32,13 @@ public class MapInfoRequest extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varlongLength(mapId) + 1;
+		return Buffer.varlongLength(mapId) + 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(mapId);
 		return this.getBuffer();
 	}
@@ -46,7 +46,7 @@ public class MapInfoRequest extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		mapId=this.readVarlong();
 	}
 

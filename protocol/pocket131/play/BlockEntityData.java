@@ -20,7 +20,7 @@ import sul.utils.*;
  */
 public class BlockEntityData extends Packet {
 
-	public static final byte ID = (byte)56;
+	public static final int ID = (int)56;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = true;
@@ -63,7 +63,7 @@ public class BlockEntityData extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeBytes(position.encode());
 		this.writeBytes(nbt);
 		return this.getBuffer();
@@ -72,7 +72,7 @@ public class BlockEntityData extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		position=new sul.protocol.pocket131.types.BlockPosition(); position._index=this._index; position.decode(this._buffer); this._index=position._index;
 		nbt=this.readBytes(this._buffer.length-this._index);
 	}

@@ -15,7 +15,7 @@ import sul.utils.*;
  */
 public class AddItemEntity extends Packet {
 
-	public static final byte ID = (byte)15;
+	public static final int ID = (int)15;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -51,7 +51,7 @@ public class AddItemEntity extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(entityId);
 		this.writeVarlong(runtimeId);
 		this.writeBytes(item.encode());
@@ -64,7 +64,7 @@ public class AddItemEntity extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		entityId=this.readVarlong();
 		runtimeId=this.readVarlong();
 		item=new sul.protocol.pocket131.types.Slot(); item._index=this._index; item.decode(this._buffer); this._index=item._index;

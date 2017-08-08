@@ -15,7 +15,7 @@ import sul.utils.*;
  */
 public class FullChunkData extends Packet {
 
-	public static final byte ID = (byte)58;
+	public static final int ID = (int)58;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -46,7 +46,7 @@ public class FullChunkData extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarint(position.x); this.writeVarint(position.z);
 		this.writeBytes(data.encode());
 		return this.getBuffer();
@@ -55,7 +55,7 @@ public class FullChunkData extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		position=new Tuples.IntXZ(); position.x=this.readVarint(); position.z=this.readVarint();
 		data=new sul.protocol.pocket131.types.ChunkData(); data._index=this._index; data.decode(this._buffer); this._index=data._index;
 	}

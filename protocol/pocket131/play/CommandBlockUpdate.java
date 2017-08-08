@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class CommandBlockUpdate extends Packet {
 
-	public static final byte ID = (byte)78;
+	public static final int ID = (int)78;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = true;
@@ -52,13 +52,13 @@ public class CommandBlockUpdate extends Packet {
 
 	@Override
 	public int length() {
-		return position.length() + Buffer.varuintLength(mode) + Buffer.varlongLength(minecart) + Buffer.varuintLength(command.getBytes(StandardCharsets.UTF_8).length) + command.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(lastOutput.getBytes(StandardCharsets.UTF_8).length) + lastOutput.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(hover.getBytes(StandardCharsets.UTF_8).length) + hover.getBytes(StandardCharsets.UTF_8).length + 5;
+		return position.length() + Buffer.varuintLength(mode) + Buffer.varlongLength(minecart) + Buffer.varuintLength(command.getBytes(StandardCharsets.UTF_8).length) + command.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(lastOutput.getBytes(StandardCharsets.UTF_8).length) + lastOutput.getBytes(StandardCharsets.UTF_8).length + Buffer.varuintLength(hover.getBytes(StandardCharsets.UTF_8).length) + hover.getBytes(StandardCharsets.UTF_8).length + 6;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeBool(updateBlock);
 		if(updateBlock==true){ this.writeBytes(position.encode()); }
 		if(updateBlock==true){ this.writeVaruint(mode); }
@@ -75,7 +75,7 @@ public class CommandBlockUpdate extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		updateBlock=this.readBool();
 		if(updateBlock==true){ position=new sul.protocol.pocket131.types.BlockPosition(); position._index=this._index; position.decode(this._buffer); this._index=position._index; }
 		if(updateBlock==true){ mode=this.readVaruint(); }

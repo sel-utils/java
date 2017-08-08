@@ -17,7 +17,7 @@ import sul.utils.*;
  */
 public class AddPainting extends Packet {
 
-	public static final byte ID = (byte)22;
+	public static final int ID = (int)22;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -51,7 +51,7 @@ public class AddPainting extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(entityId);
 		this.writeVarlong(runtimeId);
 		this.writeBytes(position.encode());
@@ -63,7 +63,7 @@ public class AddPainting extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		entityId=this.readVarlong();
 		runtimeId=this.readVarlong();
 		position=new sul.protocol.pocket131.types.BlockPosition(); position._index=this._index; position.decode(this._buffer); this._index=position._index;

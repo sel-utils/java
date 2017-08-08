@@ -15,7 +15,7 @@ import sul.utils.*;
  */
 public class AdventureSettings extends Packet {
 
-	public static final byte ID = (byte)55;
+	public static final int ID = (int)55;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = true;
@@ -37,7 +37,14 @@ public class AdventureSettings extends Packet {
 	public static final int FLYING = 512;
 	public static final int MUTED = 1024;
 
-	// permissions
+	// permission level
+	public static final int USER = 0;
+	public static final int OPERATOR = 1;
+	public static final int HOST = 2;
+	public static final int AUTOMATION = 3;
+	public static final int ADMIN = 4;
+
+	// abilities
 	public static final int BUILD_AND_MINE = 1;
 	public static final int DOORS_AND_SWITCHES = 2;
 	public static final int OPEN_CONTAINERS = 4;
@@ -46,55 +53,54 @@ public class AdventureSettings extends Packet {
 	public static final int OP = 32;
 	public static final int TELEPORT = 64;
 
-	// permission level
-	public static final int USER = 0;
-	public static final int OPERATOR = 1;
-	public static final int HOST = 2;
-	public static final int AUTOMATION = 3;
-	public static final int ADMIN = 4;
+	// player rank
+	public static final int VISITOR = 0;
+	public static final int MEMBER = 1;
+	public static final int OPERATOR = 2;
+	public static final int CUSTOM = 3;
 
 	public int flags;
-	public int unknown1;
-	public int permissions;
 	public int permissionLevel;
-	public long entityId;
+	public int abilities;
+	public int playerRank;
+	public long unknown4;
 
 	public AdventureSettings() {}
 
-	public AdventureSettings(int flags, int unknown1, int permissions, int permissionLevel, long entityId) {
+	public AdventureSettings(int flags, int permissionLevel, int abilities, int playerRank, long unknown4) {
 		this.flags = flags;
-		this.unknown1 = unknown1;
-		this.permissions = permissions;
 		this.permissionLevel = permissionLevel;
-		this.entityId = entityId;
+		this.abilities = abilities;
+		this.playerRank = playerRank;
+		this.unknown4 = unknown4;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varuintLength(flags) + Buffer.varuintLength(unknown1) + Buffer.varuintLength(permissions) + Buffer.varuintLength(permissionLevel) + Buffer.varlongLength(entityId) + 1;
+		return Buffer.varuintLength(flags) + Buffer.varuintLength(permissionLevel) + Buffer.varuintLength(abilities) + Buffer.varuintLength(playerRank) + 9;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVaruint(flags);
-		this.writeVaruint(unknown1);
-		this.writeVaruint(permissions);
 		this.writeVaruint(permissionLevel);
-		this.writeVarlong(entityId);
+		this.writeVaruint(abilities);
+		this.writeVaruint(playerRank);
+		this.writeLittleEndianLong(unknown4);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		flags=this.readVaruint();
-		unknown1=this.readVaruint();
-		permissions=this.readVaruint();
 		permissionLevel=this.readVaruint();
-		entityId=this.readVarlong();
+		abilities=this.readVaruint();
+		playerRank=this.readVaruint();
+		unknown4=readLittleEndianLong();
 	}
 
 	public static AdventureSettings fromBuffer(byte[] buffer) {
@@ -105,7 +111,7 @@ public class AdventureSettings extends Packet {
 
 	@Override
 	public String toString() {
-		return "AdventureSettings(flags: " + this.flags + ", unknown1: " + this.unknown1 + ", permissions: " + this.permissions + ", permissionLevel: " + this.permissionLevel + ", entityId: " + this.entityId + ")";
+		return "AdventureSettings(flags: " + this.flags + ", permissionLevel: " + this.permissionLevel + ", abilities: " + this.abilities + ", playerRank: " + this.playerRank + ", unknown4: " + this.unknown4 + ")";
 	}
 
 }

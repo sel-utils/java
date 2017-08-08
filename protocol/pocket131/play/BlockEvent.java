@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class BlockEvent extends Packet {
 
-	public static final byte ID = (byte)26;
+	public static final int ID = (int)26;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -42,7 +42,7 @@ public class BlockEvent extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeBytes(position.encode());
 		for(int zfy:data){ this.writeVarint(zfy); }
 		return this.getBuffer();
@@ -51,7 +51,7 @@ public class BlockEvent extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		position=new sul.protocol.pocket131.types.BlockPosition(); position._index=this._index; position.decode(this._buffer); this._index=position._index;
 		final int brde=2; data=new int[brde]; for(int zfy=0;zfy<data.length;zfy++){ data[zfy]=this.readVarint(); }
 	}

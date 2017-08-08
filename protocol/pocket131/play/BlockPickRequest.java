@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class BlockPickRequest extends Packet {
 
-	public static final byte ID = (byte)34;
+	public static final int ID = (int)34;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -23,35 +23,39 @@ public class BlockPickRequest extends Packet {
 	}
 
 	public Tuples.IntXYZ position = new Tuples.IntXYZ();
+	public boolean unknown1;
 	public byte slot;
 
 	public BlockPickRequest() {}
 
-	public BlockPickRequest(Tuples.IntXYZ position, byte slot) {
+	public BlockPickRequest(Tuples.IntXYZ position, boolean unknown1, byte slot) {
 		this.position = position;
+		this.unknown1 = unknown1;
 		this.slot = slot;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varintLength(position.x) + Buffer.varintLength(position.y) + Buffer.varintLength(position.z) + 2;
+		return Buffer.varintLength(position.x) + Buffer.varintLength(position.y) + Buffer.varintLength(position.z) + 3;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarint(position.x); this.writeVarint(position.y); this.writeVarint(position.z);
-		this.writeBigEndianByte(slot);
+		this.writeBool(unknown1);
+		this.writeLittleEndianByte(slot);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		position=new Tuples.IntXYZ(); position.x=this.readVarint(); position.y=this.readVarint(); position.z=this.readVarint();
-		slot=readBigEndianByte();
+		unknown1=this.readBool();
+		slot=readLittleEndianByte();
 	}
 
 	public static BlockPickRequest fromBuffer(byte[] buffer) {
@@ -62,7 +66,7 @@ public class BlockPickRequest extends Packet {
 
 	@Override
 	public String toString() {
-		return "BlockPickRequest(position: " + this.position.toString() + ", slot: " + this.slot + ")";
+		return "BlockPickRequest(position: " + this.position.toString() + ", unknown1: " + this.unknown1 + ", slot: " + this.slot + ")";
 	}
 
 }

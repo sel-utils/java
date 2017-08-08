@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class EntityPickRequest extends Packet {
 
-	public static final byte ID = (byte)35;
+	public static final int ID = (int)35;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -22,56 +22,36 @@ public class EntityPickRequest extends Packet {
 		return ID;
 	}
 
-	public sul.protocol.pocket131.types.BlockPosition blockPosition;
-	public int hotbarSlot;
-	public int face;
-	public Tuples.FloatXYZ facePosition = new Tuples.FloatXYZ();
-	public Tuples.FloatXYZ position = new Tuples.FloatXYZ();
-	public int slot;
-	public sul.protocol.pocket131.types.Slot item;
+	public long entityType;
+	public byte slot;
 
 	public EntityPickRequest() {}
 
-	public EntityPickRequest(sul.protocol.pocket131.types.BlockPosition blockPosition, int hotbarSlot, int face, Tuples.FloatXYZ facePosition, Tuples.FloatXYZ position, int slot, sul.protocol.pocket131.types.Slot item) {
-		this.blockPosition = blockPosition;
-		this.hotbarSlot = hotbarSlot;
-		this.face = face;
-		this.facePosition = facePosition;
-		this.position = position;
+	public EntityPickRequest(long entityType, byte slot) {
+		this.entityType = entityType;
 		this.slot = slot;
-		this.item = item;
 	}
 
 	@Override
 	public int length() {
-		return blockPosition.length() + Buffer.varuintLength(hotbarSlot) + Buffer.varintLength(face) + Buffer.varintLength(slot) + item.length() + 25;
+		return 10;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
-		this.writeBytes(blockPosition.encode());
-		this.writeVaruint(hotbarSlot);
-		this.writeVarint(face);
-		this.writeLittleEndianFloat(facePosition.x); this.writeLittleEndianFloat(facePosition.y); this.writeLittleEndianFloat(facePosition.z);
-		this.writeLittleEndianFloat(position.x); this.writeLittleEndianFloat(position.y); this.writeLittleEndianFloat(position.z);
-		this.writeVarint(slot);
-		this.writeBytes(item.encode());
+		this.writeVaruint(ID);
+		this.writeLittleEndianLong(entityType);
+		this.writeLittleEndianByte(slot);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
-		blockPosition=new sul.protocol.pocket131.types.BlockPosition(); blockPosition._index=this._index; blockPosition.decode(this._buffer); this._index=blockPosition._index;
-		hotbarSlot=this.readVaruint();
-		face=this.readVarint();
-		facePosition=new Tuples.FloatXYZ(); facePosition.x=readLittleEndianFloat(); facePosition.y=readLittleEndianFloat(); facePosition.z=readLittleEndianFloat();
-		position=new Tuples.FloatXYZ(); position.x=readLittleEndianFloat(); position.y=readLittleEndianFloat(); position.z=readLittleEndianFloat();
-		slot=this.readVarint();
-		item=new sul.protocol.pocket131.types.Slot(); item._index=this._index; item.decode(this._buffer); this._index=item._index;
+		this.readVaruint();
+		entityType=readLittleEndianLong();
+		slot=readLittleEndianByte();
 	}
 
 	public static EntityPickRequest fromBuffer(byte[] buffer) {
@@ -82,7 +62,7 @@ public class EntityPickRequest extends Packet {
 
 	@Override
 	public String toString() {
-		return "EntityPickRequest(blockPosition: " + this.blockPosition.toString() + ", hotbarSlot: " + this.hotbarSlot + ", face: " + this.face + ", facePosition: " + this.facePosition.toString() + ", position: " + this.position.toString() + ", slot: " + this.slot + ", item: " + this.item.toString() + ")";
+		return "EntityPickRequest(entityType: " + this.entityType + ", slot: " + this.slot + ")";
 	}
 
 }

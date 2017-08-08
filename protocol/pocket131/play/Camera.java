@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class Camera extends Packet {
 
-	public static final byte ID = (byte)73;
+	public static final int ID = (int)73;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -34,13 +34,13 @@ public class Camera extends Packet {
 
 	@Override
 	public int length() {
-		return Buffer.varlongLength(unknown0) + Buffer.varlongLength(unknown1) + 1;
+		return Buffer.varlongLength(unknown0) + Buffer.varlongLength(unknown1) + 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(unknown0);
 		this.writeVarlong(unknown1);
 		return this.getBuffer();
@@ -49,7 +49,7 @@ public class Camera extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		unknown0=this.readVarlong();
 		unknown1=this.readVarlong();
 	}

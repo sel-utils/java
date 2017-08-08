@@ -41,7 +41,7 @@ public class Decoration extends Stream {
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
 		this.writeVarint(rotationAndIcon);
-		this.writeBigEndianByte(position.x); this.writeBigEndianByte(position.z);
+		this.writeLittleEndianByte(position.x); this.writeLittleEndianByte(position.z);
 		byte[] bfzw=label.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)bfzw.length); this.writeBytes(bfzw);
 		this.writeLittleEndianInt(color);
 		return this.getBuffer();
@@ -51,7 +51,7 @@ public class Decoration extends Stream {
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
 		rotationAndIcon=this.readVarint();
-		position=new Tuples.ByteXZ(); position.x=readBigEndianByte(); position.z=readBigEndianByte();
+		position=new Tuples.ByteXZ(); position.x=readLittleEndianByte(); position.z=readLittleEndianByte();
 		int bvbfzw=this.readVaruint(); label=new String(this.readBytes(bvbfzw), StandardCharsets.UTF_8);
 		color=readLittleEndianInt();
 	}

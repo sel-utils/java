@@ -8,11 +8,13 @@
  */
 package sul.protocol.pocket131.play;
 
+import java.nio.charset.StandardCharsets;
+
 import sul.utils.*;
 
 public class InitiateWebSocketConnection extends Packet {
 
-	public static final byte ID = (byte)95;
+	public static final int ID = (int)95;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = false;
@@ -22,22 +24,32 @@ public class InitiateWebSocketConnection extends Packet {
 		return ID;
 	}
 
+	public String unknown0;
+
+	public InitiateWebSocketConnection() {}
+
+	public InitiateWebSocketConnection(String unknown0) {
+		this.unknown0 = unknown0;
+	}
+
 	@Override
 	public int length() {
-		return 1;
+		return Buffer.varuintLength(unknown0.getBytes(StandardCharsets.UTF_8).length) + unknown0.getBytes(StandardCharsets.UTF_8).length + 2;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
+		byte[] d5b9ba=unknown0.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)d5b9ba.length); this.writeBytes(d5b9ba);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
+		int bvd5b9ba=this.readVaruint(); unknown0=new String(this.readBytes(bvd5b9ba), StandardCharsets.UTF_8);
 	}
 
 	public static InitiateWebSocketConnection fromBuffer(byte[] buffer) {
@@ -48,7 +60,7 @@ public class InitiateWebSocketConnection extends Packet {
 
 	@Override
 	public String toString() {
-		return "InitiateWebSocketConnection()";
+		return "InitiateWebSocketConnection(unknown0: " + this.unknown0 + ")";
 	}
 
 }

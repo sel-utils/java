@@ -14,7 +14,7 @@ import sul.utils.*;
 
 public class CraftingData extends Packet {
 
-	public static final byte ID = (byte)52;
+	public static final int ID = (int)52;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -40,7 +40,7 @@ public class CraftingData extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVaruint((int)recipes.length); for(sul.protocol.pocket131.types.Recipe cvabc:recipes){ this.writeBytes(cvabc.encode()); }
 		return this.getBuffer();
 	}
@@ -48,7 +48,7 @@ public class CraftingData extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		int bjylzm=this.readVaruint(); recipes=new sul.protocol.pocket131.types.Recipe[bjylzm]; for(int cvabc=0;cvabc<recipes.length;cvabc++){ recipes[cvabc]=new sul.protocol.pocket131.types.Recipe(); recipes[cvabc]._index=this._index; recipes[cvabc].decode(this._buffer); this._index=recipes[cvabc]._index; }
 	}
 

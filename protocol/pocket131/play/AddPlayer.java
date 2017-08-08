@@ -21,7 +21,7 @@ import sul.utils.*;
  */
 public class AddPlayer extends Packet {
 
-	public static final byte ID = (byte)12;
+	public static final int ID = (int)12;
 
 	public static final boolean CLIENTBOUND = true;
 	public static final boolean SERVERBOUND = false;
@@ -50,10 +50,15 @@ public class AddPlayer extends Packet {
 	public float yaw;
 	public sul.protocol.pocket131.types.Slot heldItem;
 	public sul.metadata.Pocket131 metadata;
+	public int unknown11;
+	public int unknown12;
+	public int unknown13;
+	public int unknown14;
+	public long unknown15;
 
 	public AddPlayer() {}
 
-	public AddPlayer(sul.protocol.pocket131.types.McpeUuid uuid, String username, long entityId, long runtimeId, Tuples.FloatXYZ position, Tuples.FloatXYZ motion, float pitch, float headYaw, float yaw, sul.protocol.pocket131.types.Slot heldItem, sul.metadata.Pocket131 metadata) {
+	public AddPlayer(sul.protocol.pocket131.types.McpeUuid uuid, String username, long entityId, long runtimeId, Tuples.FloatXYZ position, Tuples.FloatXYZ motion, float pitch, float headYaw, float yaw, sul.protocol.pocket131.types.Slot heldItem, sul.metadata.Pocket131 metadata, int unknown11, int unknown12, int unknown13, int unknown14, long unknown15) {
 		this.uuid = uuid;
 		this.username = username;
 		this.entityId = entityId;
@@ -65,17 +70,22 @@ public class AddPlayer extends Packet {
 		this.yaw = yaw;
 		this.heldItem = heldItem;
 		this.metadata = metadata;
+		this.unknown11 = unknown11;
+		this.unknown12 = unknown12;
+		this.unknown13 = unknown13;
+		this.unknown14 = unknown14;
+		this.unknown15 = unknown15;
 	}
 
 	@Override
 	public int length() {
-		return uuid.length() + Buffer.varuintLength(username.getBytes(StandardCharsets.UTF_8).length) + username.getBytes(StandardCharsets.UTF_8).length + Buffer.varlongLength(entityId) + Buffer.varlongLength(runtimeId) + heldItem.length() + metadata.length() + 37;
+		return uuid.length() + Buffer.varuintLength(username.getBytes(StandardCharsets.UTF_8).length) + username.getBytes(StandardCharsets.UTF_8).length + Buffer.varlongLength(entityId) + Buffer.varlongLength(runtimeId) + heldItem.length() + metadata.length() + Buffer.varuintLength(unknown11) + Buffer.varuintLength(unknown12) + Buffer.varuintLength(unknown13) + Buffer.varuintLength(unknown14) + 45;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeBytes(uuid.encode());
 		byte[] dnc5bu=username.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)dnc5bu.length); this.writeBytes(dnc5bu);
 		this.writeVarlong(entityId);
@@ -87,13 +97,18 @@ public class AddPlayer extends Packet {
 		this.writeLittleEndianFloat(yaw);
 		this.writeBytes(heldItem.encode());
 		this.writeBytes(metadata.encode());
+		this.writeVaruint(unknown11);
+		this.writeVaruint(unknown12);
+		this.writeVaruint(unknown13);
+		this.writeVaruint(unknown14);
+		this.writeLittleEndianLong(unknown15);
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		uuid=new sul.protocol.pocket131.types.McpeUuid(); uuid._index=this._index; uuid.decode(this._buffer); this._index=uuid._index;
 		int bvdnc5bu=this.readVaruint(); username=new String(this.readBytes(bvdnc5bu), StandardCharsets.UTF_8);
 		entityId=this.readVarlong();
@@ -105,6 +120,11 @@ public class AddPlayer extends Packet {
 		yaw=readLittleEndianFloat();
 		heldItem=new sul.protocol.pocket131.types.Slot(); heldItem._index=this._index; heldItem.decode(this._buffer); this._index=heldItem._index;
 		metadata=new sul.metadata.Pocket131(); metadata._index=this._index; metadata.decode(this._buffer); this._index=metadata._index;
+		unknown11=this.readVaruint();
+		unknown12=this.readVaruint();
+		unknown13=this.readVaruint();
+		unknown14=this.readVaruint();
+		unknown15=readLittleEndianLong();
 	}
 
 	public static AddPlayer fromBuffer(byte[] buffer) {
@@ -115,7 +135,7 @@ public class AddPlayer extends Packet {
 
 	@Override
 	public String toString() {
-		return "AddPlayer(uuid: " + this.uuid.toString() + ", username: " + this.username + ", entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", position: " + this.position.toString() + ", motion: " + this.motion.toString() + ", pitch: " + this.pitch + ", headYaw: " + this.headYaw + ", yaw: " + this.yaw + ", heldItem: " + this.heldItem.toString() + ", metadata: " + this.metadata.toString() + ")";
+		return "AddPlayer(uuid: " + this.uuid.toString() + ", username: " + this.username + ", entityId: " + this.entityId + ", runtimeId: " + this.runtimeId + ", position: " + this.position.toString() + ", motion: " + this.motion.toString() + ", pitch: " + this.pitch + ", headYaw: " + this.headYaw + ", yaw: " + this.yaw + ", heldItem: " + this.heldItem.toString() + ", metadata: " + this.metadata.toString() + ", unknown11: " + this.unknown11 + ", unknown12: " + this.unknown12 + ", unknown13: " + this.unknown13 + ", unknown14: " + this.unknown14 + ", unknown15: " + this.unknown15 + ")";
 	}
 
 }

@@ -38,7 +38,7 @@ public class Section extends Stream {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(storageVersion);
+		this.writeLittleEndianByte(storageVersion);
 		this.writeBytes(blockIds);
 		this.writeBytes(blockMetas);
 		return this.getBuffer();
@@ -47,7 +47,7 @@ public class Section extends Stream {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		storageVersion=readBigEndianByte();
+		storageVersion=readLittleEndianByte();
 		final int bjbnsr=4096; blockIds=this.readBytes(bjbnsr);
 		final int bjbntvym=2048; blockMetas=this.readBytes(bjbntvym);
 	}

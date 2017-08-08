@@ -16,7 +16,7 @@ import sul.utils.*;
  */
 public class EntityFall extends Packet {
 
-	public static final byte ID = (byte)37;
+	public static final int ID = (int)37;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -50,7 +50,7 @@ public class EntityFall extends Packet {
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
+		this.writeVaruint(ID);
 		this.writeVarlong(entityId);
 		this.writeLittleEndianFloat(distance);
 		this.writeBool(unknown2);
@@ -60,7 +60,7 @@ public class EntityFall extends Packet {
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
+		this.readVaruint();
 		entityId=this.readVarlong();
 		distance=readLittleEndianFloat();
 		unknown2=this.readBool();

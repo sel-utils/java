@@ -12,7 +12,7 @@ import sul.utils.*;
 
 public class Interact extends Packet {
 
-	public static final byte ID = (byte)33;
+	public static final int ID = (int)33;
 
 	public static final boolean CLIENTBOUND = false;
 	public static final boolean SERVERBOUND = true;
@@ -23,41 +23,44 @@ public class Interact extends Packet {
 	}
 
 	// action
-	public static final byte INTERACT = 1;
-	public static final byte ATTACK = 2;
 	public static final byte LEAVE_VEHICLE = 3;
 	public static final byte HOVER = 4;
+	public static final byte OPEN_INVENTORY = 6;
 
 	public byte action;
 	public long target;
+	public Tuples.FloatXYZ targetPosition = new Tuples.FloatXYZ();
 
 	public Interact() {}
 
-	public Interact(byte action, long target) {
+	public Interact(byte action, long target, Tuples.FloatXYZ targetPosition) {
 		this.action = action;
 		this.target = target;
+		this.targetPosition = targetPosition;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varlongLength(target) + 2;
+		return Buffer.varlongLength(target) + 14;
 	}
 
 	@Override
 	public byte[] encode() {
 		this._buffer = new byte[this.length()];
-		this.writeBigEndianByte(ID);
-		this.writeBigEndianByte(action);
+		this.writeVaruint(ID);
+		this.writeLittleEndianByte(action);
 		this.writeVarlong(target);
+		if(action==4){ this.writeLittleEndianFloat(targetPosition.x); this.writeLittleEndianFloat(targetPosition.y); this.writeLittleEndianFloat(targetPosition.z); }
 		return this.getBuffer();
 	}
 
 	@Override
 	public void decode(byte[] buffer) {
 		this._buffer = buffer;
-		readBigEndianByte();
-		action=readBigEndianByte();
+		this.readVaruint();
+		action=readLittleEndianByte();
 		target=this.readVarlong();
+		if(action==4){ targetPosition=new Tuples.FloatXYZ(); targetPosition.x=readLittleEndianFloat(); targetPosition.y=readLittleEndianFloat(); targetPosition.z=readLittleEndianFloat(); }
 	}
 
 	public static Interact fromBuffer(byte[] buffer) {
@@ -68,7 +71,7 @@ public class Interact extends Packet {
 
 	@Override
 	public String toString() {
-		return "Interact(action: " + this.action + ", target: " + this.target + ")";
+		return "Interact(action: " + this.action + ", target: " + this.target + ", targetPosition: " + this.targetPosition.toString() + ")";
 	}
 
 }
