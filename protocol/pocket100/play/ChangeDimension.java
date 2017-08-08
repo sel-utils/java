@@ -23,9 +23,9 @@ public class ChangeDimension extends Packet {
 	}
 
 	// dimension
-	public static final int OVERWORLD = 0;
-	public static final int NETHER = 1;
-	public static final int END = 2;
+	public static final int OVERWORLD = (int)0;
+	public static final int NETHER = (int)1;
+	public static final int END = (int)2;
 
 	public int dimension;
 	public Tuples.FloatXYZ position = new Tuples.FloatXYZ();

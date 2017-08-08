@@ -13,9 +13,9 @@ import sul.utils.*;
 public class Link extends Stream {
 
 	// action
-	public static final byte ADD = 0;
-	public static final byte RIDE = 1;
-	public static final byte REMOVE = 2;
+	public static final byte ADD = (byte)0;
+	public static final byte RIDE = (byte)1;
+	public static final byte REMOVE = (byte)2;
 
 	public long from;
 	public long to;
