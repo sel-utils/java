@@ -25,22 +25,22 @@ public class ClientSettings extends Packet {
 	}
 
 	// chat mode
-	public static final int ENABLED = 0;
-	public static final int COMMANDS_ONLY = 1;
-	public static final int DISABLED = 2;
+	public static final int ENABLED = (int)0;
+	public static final int COMMANDS_ONLY = (int)1;
+	public static final int DISABLED = (int)2;
 
 	// displayed skin parts
-	public static final byte CAPE = 1;
-	public static final byte JACKET = 2;
-	public static final byte LEFT_SLEEVE = 4;
-	public static final byte RIGHT_SLEEVE = 8;
-	public static final byte LEFT_PANTS = 16;
-	public static final byte RIGHT_PANTS = 32;
-	public static final byte HAT = 64;
+	public static final byte CAPE = (byte)1;
+	public static final byte JACKET = (byte)2;
+	public static final byte LEFT_SLEEVE = (byte)4;
+	public static final byte RIGHT_SLEEVE = (byte)8;
+	public static final byte LEFT_PANTS = (byte)16;
+	public static final byte RIGHT_PANTS = (byte)32;
+	public static final byte HAT = (byte)64;
 
 	// main hand
-	public static final byte RIGHT = 0;
-	public static final byte LEFT = 1;
+	public static final byte RIGHT = (byte)0;
+	public static final byte LEFT = (byte)1;
 
 	public String language;
 	public byte viewDistance;
