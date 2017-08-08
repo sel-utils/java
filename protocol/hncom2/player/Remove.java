@@ -27,10 +27,10 @@ public class Remove extends Packet {
 	}
 
 	// reason
-	public static final byte LEFT = 0;
-	public static final byte TIMED_OUT = 1;
-	public static final byte KICKED = 2;
-	public static final byte TRANSFERRED = 3;
+	public static final byte LEFT = (byte)0;
+	public static final byte TIMED_OUT = (byte)1;
+	public static final byte KICKED = (byte)2;
+	public static final byte TRANSFERRED = (byte)3;
 
 	public int hubId;
 
