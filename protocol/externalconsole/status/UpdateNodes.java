@@ -29,8 +29,8 @@ public class UpdateNodes extends Packet {
 	}
 
 	// action
-	public static final byte ADD = 0;
-	public static final byte REMOVE = 1;
+	public static final byte ADD = (byte)0;
+	public static final byte REMOVE = (byte)1;
 
 	/**
 	 * Whether the node should be added or removed from the list of connected nodes.
