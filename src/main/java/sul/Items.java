@@ -915,14 +915,14 @@ public final class Items
     public static final Items DISC_WAIT;
 
     public final String name;
-    public final ItemData minecraft, pocket;
+    public final ItemData java, pocket;
     public final byte stack;
     public final short durability;
 
-    private Items(String name, ItemData minecraft, ItemData pocket, byte stack, short durability)
+    private Items(String name, ItemData java, ItemData pocket, byte stack, short durability)
     {
         this.name = name;
-        this.minecraft = minecraft;
+        this.java = java;
         this.pocket = pocket;
         this.stack = stack;
         this.durability = durability;
@@ -942,12 +942,12 @@ public final class Items
 
     }
 
-    private static Map<Integer, Map<Integer, Items>> minecraftItems, pocketItems;
+    private static Map<Integer, Map<Integer, Items>> javaItems, pocketItems;
 
     static
     {
 
-        minecraftItems = new HashMap<Integer, Map<Integer, Items>>();
+        javaItems = new HashMap<Integer, Map<Integer, Items>>();
         pocketItems = new HashMap<Integer, Map<Integer, Items>>();
 
         add(AIR = new Items("air", new ItemData(0, 0, ""), new ItemData(0, 0, ""), (byte)64, (short)0));
@@ -1855,9 +1855,9 @@ public final class Items
 
     private static void add(Items item)
     {
-        if(item.minecraft != null) {
-            if(!minecraftItems.containsKey(item.minecraft.id)) minecraftItems.put(item.minecraft.id, new HashMap<Integer, Items>());
-            minecraftItems.get(item.minecraft.id).put(item.minecraft.meta, item);
+        if(item.java != null) {
+            if(!minecraftItems.containsKey(item.java.id)) javaItems.put(item.java.id, new HashMap<Integer, Items>());
+            javaItems.get(item.java.id).put(item.java.meta, item);
         }
         if(item.pocket != null) {
             if(!pocketItems.containsKey(item.pocket.id)) pocketItems.put(item.pocket.id, new HashMap<Integer, Items>());
@@ -1865,9 +1865,9 @@ public final class Items
         }
     }
 
-    public static Items getMinecraftItem(int id, int meta)
+    public static Items getJavaItem(int id, int meta)
     {
-        Map<Integer, Items> b = minecraftItems.get(id);
+        Map<Integer, Items> b = javaItems.get(id);
         if(b != null) {
             Items ret = b.get(meta);
             if(ret != null) return ret;
