@@ -19,17 +19,17 @@ public class Command extends Stream {
 	public String description;
 	public byte unknown2;
 	public byte permissionLevel;
-	public int aliasesId = -1;
+	public int aliasesEnum = -1;
 	public sul.protocol.pocket132.types.Overload[] overloads = new sul.protocol.pocket132.types.Overload[0];
 
 	public Command() {}
 
-	public Command(String name, String description, byte unknown2, byte permissionLevel, int aliasesId, sul.protocol.pocket132.types.Overload[] overloads) {
+	public Command(String name, String description, byte unknown2, byte permissionLevel, int aliasesEnum, sul.protocol.pocket132.types.Overload[] overloads) {
 		this.name = name;
 		this.description = description;
 		this.unknown2 = unknown2;
 		this.permissionLevel = permissionLevel;
-		this.aliasesId = aliasesId;
+		this.aliasesEnum = aliasesEnum;
 		this.overloads = overloads;
 	}
 
@@ -45,7 +45,7 @@ public class Command extends Stream {
 		byte[] zvyjcrb4=description.getBytes(StandardCharsets.UTF_8); this.writeVaruint((int)zvyjcrb4.length); this.writeBytes(zvyjcrb4);
 		this.writeLittleEndianByte(unknown2);
 		this.writeLittleEndianByte(permissionLevel);
-		this.writeLittleEndianInt(aliasesId);
+		this.writeLittleEndianInt(aliasesEnum);
 		this.writeVaruint((int)overloads.length); for(sul.protocol.pocket132.types.Overload bzcxyr:overloads){ this.writeBytes(bzcxyr.encode()); }
 		return this.getBuffer();
 	}
@@ -57,13 +57,13 @@ public class Command extends Stream {
 		int bvzvyjcr=this.readVaruint(); description=new String(this.readBytes(bvzvyjcr), StandardCharsets.UTF_8);
 		unknown2=readLittleEndianByte();
 		permissionLevel=readLittleEndianByte();
-		aliasesId=readLittleEndianInt();
+		aliasesEnum=readLittleEndianInt();
 		int b9zjbfc=this.readVaruint(); overloads=new sul.protocol.pocket132.types.Overload[b9zjbfc]; for(int bzcxyr=0;bzcxyr<overloads.length;bzcxyr++){ overloads[bzcxyr]=new sul.protocol.pocket132.types.Overload(); overloads[bzcxyr]._index=this._index; overloads[bzcxyr].decode(this._buffer); this._index=overloads[bzcxyr]._index; }
 	}
 
 	@Override
 	public String toString() {
-		return "Command(name: " + this.name + ", description: " + this.description + ", unknown2: " + this.unknown2 + ", permissionLevel: " + this.permissionLevel + ", aliasesId: " + this.aliasesId + ", overloads: " + Arrays.deepToString(this.overloads) + ")";
+		return "Command(name: " + this.name + ", description: " + this.description + ", unknown2: " + this.unknown2 + ", permissionLevel: " + this.permissionLevel + ", aliasesEnum: " + this.aliasesEnum + ", overloads: " + Arrays.deepToString(this.overloads) + ")";
 	}
 
 

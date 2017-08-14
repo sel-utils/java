@@ -14,6 +14,21 @@ import sul.utils.*;
 
 public class Parameter extends Stream {
 
+	// type
+	public static final int VALID = (int)1048576;
+	public static final int INT = (int)1;
+	public static final int FLOAT = (int)2;
+	public static final int MIXED = (int)3;
+	public static final int TARGET = (int)4;
+	public static final int STRING = (int)12;
+	public static final int POSITION = (int)13;
+	public static final int RAWTEXT = (int)16;
+	public static final int TEXT = (int)18;
+	public static final int JSON = (int)21;
+	public static final int COMMAND = (int)28;
+	public static final int ENUM = (int)2097152;
+	public static final int TEMPLATE = (int)16777216;
+
 	public String name;
 	public int type;
 	public boolean optional;
