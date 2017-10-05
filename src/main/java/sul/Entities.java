@@ -100,33 +100,33 @@ public enum Entities
 
     public final String name;
     public final boolean object;
-    public final int java, pocket;
+    public final int java, bedrock;
     public final double width, height;
 
-    private Entities(String name, boolean object, int java, int pocket, double width, double height)
+    private Entities(String name, boolean object, int java, int bedrock, double width, double height)
     {
         this.name = name;
         this.object = object;
         this.java = java;
-        this.pocket = pocket;
+        this.bedrock = bedrock;
         this.width = width;
         this.height = height;
     }
 
-    private Entities(String name, boolean object, int java, int pocket)
+    private Entities(String name, boolean object, int java, int bedrock)
     {
-        this(name, object, java, pocket, Double.NaN, Double.NaN);
+        this(name, object, java, bedrock, Double.NaN, Double.NaN);
     }
 
-    private static Map<Integer, Entities> javaEntities, javaObjects, pocketEntities, pocketObjects;
+    private static Map<Integer, Entities> javaEntities, javaObjects, bedrockEntities, bedrockObjects;
 
     static
     {
 
         javaEntities = new HashMap<Integer, Entities>();
         javaObjects = new HashMap<Integer, Entities>();
-        pocketEntities = new HashMap<Integer, Entities>();
-        pocketObjects = new HashMap<Integer, Entities>();
+        bedrockEntities = new HashMap<Integer, Entities>();
+        bedrockObjects = new HashMap<Integer, Entities>();
 
         add(BOAT);
         add(DROPPED_ITEM);
@@ -222,10 +222,10 @@ public enum Entities
             if(entity.object) javaObjects.put(entity.java, entity);
             if(!entity.object || !javaEntities.containsKey(entity.java)) javaEntities.put(entity.java, entity);
         }
-        if(entity.pocket > 0)
+        if(entity.bedrock > 0)
         {
-            if(entity.object) pocketObjects.put(entity.pocket, entity);
-            if(!entity.object || !pocketEntities.containsKey(entity.pocket)) pocketEntities.put(entity.pocket, entity);
+            if(entity.object) bedrockObjects.put(entity.bedrock, entity);
+            if(!entity.object || !bedrockEntities.containsKey(entity.bedrock)) bedrockEntities.put(entity.bedrock, entity);
         }
     }
 
@@ -247,8 +247,8 @@ public enum Entities
 
     public static Entities getPocketEntity(int id, boolean object)
     {
-        if(object && pocketObjects.containsKey(id)) return pocketObjects.get(id);
-        else return pocketEntities.get(id);
+        if(object && bedrockObjects.containsKey(id)) return bedrockObjects.get(id);
+        else return bedrockEntities.get(id);
     }
 
     public static Entities getPocketEntity(int id)

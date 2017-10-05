@@ -45,24 +45,24 @@ MENDING("mending", (byte)70, (byte)26, (byte)1),
 CURSE_OF_VANISHING("curse of vanishing", (byte)71, (byte)0, (byte)1);
 
     public final String name;
-    public final byte java, pocket;
+    public final byte java, bedrock;
     public final byte max;
 
-    private Enchantments(String name, byte java, byte pocket, byte max)
+    private Enchantments(String name, byte java, byte bedrock, byte max)
     {
         this.name = name;
         this.java = java;
-        this.pocket = pocket;
+        this.bedrock = bedrock;
         this.max = max;
     }
 
-    private static Map<Integer, Enchantments> javaEnchantments, pocketEnchantments;
+    private static Map<Integer, Enchantments> javaEnchantments, bedrockEnchantments;
 
     static
     {
 
         javaEnchantments = new HashMap<Integer, Enchantments>();
-        pocketEnchantments = new HashMap<Integer, Enchantments>();
+        bedrockEnchantments = new HashMap<Integer, Enchantments>();
 
         add(PROTECTION);
         add(FIRE_PROTECTION);
@@ -100,7 +100,7 @@ CURSE_OF_VANISHING("curse of vanishing", (byte)71, (byte)0, (byte)1);
     private static void add(Enchantments e)
     {
         if(e.java != -1) javaEnchantments.put((int)e.java, e);
-        if(e.pocket != -1) pocketEnchantments.put((int)e.pocket, e);
+        if(e.bedrock != -1) bedrockEnchantments.put((int)e.bedrock, e);
     }
 
     public static Enchantments getJavaEnchantment(int id)
@@ -110,7 +110,7 @@ CURSE_OF_VANISHING("curse of vanishing", (byte)71, (byte)0, (byte)1);
 
     public static Enchantments getPocketEnchantment(int id)
     {
-        return pocketEnchantments.get(id);
+        return bedrockEnchantments.get(id);
     }
 
 }

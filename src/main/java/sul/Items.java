@@ -915,15 +915,15 @@ public final class Items
     public static final Items DISC_WAIT;
 
     public final String name;
-    public final ItemData java, pocket;
+    public final ItemData java, bedrock;
     public final byte stack;
     public final short durability;
 
-    private Items(String name, ItemData java, ItemData pocket, byte stack, short durability)
+    private Items(String name, ItemData java, ItemData bedrock, byte stack, short durability)
     {
         this.name = name;
         this.java = java;
-        this.pocket = pocket;
+        this.bedrock = bedrock;
         this.stack = stack;
         this.durability = durability;
     }
@@ -942,13 +942,13 @@ public final class Items
 
     }
 
-    private static Map<Integer, Map<Integer, Items>> javaItems, pocketItems;
+    private static Map<Integer, Map<Integer, Items>> javaItems, bedrockItems;
 
     static
     {
 
         javaItems = new HashMap<Integer, Map<Integer, Items>>();
-        pocketItems = new HashMap<Integer, Map<Integer, Items>>();
+        bedrockItems = new HashMap<Integer, Map<Integer, Items>>();
 
         add(AIR = new Items("air", new ItemData(0, 0, ""), new ItemData(0, 0, ""), (byte)64, (short)0));
         add(STONE = new Items("stone", new ItemData(1, 0, ""), new ItemData(1, 0, ""), (byte)64, (short)0));
@@ -961,7 +961,7 @@ public final class Items
         add(GRASS = new Items("grass", new ItemData(2, 0, ""), new ItemData(2, 0, ""), (byte)64, (short)0));
         add(DIRT = new Items("dirt", new ItemData(3, 0, ""), new ItemData(3, 0, ""), (byte)64, (short)0));
         add(COARSE_DIRT = new Items("coarse dirt", new ItemData(3, 1, ""), null, (byte)64, (short)0));
-        add(PODZOL = new Items("podzol", new ItemData(3, 2, ""), new ItemData(243, 0, ""), (byte)64, (short)0));
+        add(PODZOL = new Items("podzol", new ItemData(3, 2, ""), null, (byte)64, (short)0));
         add(COBBLESTONE = new Items("cobblestone", new ItemData(4, 0, ""), new ItemData(4, 0, ""), (byte)64, (short)0));
         add(OAK_WOOD_PLANKS = new Items("oak wood planks", new ItemData(5, 0, ""), new ItemData(5, 0, ""), (byte)64, (short)0));
         add(SPRUCE_WOOD_PLANKS = new Items("spruce wood planks", new ItemData(5, 1, ""), new ItemData(5, 1, ""), (byte)64, (short)0));
@@ -1859,9 +1859,9 @@ public final class Items
             if(!minecraftItems.containsKey(item.java.id)) javaItems.put(item.java.id, new HashMap<Integer, Items>());
             javaItems.get(item.java.id).put(item.java.meta, item);
         }
-        if(item.pocket != null) {
-            if(!pocketItems.containsKey(item.pocket.id)) pocketItems.put(item.pocket.id, new HashMap<Integer, Items>());
-            pocketItems.get(item.pocket.id).put(item.pocket.meta, item);
+        if(item.bedrock != null) {
+            if(!bedrockItems.containsKey(item.bedrock.id)) bedrockItems.put(item.bedrock.id, new HashMap<Integer, Items>());
+            bedrockItems.get(item.bedrock.id).put(item.bedrock.meta, item);
         }
     }
 
@@ -1878,7 +1878,7 @@ public final class Items
 
     public static Items getPocketItem(int id, int meta)
     {
-        Map<Integer, Items> b = pocketItems.get(id);
+        Map<Integer, Items> b = bedrockItems.get(id);
         if(b != null) {
             Items ret = b.get(meta);
             if(ret != null) return ret;
