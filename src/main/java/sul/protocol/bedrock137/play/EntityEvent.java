@@ -41,19 +41,19 @@ public class EntityEvent extends Packet {
 
 	public long entityId;
 	public byte eventId;
-	public int unknown2;
+	public int data;
 
 	public EntityEvent() {}
 
-	public EntityEvent(long entityId, byte eventId, int unknown2) {
+	public EntityEvent(long entityId, byte eventId, int data) {
 		this.entityId = entityId;
 		this.eventId = eventId;
-		this.unknown2 = unknown2;
+		this.data = data;
 	}
 
 	@Override
 	public int length() {
-		return Buffer.varlongLength(entityId) + Buffer.varintLength(unknown2) + 2;
+		return Buffer.varlongLength(entityId) + Buffer.varintLength(data) + 2;
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class EntityEvent extends Packet {
 		this.writeVaruint(ID);
 		this.writeVarlong(entityId);
 		this.writeLittleEndianByte(eventId);
-		this.writeVarint(unknown2);
+		this.writeVarint(data);
 		return this.getBuffer();
 	}
 
@@ -72,7 +72,7 @@ public class EntityEvent extends Packet {
 		this.readVaruint();
 		entityId=this.readVarlong();
 		eventId=readLittleEndianByte();
-		unknown2=this.readVarint();
+		data=this.readVarint();
 	}
 
 	public static EntityEvent fromBuffer(byte[] buffer) {
@@ -83,7 +83,7 @@ public class EntityEvent extends Packet {
 
 	@Override
 	public String toString() {
-		return "EntityEvent(entityId: " + this.entityId + ", eventId: " + this.eventId + ", unknown2: " + this.unknown2 + ")";
+		return "EntityEvent(entityId: " + this.entityId + ", eventId: " + this.eventId + ", data: " + this.data + ")";
 	}
 
 }
