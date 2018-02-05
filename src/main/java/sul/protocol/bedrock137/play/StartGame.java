@@ -50,84 +50,26 @@ public class StartGame extends Packet {
 	public static final byte VANILLA = (byte)0;
 	public static final byte EDUCATION = (byte)1;
 
-	/**
-	 * Player's entity id that uniquely identifies the entity of the server.
-	 */
 	public long entityId;
 	public long runtimeId;
-
-	/**
-	 * Player's gamemode that may differ from the world's gamemode.
-	 */
 	public int gamemode;
-
-	/**
-	 * Position where the player will spawn.
-	 */
 	public Tuples.FloatXYZ position = new Tuples.FloatXYZ();
 	public float yaw;
 	public float pitch;
-
-	/**
-	 * World's seed. It's displayed in the game's world settings and in beta's debug informations
-	 * on top of the screen.
-	 */
 	public int seed;
-
-	/**
-	 * World's dimension. Different dimensions have different sky colours and render distances.
-	 */
 	public int dimension = 0;
-
-	/**
-	 * World's type. It's displayed in the game's world settings.
-	 * In old and infinite world the sky becomes darker at 32 blocks of altitude and in
-	 * flat worlds it only becomes darker under 0.
-	 */
 	public int generator = 1;
-
-	/**
-	 * Default's world gamemode.
-	 */
 	public int worldGamemode;
-
-	/**
-	 * World's difficulty. The value is visible in the client's world settings.
-	 */
 	public int difficulty;
-
-	/**
-	 * Position where the client's compass will point to.
-	 */
 	public Tuples.IntXYZ spawnPosition = new Tuples.IntXYZ();
 	public boolean loadedInCreative;
-
-	/**
-	 * Time of the day that should be in a range from 0 to 24000. If not the absolute value
-	 * is moduled per 24000.
-	 */
 	public int time;
-
-	/**
-	 * Game's edition. Some behaviours (some entities for example) may only work in a version
-	 * and not in the other.
-	 */
 	public byte version;
-
-	/**
-	 * Intensity of the rain or the snow. Any value lower than or equals to 0 means no
-	 * rain.
-	 */
 	public float rainLevel;
 	public float lightningLevel;
 	public boolean multiplayerGame = true;
 	public boolean broadcastToLan;
 	public boolean broadcastToXbl;
-
-	/**
-	 * Indicates whether the cheats are enabled. If the cheats are disabled the player
-	 * cannot send commands.
-	 */
 	public boolean commandsEnabled;
 	public boolean textureRequired;
 	public sul.protocol.bedrock137.types.Rule[] gameRules = new sul.protocol.bedrock137.types.Rule[0];
@@ -137,11 +79,6 @@ public class StartGame extends Packet {
 	public int permissionLevel;
 	public int unknown27;
 	public String levelId;
-
-	/**
-	 * World's name that will be displayed in the game's world settings. It can contain
-	 * formatting codes.
-	 */
 	public String worldName;
 	public String premiumWorldTemplate;
 	public boolean unknown31;

@@ -10,10 +10,6 @@ package sul.protocol.bedrock150.types;
 
 import sul.utils.*;
 
-/**
- * Position of a block, where x and z are signed and y is always positive (as blocks
- * cannot be placed under 0).
- */
 public class BlockPosition extends Stream {
 
 	public int x;

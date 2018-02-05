@@ -10,9 +10,6 @@ package sul.protocol.pocket102.play;
 
 import sul.utils.*;
 
-/**
- * Spawns a dropped item.
- */
 public class AddItemEntity extends Packet {
 
 	public static final byte ID = (byte)16;

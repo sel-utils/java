@@ -12,10 +12,6 @@ import java.util.Arrays;
 
 import sul.utils.*;
 
-/**
- * One ore more packet, each prefixed with their varuint-encoded length, compressed
- * with zlib's deflate algorithm.
- */
 public class Batch extends Packet {
 
 	public static final byte ID = (byte)6;
@@ -28,32 +24,6 @@ public class Batch extends Packet {
 		return ID;
 	}
 
-	/**
-	 * Compressed data.
-	 * 
-	 * Pseudo-code for decompression:
-	 * <code>
-	 * ubyte[] uncompressed = uncompress(batch.payload);
-	 * int index = 0;
-	 * while(index < uncompressed.length) {
-	 *    int length = varuint.decode(uncompressed, &index);
-	 *    if(length < uncompressed.length - index) {}
-	 *       ubyte[] packet = uncompressed[0..length];
-	 *       index += length;
-	 *    }
-	 * }
-	 * </code>
-	 * 
-	 * Pseudo-code for compression:
-	 * <code>
-	 * ubyte[] payload;
-	 * foreach(ubyte[] packet ; packets) {
-	 *    payload.concat(varuint.encode(packet.length));
-	 *    payload.concat(packet);
-	 * }
-	 * Batch batch = new Batch(compress(payload, Zlib.DEFLATE));
-	 * </code>
-	 */
 	public byte[] data = new byte[0];
 
 	public Batch() {}

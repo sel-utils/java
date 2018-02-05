@@ -13,9 +13,6 @@ import java.util.Arrays;
 
 import sul.utils.*;
 
-/**
- * Sends a list of the commands that the player can use through the CommandStep packet.
- */
 public class AvailableCommands extends Packet {
 
 	public static final int ID = (int)76;

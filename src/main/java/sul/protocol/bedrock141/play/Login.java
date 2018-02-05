@@ -10,10 +10,6 @@ package sul.protocol.bedrock141.play;
 
 import sul.utils.*;
 
-/**
- * First MCPE packet sent after the establishment of the connection through raknet.
- * It contains informations about the player.
- */
 public class Login extends Packet {
 
 	public static final int ID = (int)1;
@@ -26,15 +22,7 @@ public class Login extends Packet {
 		return ID;
 	}
 
-	/**
-	 * Version of the protocol used by the player.
-	 */
 	public int protocol = 141;
-
-	/**
-	 * Payload that contains 2 JWTs (with each length indicated by an unsigned little-endian
-	 * 32-bits integer) with more informations about the player and its account.
-	 */
 	public sul.protocol.bedrock141.types.LoginBody body;
 
 	public Login() {}

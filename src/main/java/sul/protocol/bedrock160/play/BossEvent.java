@@ -10,10 +10,6 @@ package sul.protocol.bedrock160.play;
 
 import sul.utils.*;
 
-/**
- * Adds, removes or modifies an entity's boss bar. The percentage of the bar is calculated
- * using the entity's attributes for the health and the max health, updated with UpdateAttributes.
- */
 public class BossEvent extends Packet {
 
 	public static final int ID = (int)74;

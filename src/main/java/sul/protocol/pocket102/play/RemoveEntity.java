@@ -10,9 +10,6 @@ package sul.protocol.pocket102.play;
 
 import sul.utils.*;
 
-/**
- * Despawns an entity or a player.
- */
 public class RemoveEntity extends Packet {
 
 	public static final byte ID = (byte)15;

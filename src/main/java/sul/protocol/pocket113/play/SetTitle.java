@@ -12,9 +12,6 @@ import java.nio.charset.StandardCharsets;
 
 import sul.utils.*;
 
-/**
- * Displays titles on the client's screen.
- */
 public class SetTitle extends Packet {
 
 	public static final byte ID = (byte)89;
@@ -36,10 +33,6 @@ public class SetTitle extends Packet {
 	public static final int SET_TIMINGS = (int)5;
 
 	public int action;
-
-	/**
-	 * Text that will be displayed in the place specified in the action field.
-	 */
 	public String text;
 	public int fadeIn;
 	public int stay;

@@ -10,9 +10,6 @@ package sul.protocol.bedrock150.play;
 
 import sul.utils.*;
 
-/**
- * Sets the time.
- */
 public class SetTime extends Packet {
 
 	public static final int ID = (int)10;
@@ -25,10 +22,6 @@ public class SetTime extends Packet {
 		return ID;
 	}
 
-	/**
-	 * Time of the day in a range from 0 to 24000. If higher or lower it will be moduled
-	 * to 24000.
-	 */
 	public int time;
 
 	public SetTime() {}

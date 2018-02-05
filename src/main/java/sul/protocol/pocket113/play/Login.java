@@ -10,10 +10,6 @@ package sul.protocol.pocket113.play;
 
 import sul.utils.*;
 
-/**
- * First MCPE packet sent after the establishment of the connection through raknet.
- * It contains informations about the player.
- */
 public class Login extends Packet {
 
 	public static final byte ID = (byte)1;
@@ -30,22 +26,8 @@ public class Login extends Packet {
 	public static final byte VANILLA = (byte)0;
 	public static final byte EDUCATION = (byte)1;
 
-	/**
-	 * Version of the protocol used by the player.
-	 */
 	public int protocol = 113;
-
-	/**
-	 * Edition that the player is using to join the server. The different editions may
-	 * have different features and servers may block the access from unaccepted editions
-	 * of the game.
-	 */
 	public byte version;
-
-	/**
-	 * Payload that contains 2 JWTs (with each length indicated by an unsigned little-endian
-	 * 32-bits integer) with more informations about the player and its account.
-	 */
 	public sul.protocol.pocket113.types.LoginBody body;
 
 	public Login() {}

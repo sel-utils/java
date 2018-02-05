@@ -12,9 +12,6 @@ import java.nio.charset.StandardCharsets;
 
 import sul.utils.*;
 
-/**
- * Sends a list of the commands that the player can use through the CommandStep packet.
- */
 public class AvailableCommands extends Packet {
 
 	public static final byte ID = (byte)77;
@@ -27,9 +24,6 @@ public class AvailableCommands extends Packet {
 		return ID;
 	}
 
-	/**
-	 * JSON object with the commands.
-	 */
 	public String commands;
 	public String unknown1;
 

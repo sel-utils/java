@@ -12,10 +12,6 @@ import java.util.Arrays;
 
 import sul.utils.*;
 
-/**
- * Section of a chunk with informations about blocks and lights. The array of bytes
- * are always ordered `xzy`.
- */
 public class Section extends Stream {
 
 	public byte storageVersion = 0;

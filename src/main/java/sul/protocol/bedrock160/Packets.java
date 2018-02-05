@@ -13,41 +13,10 @@ import java.util.HashMap;
 
 import sul.utils.Packet;
 
-/**
- * Protocol used in Minecraft: Pocket Edition and variants. The network part of the
- * protocol is managed by RakNet.
- * 
- * ⚠ Every packet is encoded as id (byte), padding (2 bytes) and body ⚠
- * 
- * <h3>Login sequence</h3>
- * + The client sends a Login packet with the details of its game and its account
- * + The server always replies with a PlayerStatus
- * + If status field in the packet sent was different from ok the connection is closed
- * 
- * <h3>Spawning sequence</h3>
- * + The server sends a StartGame packet with the world's informations
- * + The server sends zero or more FullChunkData with the chunk's blocks and tiles
- * + The server sends the player's inventory using ContainerSetContent
- * + The server sends the world's textures through ResourcePacksInfo (the textures
- * may be empty)
- * + The client replies with ResourcePackClientResponse telling the server that the
- * textures have been loaded
- * + The server sends a PlayStatus packet set to spawned
- * + The client spawns
- * 
- * Everything written in the documentation has been tested on [sel-server](https://github.com/sel-project/sel-server).
- * The types and the packets without documentation haven't been tested yet or it's
- * not clear what their real purpose in the game is.
- */
 public final class Packets {
 
 	private Packets() {}
 
-	/**
-	 * Packets related to the gameplay. Network-related packets (encapsulation, acks, nacks)
-	 * are managed by RakNet and every packet in this section is encapsualted in an Encapsualted
-	 * packet.
-	 */
 	public static final Map<Integer, Class<? extends Packet>> PLAY;
 
 	static {

@@ -10,9 +10,6 @@ package sul.protocol.pocket101.play;
 
 import sul.utils.*;
 
-/**
- * Indicates whether the cheats are enabled. If not the client cannot send commands.
- */
 public class SetCommandsEnabled extends Packet {
 
 	public static final byte ID = (byte)59;

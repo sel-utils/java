@@ -12,43 +12,13 @@ import java.util.Arrays;
 
 import sul.utils.*;
 
-/**
- * Chunk's blocks, lights and other immutable data.
- */
 public class ChunkData extends Stream {
 
-	/**
-	 * 16x16x16 section of the chunk. The array's keys also indicate the section's height
-	 * (the 3rd element of the array will be the 3rd section from bottom, starting at `y=24`).
-	 * The amount of sections should be in a range from 0 (empty chunk) to 16.
-	 */
 	public sul.protocol.pocket113.types.Section[] sections = new sul.protocol.pocket113.types.Section[0];
-
-	/**
-	 * Coordinates of the highest block in the column that receives sky light (order `xz`).
-	 * It is used to increase the speed when calculating the block's light level.
-	 */
 	public short[] heights = new short[256];
-
-	/**
-	 * Biomes in order `xz`.
-	 */
 	public byte[] biomes = new byte[256];
-
-	/**
-	 * Colums where there are world borders (in format `xz`). This feature hasn't been
-	 * implemented in the game yet and crashes the client.
-	 */
 	public byte[] borders = new byte[0];
 	public sul.protocol.pocket113.types.ExtraData[] extraData = new sul.protocol.pocket113.types.ExtraData[0];
-
-	/**
-	 * Additional data for the chunk's block entities (tiles), encoded in the same way
-	 * as BlockEntityData.nbt is. The position is given by the `Int` tags `x`, `y`, `z`
-	 * which are added to the block's compound tag together with the `String` tag `id`
-	 * that contains the name of the tile in pascal case.
-	 * Wrong encoding or missing tags may result in the block becoming invisible.
-	 */
 	public byte[] blockEntities = new byte[0];
 
 	public ChunkData() {}

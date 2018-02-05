@@ -13,13 +13,6 @@ import java.util.Arrays;
 
 import sul.utils.*;
 
-/**
- * Sends or receives a message from the player. Every variant's field can contain Minecraft's
- * formatting codes.
- * Every packet sent in the same game tick should be joined together with `\n§r` (line
- * break and reset formatting), otherwise the messages will be displayed multiple times
- * on the client's chat (see [MCPE-17631](https://bugs.mojang.com/browse/MCPE-17631)).
- */
 public class Text extends Packet {
 
 	public static final byte ID = (byte)10;
@@ -79,9 +72,6 @@ public class Text extends Packet {
 		return "Text(type: " + this.type + ")";
 	}
 
-	/**
-	 * Raw message that will be printed in the chat as it is.
-	 */
 	public class Raw extends Packet {
 
 		public static final byte TYPE = (byte)0;
@@ -130,10 +120,6 @@ public class Text extends Packet {
 
 	}
 
-	/**
-	 * Chat message sent by the player to the server. If sent from the server it will display
-	 * as `&lt;sender&gt; message`.
-	 */
 	public class Chat extends Packet {
 
 		public static final byte TYPE = (byte)1;
@@ -143,15 +129,7 @@ public class Text extends Packet {
 			return ID;
 		}
 
-		/**
-		 * Case sensitive name of the player that has sent the message.
-		 */
 		public String sender;
-
-		/**
-		 * Message sent by the player. It should be unformatted (regular expression: `§[a-fA-F0-9k-or]`)
-		 * before being processed as chat message by the server.
-		 */
 		public String message;
 
 		public Chat() {}
@@ -194,9 +172,6 @@ public class Text extends Packet {
 
 	}
 
-	/**
-	 * Sends a message that will be translated client-side using the player's language.
-	 */
 	public class Translation extends Packet {
 
 		public static final byte TYPE = (byte)2;
@@ -206,14 +181,7 @@ public class Text extends Packet {
 			return ID;
 		}
 
-		/**
-		 * A message in the game's language file.
-		 */
 		public String message;
-
-		/**
-		 * Parameters that will be placed instead of the replacement symbols (%1, %2, etc...).
-		 */
 		public String[] parameters = new String[0];
 
 		public Translation() {}
@@ -256,10 +224,6 @@ public class Text extends Packet {
 
 	}
 
-	/**
-	 * Displays popups messages for one tick before fading out. The popup messages are
-	 * displayed at the centre of the screen and are not automatically aligned horizontally.
-	 */
 	public class Popup extends Packet {
 
 		public static final byte TYPE = (byte)3;
@@ -312,10 +276,6 @@ public class Text extends Packet {
 
 	}
 
-	/**
-	 * Displays a tip message for one tick before fading out. The tip message is displayed
-	 * on top of the inventory bar and can contain multiple lines separated with `\n`.
-	 */
 	public class Tip extends Packet {
 
 		public static final byte TYPE = (byte)4;
@@ -412,10 +372,6 @@ public class Text extends Packet {
 
 	}
 
-	/**
-	 * Sends a whisper message to the client that will be displayed in the format `<i>sender
-	 * has whispered to you:</i> message`.
-	 */
 	public class Whisper extends Packet {
 
 		public static final byte TYPE = (byte)6;

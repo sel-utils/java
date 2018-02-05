@@ -17,10 +17,6 @@ public class Decoration extends Stream {
 	public int rotationAndIcon;
 	public Tuples.ByteXZ position = new Tuples.ByteXZ();
 	public String label;
-
-	/**
-	 * ARGB colour.
-	 */
 	public int color;
 
 	public Decoration() {}

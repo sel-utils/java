@@ -12,11 +12,6 @@ import java.util.Arrays;
 
 import sul.utils.*;
 
-/**
- * Updates client's game rules. This packet is ignored if the game is not launched
- * as Education Edition and should be avoid in favour of AdventureSettings, with which
- * the same result can be obtained with less data.
- */
 public class GameRulesChanged extends Packet {
 
 	public static final byte ID = (byte)72;

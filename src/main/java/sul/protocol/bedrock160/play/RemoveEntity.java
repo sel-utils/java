@@ -10,9 +10,6 @@ package sul.protocol.bedrock160.play;
 
 import sul.utils.*;
 
-/**
- * Despawns an entity or a player.
- */
 public class RemoveEntity extends Packet {
 
 	public static final int ID = (int)14;

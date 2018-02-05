@@ -12,9 +12,6 @@ import java.nio.charset.StandardCharsets;
 
 import sul.utils.*;
 
-/**
- * A game rule that prevents the client from doing client-side actions and animations.
- */
 public class Rule extends Stream {
 
 	// name
@@ -39,11 +36,6 @@ public class Rule extends Stream {
 	public static final byte INTEGER = (byte)2;
 	public static final byte FLOATING = (byte)3;
 
-	/**
-	 * Name of the rule. Same of the `gamerule` command's field in the game.
-	 * The behaviours indicated in the following constants' descriptions is enabled or
-	 * disabled.
-	 */
 	public String name;
 	public byte type;
 	public boolean booleanValue;

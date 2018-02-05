@@ -10,9 +10,6 @@ package sul.protocol.pocket105.play;
 
 import sul.utils.*;
 
-/**
- * Sets the world's difficulty.
- */
 public class SetDifficulty extends Packet {
 
 	public static final byte ID = (byte)61;

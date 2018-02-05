@@ -10,9 +10,6 @@ package sul.protocol.bedrock160.play;
 
 import sul.utils.*;
 
-/**
- * Spawns a dropped item.
- */
 public class AddItemEntity extends Packet {
 
 	public static final int ID = (int)15;

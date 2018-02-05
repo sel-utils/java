@@ -10,9 +10,6 @@ package sul.protocol.bedrock160.play;
 
 import sul.utils.*;
 
-/**
- * Sets the world's difficulty.
- */
 public class SetDifficulty extends Packet {
 
 	public static final int ID = (int)60;

@@ -12,9 +12,6 @@ import java.nio.charset.StandardCharsets;
 
 import sul.utils.*;
 
-/**
- * A game rule that prevents the client from doing client-side actions and animations.
- */
 public class Rule extends Stream {
 
 	// name
@@ -24,17 +21,7 @@ public class Rule extends Stream {
 	public static final String IMMUTABLE_WORLD = "immutableworld";
 	public static final String PVP = "pvp";
 
-	/**
-	 * Name of the rule. Same of the `gamerule` command's field in Minecraft: Education
-	 * Edition.
-	 * The behaviours indicated in the following constants' descriptions is enabled or
-	 * disabled.
-	 */
 	public String name;
-
-	/**
-	 * Indicates whether the game rule is enabled.
-	 */
 	public boolean value;
 	public boolean unknown2;
 

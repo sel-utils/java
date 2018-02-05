@@ -10,9 +10,6 @@ package sul.protocol.pocket102.play;
 
 import sul.utils.*;
 
-/**
- * Sends a 16x16 chunk to the client with its blocks, lights and block entities (tiles).
- */
 public class FullChunkData extends Packet {
 
 	public static final byte ID = (byte)58;
@@ -25,9 +22,6 @@ public class FullChunkData extends Packet {
 		return ID;
 	}
 
-	/**
-	 * Coordinates of the chunk.
-	 */
 	public Tuples.IntXZ position = new Tuples.IntXZ();
 	public sul.protocol.pocket102.types.ChunkData data;
 

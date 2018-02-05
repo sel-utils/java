@@ -10,9 +10,6 @@ package sul.protocol.bedrock150.play;
 
 import sul.utils.*;
 
-/**
- * Updates an entity's metadata.
- */
 public class SetEntityData extends Packet {
 
 	public static final int ID = (int)39;

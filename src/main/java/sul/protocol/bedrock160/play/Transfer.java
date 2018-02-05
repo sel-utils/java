@@ -12,11 +12,6 @@ import java.nio.charset.StandardCharsets;
 
 import sul.utils.*;
 
-/**
- * Transfers the player to another server. Once transferred the player will immediately
- * close the connection with the transferring server, try to resolve the ip and join
- * the new server starting a new raknet session.
- */
 public class Transfer extends Packet {
 
 	public static final int ID = (int)85;
@@ -29,16 +24,7 @@ public class Transfer extends Packet {
 		return ID;
 	}
 
-	/**
-	 * Address of the new server. It can be an dotted ip (for example `127.0.0.1`) or an
-	 * URI (for example `localhost` or `play.example.com`). Only IP of version 4 are currently
-	 * allowed.
-	 */
 	public String ip;
-
-	/**
-	 * Port of the new server. If 0 the server will try to connect to the default port.
-	 */
 	public short port = 19132;
 
 	public Transfer() {}

@@ -12,9 +12,6 @@ import java.nio.charset.StandardCharsets;
 
 import sul.utils.*;
 
-/**
- * Disconnects the player from the server.
- */
 public class Disconnect extends Packet {
 
 	public static final int ID = (int)5;
@@ -27,15 +24,7 @@ public class Disconnect extends Packet {
 		return ID;
 	}
 
-	/**
-	 * Indicates whether to display the main menu screen or a disconnection message.
-	 */
 	public boolean hideDisconnectionScreen;
-
-	/**
-	 * The message to display in the disconnection screen. If the message is in the game's
-	 * language file it will be translated client-side.
-	 */
 	public String message;
 
 	public Disconnect() {}

@@ -10,10 +10,6 @@ package sul.protocol.pocket105.play;
 
 import sul.utils.*;
 
-/**
- * Instantly removes a block, either because the player is in creative mode or because
- * the target block's hardness is 0 or lower (after all enchantments are applied).
- */
 public class RemoveBlock extends Packet {
 
 	public static final byte ID = (byte)22;

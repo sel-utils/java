@@ -32,16 +32,8 @@ public class ClientboundMapItemData extends Packet {
 	public long mapId;
 	public int update;
 	public byte scale;
-
-	/**
-	 * Colums and rows.
-	 */
 	public Tuples.IntXZ size = new Tuples.IntXZ();
 	public Tuples.IntXZ offset = new Tuples.IntXZ();
-
-	/**
-	 * ARGB colours encoded as unsigned varints.
-	 */
 	public byte[] data = new byte[0];
 	public sul.protocol.bedrock137.types.Decoration[] decorations = new sul.protocol.bedrock137.types.Decoration[0];
 

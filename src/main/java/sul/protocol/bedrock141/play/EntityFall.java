@@ -10,10 +10,6 @@ package sul.protocol.bedrock141.play;
 
 import sul.utils.*;
 
-/**
- * Sent by the player when it falls from a distance that causes damage, that can be
- * influenced by its armour and its effects.
- */
 public class EntityFall extends Packet {
 
 	public static final int ID = (int)37;
@@ -27,10 +23,6 @@ public class EntityFall extends Packet {
 	}
 
 	public long entityId;
-
-	/**
-	 * Number of blocks the player has been in free falling before hitting the ground.
-	 */
 	public float distance;
 	public boolean unknown2;
 

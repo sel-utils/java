@@ -10,9 +10,6 @@ package sul.protocol.bedrock150.play;
 
 import sul.utils.*;
 
-/**
- * Plays the collection animation and despawns the entity that has been collected.
- */
 public class TakeItemEntity extends Packet {
 
 	public static final int ID = (int)17;
@@ -25,15 +22,7 @@ public class TakeItemEntity extends Packet {
 		return ID;
 	}
 
-	/**
-	 * Collected entity, usually an item entity or an arrow, that will float toward the
-	 * collector and despawn.
-	 */
 	public long collected;
-
-	/**
-	 * Entity that collects, usually a player or another entity with an inventory.
-	 */
 	public long collector;
 
 	public TakeItemEntity() {}

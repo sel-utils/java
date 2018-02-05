@@ -10,9 +10,6 @@ package sul.protocol.bedrock160.play;
 
 import sul.utils.*;
 
-/**
- * Updates the world's settings and client's permissions.
- */
 public class AdventureSettings extends Packet {
 
 	public static final int ID = (int)55;

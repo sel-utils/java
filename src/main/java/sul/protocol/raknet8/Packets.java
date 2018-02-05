@@ -13,9 +13,6 @@ import java.util.HashMap;
 
 import sul.utils.Packet;
 
-/**
- * Minecraft: Pocket Edition's networking protocol.
- */
 public final class Packets {
 
 	private Packets() {}
